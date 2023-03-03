@@ -9,6 +9,9 @@ gunicorn = "~=20.1.0"
 whitenoise = "~=6.4.0"
 dj-database-url = "~=1.2.0"
 psycopg2-binary = "~=2.9.5"
+djangorestframework = "~=3.14.0"
+dj-rest-auth = "~=3.0.0"
+django-allauth = "~=0.52.0"
 
 [dev-packages]
 autopep8 = "*"
