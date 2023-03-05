@@ -12,6 +12,7 @@ psycopg2-binary = "~=2.9.5"
 djangorestframework = "~=3.14.0"
 dj-rest-auth = "~=3.0.0"
 django-allauth = "~=0.52.0"
+python3-discogs-client = "*"
 
 [dev-packages]
 autopep8 = "*"

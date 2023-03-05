@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 
     # local
+    'albums.apps.AlbumsConfig',
     'accounts.apps.AccountsConfig',
+    'api.apps.ApiConfig',
     'frontend.apps.FrontendConfig',
 
 
