@@ -3,9 +3,8 @@ from django.db import models
 
 # Create your models here.
 
+
 # album detail from 3rd party api
-
-
 class AlbumDetail(models.Model):
     image = models.ImageField(upload_to="albums/", null=True)
     artist = models.CharField(max_length=255)
@@ -20,9 +19,8 @@ class AlbumDetail(models.Model):
     def __str__(self):
         return self.title
 
-# user album detail
 
-
+# user input album detail
 class Album(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
@@ -33,10 +31,13 @@ class Album(models.Model):
     def __str__(self):
         return self.album.title
 
+
 # user detail comment
-
-
 class Comment(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # time stamp with moment of creation
+    created_at = models.DateTimeField(auto_now_add=True)
+    # automatically updates with any changes made to comment
+    updated_at = models.DateTimeField(auto_now=True)
