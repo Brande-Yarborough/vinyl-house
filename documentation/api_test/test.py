@@ -5,11 +5,11 @@ d = discogs_client.Client('ExampleApplication/0.1',
 
 def fetchDiscOgsData():
     type = 'release'
-    title = ''
+    title = 'Lemonade'
     artist = 'Beyonce'
     genre = ''
     year = ''
-    results = d.search(artist=artist, type=type)
+    results = d.search(artist=artist, type=type, title=title,)
     print(results[0])
     return results
 
