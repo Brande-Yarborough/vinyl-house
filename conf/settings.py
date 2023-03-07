@@ -166,6 +166,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/4.1/topics/auth/customizing/substituting-a-custom-user-model
 AUTH_USER_MODEL = 'accounts.User'
 
+# Managing files
+# https://docs.djangoproject.com/en/3.1/topics/files/#managing-files
+
+# MEDIA_ROOT is the path to the root directory where the files are getting stored
+# MEDIA_URL is the URL that will serve the media files
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 

@@ -13,6 +13,7 @@ djangorestframework = "~=3.14.0"
 dj-rest-auth = "~=2.2.8"
 django-allauth = "~=0.52.0"
 python3-discogs-client = "*"
+pillow = "~=9.4.0"
 
 [dev-packages]
 autopep8 = "*"
