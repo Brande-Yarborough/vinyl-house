@@ -32,6 +32,7 @@ class AlbumDetailListAPIView(generics.ListCreateAPIView):
 
 
 class AlbumListAPIView(generics.ListCreateAPIView):
+    # look at permissions for this-not going to get back all albums, only want to see your albums or friends albums
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
 
