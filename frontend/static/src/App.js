@@ -1,4 +1,6 @@
 import "./App.css";
+import { useState } from "react";
+import Cookies from "js-cookie";
 
 function App() {
   const [albums, setAlbums] = useState(null);
@@ -24,7 +26,7 @@ function App() {
     setAlbums([...albums, data]);
   };
 
-  if (!articles) {
+  if (!albums) {
     return <div>Fetching data ...</div>;
   }
 
