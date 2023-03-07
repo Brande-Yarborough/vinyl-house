@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import AlbumDetail
-from .serializers import AlbumDetailSerializer
+from .models import AlbumDetail, Album, Comment
+from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer
 
 
 # Create your views here.
@@ -29,3 +29,19 @@ class AlbumDetailListAPIView(generics.ListCreateAPIView):
     queryset = AlbumDetail.objects.all()
     # what it looks like, this is how you need to return them
     serializer_class = AlbumDetailSerializer
+
+
+class AlbumListAPIView(generics.ListCreateAPIView):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
+
+
+class CommentListAPIView(generics.ListCreateAPIView):
+    serializer_class = CommentSerializer
+    # need to add permission class IsAuthor
+
+    def get_queryset(self):
+        return Comment.objects.filter(author=self.request.user).order_by('-created_at')
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
