@@ -1,40 +1,28 @@
 import "./App.css";
-import { useState } from "react";
-import Cookies from "js-cookie";
+import { useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import { AuthContext } from "./Context/AuthContext";
+import ProtectedRoute from "./Routes/ProtectedRoute";
+import Login from "./Pages/LoginForm";
+import Register from "./Pages/RegistrationForm";
+import AuthenticatedHeader from "./Components/AuthenticatedHeader";
+import UnauthenticatedHeader from "./Components/UnauthenticatedHeader";
 
-function App() {
-  const [albums, setAlbums] = useState(null);
-
-  //fetch request
-  const fetch = async () => {
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
-      body: JSON.stringify(albums),
-    };
-
-    const response = await fetch("/api_v1/albums/", options);
-    if (!response.ok) {
-      throw new Error("Network response not ok.");
-    }
-
-    const data = await response.json();
-    // console.log({ data });
-    setAlbums([...albums, data]);
-  };
-
-  if (!albums) {
-    return <div>Fetching data ...</div>;
-  }
+const App = () => {
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
-    <div className="App">
-      <button onclick={fetch}>I am button</button>
+    <div>
+      {isAuthenticated ? <AuthenticatedHeader /> : <UnauthenticatedHeader />}
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="/" element={<ProtectedRoute />}>
+          {/* <Route index element={<Albums />} /> */}
+        </Route>
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
