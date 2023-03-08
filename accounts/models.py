@@ -7,7 +7,15 @@ from django.conf import settings
 
 # custom user
 class User(AbstractUser):
-    pass
+    friends = models.ManyToManyField("User", blank=True)
+
+
+# https://medium.com/analytics-vidhya/add-friends-with-689a2fa4e41d
+class Friend_Request(models.Model):
+    from_user = models.ForeignKey(
+        User, related_name='from_user', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(
+        User, related_name="to_user", on_delete=models.CASCADE)
 
 
 class Profile(models.Model):
