@@ -1,8 +1,8 @@
-import { useState } from "react";
-import Cookies from "js-cookie";
+import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 
@@ -12,9 +12,8 @@ const INITIAL_STATE = {
   password: "",
 };
 
-function LoginForm(props) {
-  const navigate = useNavigate();
-  const [setAuth, setUser] = useOutletContext();
+const Login = () => {
+  const { isAuthenticated, login } = useContext(AuthContext);
   const [state, setState] = useState(INITIAL_STATE);
 
   const handleInput = (e) => {
@@ -31,32 +30,16 @@ function LoginForm(props) {
     console.warn(err);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
-      body: JSON.stringify(state), //state is object that has all properties to send up on post request: name, email, pass
-    };
-    const response = await fetch("/dj-rest-auth/login/", options).catch(
-      handleError
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not OK");
-    }
-    const data = await response.json(); //when we login and are registered we get key
-    Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
-    //when logout, need to remove cookie
-    // props.setPage("articles");
-    setAuth(true);
-    setUser({ username: data.username });
-    // setUser(data.)
-    navigate("/");
+    //submit the state data
+    console.log(state);
+    login(state);
   };
+
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>
@@ -110,6 +93,6 @@ function LoginForm(props) {
       </Container>
     </>
   );
-}
+};
 
-export default LoginForm;
+export default Login;

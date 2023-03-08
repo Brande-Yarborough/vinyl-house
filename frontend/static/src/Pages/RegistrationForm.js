@@ -1,9 +1,9 @@
-import { useState } from "react";
-import Cookies from "js-cookie";
+import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
+import { AuthContext } from "../context/AuthContext";
 
 const INITIAL_STATE = {
   username: "",
@@ -12,10 +12,11 @@ const INITIAL_STATE = {
   email: "",
 };
 
-function RegistrationForm(props) {
+const Register = () => {
+  const { isAuthenticated, register } = useContext(AuthContext);
   const [state, setState] = useState(INITIAL_STATE);
+  const [passwordMatch, setPasswordMatch] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleInput = (e) => {
     const { name, value } = e.target; //value of this inside event listener is event.target, value of this in fat arrow is LoginForm
@@ -33,30 +34,19 @@ function RegistrationForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (state.password1 !== state.password2) {
-      setError("Passwords do not match!");
-      return;
+    if (state.password1 === state.password2) {
+      //submit the state data
+      register(state);
+      console.log(state);
+    } else {
+      setPasswordMatch(false);
     }
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
-      body: JSON.stringify(state), //state is object that has all properties to send up on post request: name, email, pass
-    };
-    const response = await fetch("/dj-rest-auth/registration/", options).catch(
-      handleError
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not OK");
-    }
-    const data = await response.json(); //when we login and are registered we get key
-    Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
-    //when logout, need to remove cookie
-    navigate("/");
   };
+
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <>
       <Container>
@@ -94,7 +84,11 @@ function RegistrationForm(props) {
               onChange={handleInput}
               required
             />
-            <div style={{ color: "red" }}>{error}</div>
+            {!passwordMatch && (
+              <Form.Text className="text-danger">
+                Passwords do not match
+              </Form.Text>
+            )}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -116,6 +110,6 @@ function RegistrationForm(props) {
       </Container>
     </>
   );
-}
+};
 
-export default RegistrationForm;
+export default Register;
