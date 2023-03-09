@@ -7,19 +7,19 @@ from .permissions import IsAuthor
 
 # Create your views here.
 import discogs_client
-d = discogs_client.Client('ExampleApplication/0.1',
+d = discogs_client.Client('VinylHouse/0.1',
                           user_token="AhPySnZsfOSbHSygKTMUmTGyWvQwGJvyfhYgDRoC")
 
 
 def fetchDiscOgsData(request):
     if request.method == 'POST':
         type = 'release'
-        title = ''
+        title = 'Lemonade'
         artist = 'Beyonce'
         genre = ''
         year = ''
 
-    results = d.search(artist=artist, type=type)
+    results = d.search(artist=artist, type=type, title=title,)
     print(results[0])
     return results
 
