@@ -36,6 +36,22 @@ a#register-here {
   padding: 5px;
 }
 
+div#register-container.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(237, 216, 174, 0.8);
+  height: 70vh;
+  width: 550px;
+  min-height: 360px;
+  border: 1px solid rgba(237, 216, 174, 0.066);
+  border-radius: 25px;
+}
+
+form#register {
+  width: 50%;
+}
+
 footer {
   padding: 15px;
   background-color: black;
