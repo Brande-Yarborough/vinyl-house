@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Navigate } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 const INITIAL_STATE = {
   username: "",
@@ -16,7 +16,6 @@ const Register = () => {
   const { isAuthenticated, register } = useContext(AuthContext);
   const [state, setState] = useState(INITIAL_STATE);
   const [passwordMatch, setPasswordMatch] = useState(true);
-  const [error, setError] = useState("");
 
   const handleInput = (e) => {
     const { name, value } = e.target; //value of this inside event listener is event.target, value of this in fat arrow is LoginForm
@@ -28,9 +27,7 @@ const Register = () => {
       [name]: value,
     }));
   };
-  const handleError = (err) => {
-    console.warn(err);
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

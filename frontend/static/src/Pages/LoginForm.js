@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 
@@ -25,9 +25,6 @@ const Login = () => {
       ...prevState,
       [name]: value,
     }));
-  };
-  const handleError = (err) => {
-    console.warn(err);
   };
 
   const handleSubmit = (e) => {

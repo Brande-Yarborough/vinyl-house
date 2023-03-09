@@ -1,13 +1,13 @@
 import "./App.css";
 import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { AuthContext } from "./Context/AuthContext";
-import ProtectedRoute from "./Routes/ProtectedRoute";
-import Login from "./Pages/LoginForm";
-import Register from "./Pages/RegistrationForm";
-import Footer from "./Components/Footer";
-import AuthenticatedHeader from "./Components/AuthenticatedHeader";
-import UnauthenticatedHeader from "./Components/UnauthenticatedHeader";
+import { AuthContext } from "./context/AuthContext";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Login from "./pages/LoginForm";
+import Register from "./pages/RegistrationForm";
+import Footer from "./components/Footer";
+import AuthenticatedHeader from "./components/AuthenticatedHeader";
+import UnauthenticatedHeader from "./components/UnauthenticatedHeader";
 
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);

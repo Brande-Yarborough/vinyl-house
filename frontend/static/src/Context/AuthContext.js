@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { handleError } from "../utils/utilities";
 import Cookies from "js-cookie";
 export const AuthContext = createContext();
 
@@ -17,7 +18,9 @@ export const AuthContextProvider = ({ children }) => {
       body: JSON.stringify(user),
     };
 
-    const response = await fetch("/dj-rest-auth/login/", options);
+    const response = await fetch("/dj-rest-auth/login/", options).catch(
+      handleError
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not OK");
@@ -38,7 +41,9 @@ export const AuthContextProvider = ({ children }) => {
       body: JSON.stringify(user),
     };
 
-    const response = await fetch("/dj-rest-auth/registration/", options);
+    const response = await fetch("/dj-rest-auth/registration/", options).catch(
+      handleError
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not OK");
@@ -58,7 +63,7 @@ export const AuthContextProvider = ({ children }) => {
       },
     };
 
-    await fetch("/dj-rest-auth/logout/", options);
+    await fetch("/dj-rest-auth/logout/", options).catch(handleError);
     Cookies.remove("Authorization");
     setIsAuthenticated(false);
     navigate("/login");

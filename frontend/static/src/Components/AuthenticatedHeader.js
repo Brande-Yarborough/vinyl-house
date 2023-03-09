@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { Navbar, Nav, Button } from "react-bootstrap";
 
 const AuthenticatedHeader = () => {
   const { logout } = useContext(AuthContext);
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Home</Navbar.Brand>
+      <Navbar.Brand href="#home">Vinyl House</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
