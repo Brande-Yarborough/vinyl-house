@@ -1,5 +1,9 @@
 const Footer = () => {
-  return <footer>© Brande Yarborough-CCS 2023</footer>;
+  return (
+    <footer className="footer-bar fixed-bottom d-flex align-items-center">
+      © Brande Yarborough-Carolina Code School 2023
+    </footer>
+  );
 };
 
 export default Footer;

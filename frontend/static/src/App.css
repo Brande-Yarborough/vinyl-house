@@ -2,37 +2,48 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a.navbar-brand {
+  margin-left: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar {
+  border-bottom: solid 1px black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+div#login-container.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  background-color: rgba(237, 216, 174, 0.8);
+  height: 60vh;
+  width: 550px;
+  min-height: 360px;
+  border: 1px solid rgba(237, 216, 174, 0.066);
+  border-radius: 25px;
+}
+
+div#background-image {
+  background: url("../src/assets/turntable2.jpg") no-repeat;
+  padding-top: 75px;
+  height: 100vh;
+}
+
+p#register-link {
+  margin-top: 10px;
+}
+
+a#register-here {
+  padding: 5px;
+}
+
+footer {
+  padding: 15px;
+  background-color: black;
   color: white;
+  font-weight: 300;
+  justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button.btn.btn-primary {
+  background-color: black;
 }

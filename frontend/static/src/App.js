@@ -5,6 +5,7 @@ import { AuthContext } from "./Context/AuthContext";
 import ProtectedRoute from "./Routes/ProtectedRoute";
 import Login from "./Pages/LoginForm";
 import Register from "./Pages/RegistrationForm";
+import Footer from "./Components/Footer";
 import AuthenticatedHeader from "./Components/AuthenticatedHeader";
 import UnauthenticatedHeader from "./Components/UnauthenticatedHeader";
 
@@ -21,6 +22,7 @@ const App = () => {
           {/* <Route index element={<Albums />} /> */}
         </Route>
       </Routes>
+      <Footer />
     </div>
   );
 };

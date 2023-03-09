@@ -43,54 +43,56 @@ const Login = () => {
 
   return (
     <>
-      <Container>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter username"
-              name="username"
-              value={state.username}
-              onChange={handleInput}
-            />
-          </Form.Group>
+      <div id="background-image">
+        <Container id="login-container">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter username"
+                name="username"
+                value={state.username}
+                onChange={handleInput}
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              value={state.email}
-              onChange={handleInput}
-            />
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                value={state.email}
+                onChange={handleInput}
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              name="password"
-              value={state.password}
-              onChange={handleInput}
-            />
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                name="password"
+                value={state.password}
+                onChange={handleInput}
+              />
+            </Form.Group>
 
-          <Button id="login-form" variant="primary" type="submit">
-            Login
-          </Button>
+            <Button id="login-form" variant="primary" type="submit">
+              Login
+            </Button>
 
-          <p id="register-link">
-            Don't have an account? Click
-            <NavLink id="register-here" to="/register">
-              here
-            </NavLink>
-            to register.
-          </p>
-        </Form>
-      </Container>
+            <p id="register-link">
+              Don't have an account? Click
+              <NavLink id="register-here" to="/register">
+                here
+              </NavLink>
+              to register.
+            </p>
+          </Form>
+        </Container>
+      </div>
     </>
   );
 };
