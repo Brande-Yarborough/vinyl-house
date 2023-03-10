@@ -8,6 +8,7 @@ import Register from "./pages/RegistrationForm";
 import Footer from "./components/Footer";
 import AuthenticatedHeader from "./components/AuthenticatedHeader";
 import UnauthenticatedHeader from "./components/UnauthenticatedHeader";
+import Albums from "./pages/Albums";
 
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="/" element={<ProtectedRoute />}>
-          {/* <Route index element={<Albums />} /> */}
+          <Route index element={<Albums />} />
         </Route>
       </Routes>
       <Footer />

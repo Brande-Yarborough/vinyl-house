@@ -1,4 +1,4 @@
-import "./App.css";
+import "../App.css";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
@@ -16,16 +16,14 @@ function Albums() {
       body: JSON.stringify(albums),
     };
 
-    const response = await fetch(
-      "api.discogs.com/database/search?title=beyonce-lemonade",
-      options
-    );
+    const response = await fetch("/api_v1/albums/", options);
     if (!response.ok) {
       throw new Error("Network response not ok.");
     }
 
     const data = await response.json();
-    // console.log({ data });
+    console.log({ data });
+    console.log("hello its me");
     setAlbums([...albums, data]);
   };
 
