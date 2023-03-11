@@ -23,11 +23,27 @@ def testing(request):
     year = ''
 
     results = d.search(artist=artist, type=type, title=title,)
-    results = results.page(1)
-    # results.data.keys[0]
-    print(results[0].data.keys())
+    release = results[0]
+    # release_detail = d.release(release.id)
 
-    return JsonResponse(results[0].data, safe=False)
+    # results = results.page(1)
+    # # results.data.keys[0]
+    # print(results[0].data.keys())
+    # print(release_detail.data)
+    # import pdb
+    # pdb.set_trace()
+
+    album = {
+        'artist': release.artists[0].name,
+        'title': release.title,
+        'year': release.year,
+        'genre': release.data['genre'],
+        'cover_image': release.data['cover_image'],
+        'tracks': [{'position': track.position, 'title': track.title, 'duration': track.duration} for track in release.tracklist]
+    }
+
+    # return JsonResponse(results[0].data, safe=False)
+    return JsonResponse(album, safe=False)
 
 
 def fetchDiscOgsData(request):
