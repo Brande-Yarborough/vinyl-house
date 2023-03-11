@@ -62,6 +62,20 @@ form#register {
   width: 50%;
 }
 
+form#search {
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+div.mb-3 {
+  margin-right: 15px;
+}
+
+input#formBasicSearch.form-control {
+  margin-right: 15px;
+  width: 350px;
+}
+
 footer {
   padding: 15px;
   background-color: black;

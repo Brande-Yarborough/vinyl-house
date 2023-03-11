@@ -29,6 +29,7 @@ def search_album(request, query):
             'cover_image': result.data['cover_image'],
         }
         releases.append(release)
+        print(releases)
     return Response({'results': releases})
 
 
