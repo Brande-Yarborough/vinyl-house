@@ -4,12 +4,32 @@ from .models import AlbumDetail, Album, Comment
 from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer
 from .permissions import IsAuthor
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 # Create your views here.
 import discogs_client
 d = discogs_client.Client('VinylHouse/0.1',
                           user_token="AhPySnZsfOSbHSygKTMUmTGyWvQwGJvyfhYgDRoC")
+
+
+# Search function for album
+@api_view(['GET'])
+def search_album(request, query):
+    results = d.search(query, type='release')
+    releases = []
+    for result in results:
+        release = {
+            'title': result.title,
+            'artist': result.artists[0].name,
+            'tracks': [track.title for track in result.tracklist],
+            'year': result.year,
+            'genre': result.data['genre'],
+            'cover_image': result.data['cover_image'],
+        }
+        releases.append(release)
+    return Response({'results': releases})
 
 
 def testing(request):
@@ -46,17 +66,17 @@ def testing(request):
     return JsonResponse(album, safe=False)
 
 
-def fetchDiscOgsData(request):
-    if request.method == 'POST':
-        type = 'release'
-        title = 'Lemonade'
-        artist = 'Beyonce'
-        genre = ''
-        year = ''
+# def fetchDiscOgsData(request):
+#     if request.method == 'POST':
+#         type = 'release'
+#         title = 'Lemonade'
+#         artist = 'Beyonce'
+#         genre = ''
+#         year = ''
 
-    results = d.search(artist=artist, type=type, title=title,)
-    print(results[0])
-    return results
+#     results = d.search(artist=artist, type=type, title=title,)
+#     print(results[0])
+#     return results
 
 
 # API end point to show all albums detail, List gets many records

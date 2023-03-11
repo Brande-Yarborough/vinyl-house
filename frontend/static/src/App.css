@@ -10,6 +10,16 @@ a.navbar-brand {
   border-bottom: solid 1px black;
 }
 
+span.app-header.navbar-brand {
+  cursor: pointer;
+}
+
+li.nav-item {
+  text-decoration: none;
+  align-items: center;
+  margin-right: 10px;
+}
+
 div#login-container.container {
   display: flex;
   justify-content: center;
