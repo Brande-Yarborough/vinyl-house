@@ -9,6 +9,7 @@ urlpatterns = [
     # path('albums/', views.AlbumListAPIView.as_view()),
     path('albums/', views.testing),
     path('search/<str:query>/', search_album, name='search_album'),
+    path('collection/<str:username>/', views.collection_view, name='collection'),
 ]
 
 # will need to do something like this:

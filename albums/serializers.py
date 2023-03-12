@@ -1,6 +1,17 @@
 from rest_framework import serializers
 from .models import AlbumDetail, Album, Comment
 
+from rest_framework import serializers
+from discogs_client.models import Release
+
+class ReleaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Release
+        fields = ('title', 'artists', 'year')
+
+class CollectionSerializer(serializers.ListSerializer):
+    child = ReleaseSerializer()
+
 
 class AlbumDetailSerializer(serializers.ModelSerializer):
     class Meta:

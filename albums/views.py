@@ -41,6 +41,27 @@ def search_album(request, query):
     return Response({'results': releases})
 
 
+# Get the user's collection from Discogs
+def collection_view(request, username):
+    discogs = discogs_client.Client('VinylHouse/0.1',
+                                    user_token="AhPySnZsfOSbHSygKTMUmTGyWvQwGJvyfhYgDRoC")
+
+    user = discogs.user(username='Brande.Y')
+    collection = user.collection_folders[0].releases
+
+    # Create a list of serialized releases
+    serialized_collection = []
+    for release in collection:
+        serialized_release = {
+            'title': release.basic_information.title,
+            'artists': [artist.name for artist in release.basic_information.artists],
+            'year': release.basic_information.year,
+        }
+        serialized_collection.append(serialized_release)
+# Return the collection as a JSON response
+    return JsonResponse(serialized_collection, safe=False)
+
+
 def testing(request):
     # if request.method == 'POST':
     data = {'greeting': 'Hello'}

@@ -10,6 +10,7 @@ import AuthenticatedHeader from "./components/AuthenticatedHeader";
 import UnauthenticatedHeader from "./components/UnauthenticatedHeader";
 import Albums from "./pages/Albums";
 import AlbumSearch from "./pages/AlbumSearch";
+import MyCollection from "./pages/MyCollection";
 
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<Albums />} />
           <Route path="album-search" element={<AlbumSearch />} />
+          <Route path="/collection/:username" element={<MyCollection />} />
         </Route>
       </Routes>
       <Footer />

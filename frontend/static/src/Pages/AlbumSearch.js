@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Card } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 
 function AlbumSearch() {
@@ -40,25 +39,35 @@ function AlbumSearch() {
       />
       <button onClick={handleSearch}>Search</button> */}
       {results.map((result) => (
-        <Card style={{ width: "18rem" }} key={result.title}>
-          <Card.Img variant="left" src={result.cover_image} alt="album cover" />
-          <Card.Body>
-            <Card.Title>{result.title}</Card.Title>
-            <ListGroup variant="flush">
-              <ListGroup.Item>Genre: {result.genre}</ListGroup.Item>
-              <ListGroup.Item>Year: {result.year}</ListGroup.Item>
-              {result.formats.map((format) => (
-                <ListGroup.Item key={format}>Format: {format}</ListGroup.Item>
-              ))}
+        <Container>
+          <div className="d-flex flex-column">
+            <Card style={{ width: "18rem" }} key={result.title}>
+              <Card.Img
+                variant="left"
+                src={result.cover_image}
+                alt="album cover"
+              />
+              <Card.Body>
+                <Card.Title>{result.title}</Card.Title>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>Genre: {result.genre}</ListGroup.Item>
+                  <ListGroup.Item>Year: {result.year}</ListGroup.Item>
+                  {result.formats.map((format) => (
+                    <ListGroup.Item key={format}>
+                      Format: {format}
+                    </ListGroup.Item>
+                  ))}
 
-              <ListGroup.Item>Tracklist</ListGroup.Item>
-              {result.tracks.map((track) => (
-                <ListGroup.Item key={track}>{track}</ListGroup.Item>
-              ))}
-            </ListGroup>
-            <Button variant="primary">Add to Collection</Button>
-          </Card.Body>
-        </Card>
+                  <ListGroup.Item>Tracklist</ListGroup.Item>
+                  {result.tracks.map((track) => (
+                    <ListGroup.Item key={track}>{track}</ListGroup.Item>
+                  ))}
+                </ListGroup>
+                <Button variant="primary">Add to Collection</Button>
+              </Card.Body>
+            </Card>
+          </div>
+        </Container>
       ))}
       ;
       {/* <ul>
