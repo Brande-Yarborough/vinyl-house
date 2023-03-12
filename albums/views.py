@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from rest_framework import generics
 from .models import AlbumDetail, Album, Comment
-from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer
+from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer, ReleaseSerializer, CollectionSerializer
 from .permissions import IsAuthor
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -53,9 +53,9 @@ def collection_view(request, username):
     serialized_collection = []
     for release in collection:
         serialized_release = {
-            'title': release.basic_information.title,
-            'artists': [artist.name for artist in release.basic_information.artists],
-            'year': release.basic_information.year,
+            'title': release.title,
+            'artists': [artist.name for artist in release.artists],
+            'year': release.year,
         }
         serialized_collection.append(serialized_release)
 # Return the collection as a JSON response

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function Collection({ username }) {
+function Collection() {
   const [collection, setCollection] = useState([]);
+  const { username } = useParams();
+  console.log(username);
 
   useEffect(() => {
     fetch(`/collection/${username}/`)
