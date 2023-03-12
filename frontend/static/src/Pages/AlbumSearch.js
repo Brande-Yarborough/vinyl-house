@@ -47,6 +47,10 @@ function AlbumSearch() {
             <ListGroup variant="flush">
               <ListGroup.Item>Genre: {result.genre}</ListGroup.Item>
               <ListGroup.Item>Year: {result.year}</ListGroup.Item>
+              {result.formats.map((format) => (
+                <ListGroup.Item key={format}>Format: {format}</ListGroup.Item>
+              ))}
+
               <ListGroup.Item>Tracklist</ListGroup.Item>
               {result.tracks.map((track) => (
                 <ListGroup.Item key={track}>{track}</ListGroup.Item>

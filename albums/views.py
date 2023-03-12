@@ -15,21 +15,29 @@ d = discogs_client.Client('VinylHouse/0.1',
 
 
 # Search function for album
+# wrap the list of releases in dictionary with key of 'results'. This ensures that the JSON response is an object with a single property, which makes it easier to work with on the frontend.
 @api_view(['GET'])
 def search_album(request, query):
+    # search for albums matching given query using the 'search' function from the 'd' module, and filter by 'release' type
     results = d.search(query, type='release')
+    # create empty list to store details of matching releases
     releases = []
+    # loop through each result from search
     for result in results:
+        # create dict with details for current release
         release = {
             'title': result.title,
             'artist': result.artists[0].name,
             'tracks': [track.title for track in result.tracklist],
             'year': result.year,
             'genre': result.data['genre'],
+            'formats': [format['name'] for format in result.formats],
             'cover_image': result.data['cover_image'],
         }
+        # add release details to list of releases
         releases.append(release)
         print(releases)
+        # return list of releases in JSON response with 'results' key
     return Response({'results': releases})
 
 
