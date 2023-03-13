@@ -4,7 +4,6 @@ from .views import search_album
 
 urlpatterns = [
     # path('', views.fetchDiscogsData()),
-    # ask about .as_view being that or need to change to fetchDiscogsData?
     # path('albums/', views.AlbumDetailListAPIView.as_view()),
     # path('albums/', views.AlbumListAPIView.as_view()),
     path('albums/', views.testing),

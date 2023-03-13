@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
+// Hard coded now to see what I can get back
 function Albums() {
   const [albums, setAlbums] = useState(null);
 

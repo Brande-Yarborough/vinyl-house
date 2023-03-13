@@ -9,11 +9,9 @@ class AlbumDetail(models.Model):
     image = models.ImageField(upload_to="albums/", null=True)
     artist = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    track = models.CharField(max_length=255)
+    tracklist = models.TextField(max_length=255, blank=True)
     genre = models.CharField(max_length=255)
     year = models.IntegerField()
-    label = models.CharField(max_length=255)
-    api_key = models.IntegerField()
 
     def __str__(self):
         return self.title

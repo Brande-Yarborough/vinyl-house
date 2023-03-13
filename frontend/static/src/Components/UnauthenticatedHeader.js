@@ -1,17 +1,32 @@
 import { Navbar, Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UnauthenticatedHeader = () => {
+  const navigate = useNavigate();
+
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Vinyl House</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Link href="#login">Login</Nav.Link>
-          <Nav.Link href="#register">Register</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand className="app-header" onClick={() => navigate("/login")}>
+          Vinyl House
+        </Navbar.Brand>
+
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <ul className="nav d-flex align-items-center" id="main-nav">
+              <li className="nav-item">
+                <NavLink to="/login">Login</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/register">Register</NavLink>
+              </li>
+            </ul>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </>
   );
 };
 
