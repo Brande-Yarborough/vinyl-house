@@ -2,11 +2,10 @@ from django.shortcuts import render, HttpResponse
 from rest_framework import generics
 from .models import AlbumDetail, Album, Comment
 from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer, UserAlbumSerializer
-from .permissions import IsAuthor
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .permissions import IsUser
+from .permissions import IsUser, IsAuthor
 
 
 # Create your views here.
@@ -123,7 +122,7 @@ class UserAlbumListAPIView(generics.ListCreateAPIView):
     permission_classes = (IsUser,)
 
     def get_queryset(self):
-        return Album.objects.filter(author=self.request.user)
+        return Album.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
