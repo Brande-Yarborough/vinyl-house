@@ -47,6 +47,7 @@ function AlbumSearch() {
                 src={result.cover_image}
                 alt="album cover"
               />
+
               <Card.Body>
                 <Card.Title>{result.title}</Card.Title>
                 <ListGroup variant="flush">

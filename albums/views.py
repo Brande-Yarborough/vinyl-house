@@ -1,11 +1,12 @@
 from django.shortcuts import render, HttpResponse
 from rest_framework import generics
 from .models import AlbumDetail, Album, Comment
-from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer, ReleaseSerializer, CollectionSerializer
+from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer, UserAlbumSerializer
 from .permissions import IsAuthor
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from .permissions import IsUser
 
 
 # Create your views here.
@@ -39,27 +40,6 @@ def search_album(request, query):
         print(releases)
         # return list of releases in JSON response with 'results' key
     return Response({'results': releases})
-
-
-# Get the user's collection from Discogs
-def collection_view(request, username):
-    discogs = discogs_client.Client('VinylHouse/0.1',
-                                    user_token="AhPySnZsfOSbHSygKTMUmTGyWvQwGJvyfhYgDRoC")
-
-    user = discogs.user(username='Brande.Y')
-    collection = user.collection_folders[0].releases
-
-    # Create a list of serialized releases
-    serialized_collection = []
-    for release in collection:
-        serialized_release = {
-            'title': release.title,
-            'artists': [artist.name for artist in release.artists],
-            'year': release.year,
-        }
-        serialized_collection.append(serialized_release)
-# Return the collection as a JSON response
-    return JsonResponse(serialized_collection, safe=False)
 
 
 def testing(request):
@@ -136,3 +116,20 @@ class CommentListAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+
+class UserAlbumListAPIView(generics.ListCreateAPIView):
+    serializer_class = UserAlbumSerializer
+    permission_classes = (IsUser,)
+
+    def get_queryset(self):
+        return Album.objects.filter(author=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class UserAlbumDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
+    permission_classes = (IsUser,)
