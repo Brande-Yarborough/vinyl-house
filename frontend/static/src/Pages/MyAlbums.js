@@ -20,10 +20,10 @@ function MyAlbums() {
 
   const MyAlbumListHTML = myAlbums.map((album) => (
     <Card style={{ width: "18rem" }} key={album.id}>
-      <Card.Img variant="top" src={album.image} />
+      <Card.Img variant="top" src={album.cover_image} />
       <Card.Body>
         <Card.Title>
-          {album.album}-{album.note}
+          {album.artist}-{album.title}
         </Card.Title>
         <Button variant="primary">Album Detail</Button>
       </Card.Body>

@@ -6,12 +6,13 @@ from django.db import models
 
 # album detail from 3rd party api
 class AlbumDetail(models.Model):
-    image = models.ImageField(upload_to="albums/", null=True)
     artist = models.CharField(max_length=255)
+    cover_image = models.URLField(null=True)
     title = models.CharField(max_length=255)
-    tracklist = models.TextField(max_length=255, blank=True)
-    genre = models.CharField(max_length=255)
     year = models.IntegerField()
+    tracks = models.JSONField(null=True)
+    genre = models.JSONField(null=True)
+    api_id = models.IntegerField(unique=True, null=True)
 
     def __str__(self):
         return self.title
@@ -21,12 +22,12 @@ class AlbumDetail(models.Model):
 class Album(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    album = models.ForeignKey(AlbumDetail, on_delete=models.CASCADE)
-    note = models.TextField()
-    image = models.ImageField(upload_to="albums/", null=True)
+    detail = models.ForeignKey(AlbumDetail, on_delete=models.CASCADE)
+    note = models.TextField(null=True)
+    user_image = models.ImageField(upload_to="albums/", null=True)
 
     def __str__(self):
-        return self.album.title
+        return self.detail.title
 
 
 # user detail comment

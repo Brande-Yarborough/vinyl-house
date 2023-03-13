@@ -41,7 +41,7 @@ function AlbumSearch() {
       {results.map((result) => (
         <Container>
           <div className="d-flex flex-column">
-            <Card style={{ width: "18rem" }} key={result.title}>
+            <Card style={{ width: "12rem" }} key={result.title}>
               <Card.Img
                 variant="left"
                 src={result.cover_image}

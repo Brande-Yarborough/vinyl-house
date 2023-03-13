@@ -15,11 +15,18 @@ class AlbumSerializer(serializers.ModelSerializer):
 
 
 class UserAlbumSerializer(serializers.ModelSerializer):
-    user_name = serializers.ReadOnlyField(source='user.username')
+    # user_name = serializers.ReadOnlyField(source='user.username')
+    # details = AlbumDetailSerializer(many=False, read_only=True)
+    cover_image = serializers.ReadOnlyField(source="detail.cover_image")
+    artist = serializers.ReadOnlyField(source="detail.artist")
+    title = serializers.ReadOnlyField(source="detail.title")
 
     class Meta:
         model = Album
-        fields = '__all__'
+        fields = ('cover_image', 'artist', 'title')
+
+    def create(self, validated_data):
+        pass
 
 
 class CommentSerializer(serializers.ModelSerializer):

@@ -25,7 +25,10 @@ def search_album(request, query):
     # loop through each result from search
     for result in results:
         # create dict with details for current release
+        # import pdb
+        # pdb.set_trace()
         release = {
+            'api_id': result.id,
             'title': result.title,
             'artist': result.artists[0].name,
             'tracks': [track.title for track in result.tracklist],
@@ -119,13 +122,16 @@ class CommentListAPIView(generics.ListCreateAPIView):
 
 class UserAlbumListAPIView(generics.ListCreateAPIView):
     serializer_class = UserAlbumSerializer
-    permission_classes = (IsUser,)
+    # permission_classes = (IsUser,)
 
     def get_queryset(self):
         return Album.objects.filter(user=self.request.user)
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    # def perform_create(self, serializer):
+    #     # if id doesn't exist:
+    #     if 'api_key' not in self.request:
+
+    #         serializer.save(user=self.request.user)
 
 
 class UserAlbumDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
