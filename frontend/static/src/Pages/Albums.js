@@ -30,7 +30,7 @@ function Albums() {
   }
 
   const albumsHTML = albums.map((album) => (
-    <Card style={{ width: "30rem" }} key={album.id}>
+    <Card style={{ width: "18rem" }} key={album.id}>
       <Card.Img variant="top" src={album.cover_image} />
       <Card.Body>
         <Card.Title>

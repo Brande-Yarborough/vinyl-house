@@ -12,12 +12,26 @@ a.navbar-brand {
 
 span.app-header.navbar-brand {
   cursor: pointer;
+  margin-left: 30px;
 }
 
 li.nav-item {
   text-decoration: none;
   align-items: center;
   margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: grey;
+}
+a:hover {
+  color: black;
+}
+
+a.active {
+  text-decoration: underline;
+  color: black;
 }
 
 div#login-container.container {
