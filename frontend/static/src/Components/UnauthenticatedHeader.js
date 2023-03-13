@@ -1,6 +1,7 @@
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.jpg";
 
 const UnauthenticatedHeader = () => {
   const navigate = useNavigate();
@@ -8,6 +9,9 @@ const UnauthenticatedHeader = () => {
   return (
     <>
       <Navbar bg="light" expand="lg">
+        <div id="logo">
+          <img id="logo" src={logo} alt="My Logo" />
+        </div>
         <Navbar.Brand className="app-header" onClick={() => navigate("/login")}>
           Vinyl House
         </Navbar.Brand>

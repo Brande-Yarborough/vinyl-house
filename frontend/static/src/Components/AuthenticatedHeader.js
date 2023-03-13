@@ -3,6 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.jpg";
 
 const AuthenticatedHeader = () => {
   const { logout } = useContext(AuthContext);
@@ -11,6 +12,9 @@ const AuthenticatedHeader = () => {
   return (
     <>
       <Navbar bg="light" expand="lg">
+        <div id="logo">
+          <img id="logo" src={logo} alt="My Logo" />
+        </div>
         <Navbar.Brand className="app-header" onClick={() => navigate("/")}>
           Vinyl House
         </Navbar.Brand>
