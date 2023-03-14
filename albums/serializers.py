@@ -36,6 +36,25 @@ class UserAlbumSerializer(serializers.ModelSerializer):
         return instance
 
 
+class UserAlbumDetailSerializer(serializers.ModelSerializer):
+    album_detail = AlbumDetailSerializer()
+
+    class Meta:
+        model = Album
+        fields = '__all__'
+
+        def create(self, validated_data):
+            album_detail_data = validated_data.pop('album_detail')
+            album_detail_api_id = album_detail_data.pop('api_id')
+
+            album_detail, _ = AlbumDetail.objects.get(
+                api_id=album_detail_api_id, **album_detail_data)
+
+            validated_data['album_detail'] = album_detail
+            instance = Album.objects.get(**validated_data)
+            return instance
+
+
 class CommentSerializer(serializers.ModelSerializer):
     # Do I need author name here?
     author_name = serializers.ReadOnlyField(source='author.username')

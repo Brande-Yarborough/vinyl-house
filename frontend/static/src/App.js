@@ -28,6 +28,7 @@ const App = () => {
           <Route path="my-albums" element={<MyAlbums />} />
           {/* <Route path="my-friends" element={<MyFriends />} /> */}
           <Route path="profile" element={<ProfileForm />} />
+          {/* <Route path="my-album-detail" element={<MyAlbumDetail />} /> */}
         </Route>
       </Routes>
       <Footer />

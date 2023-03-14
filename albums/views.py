@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from rest_framework import generics, status
 from .models import AlbumDetail, Album, Comment
-from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer, UserAlbumSerializer
+from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer, UserAlbumSerializer, UserAlbumDetailSerializer
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -131,6 +131,11 @@ class UserAlbumListAPIView(generics.ListCreateAPIView):
 
 
 class UserAlbumDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Album.objects.all()
-    serializer_class = AlbumSerializer
+    serializer_class = UserAlbumDetailSerializer
     permission_classes = (IsUser,)
+
+    def get_queryset(self):
+        return Album.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
