@@ -3,15 +3,36 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Card, Container, Row } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
+import Cookies from "js-cookie";
 
 function AlbumSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [albums, setAlbums] = useState(null);
 
   const handleSearch = async () => {
     const response = await fetch(`/api_v1/search/${query}/`);
     const data = await response.json();
     setResults(data.results);
+  };
+
+  const handleAddAlbum = async (album) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": Cookies.get("csrftoken"),
+      },
+      body: JSON.stringify(album),
+    };
+    const response = await fetch("/api_v1/user/albums/", options);
+    if (!response.ok) {
+      throw new Error("Network response not ok");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    setAlbums([...albums, data]);
   };
 
   return (
@@ -64,7 +85,18 @@ function AlbumSearch() {
                     <ListGroup.Item key={track}>{track}</ListGroup.Item>
                   ))}
                 </ListGroup>
-                <Button variant="primary">Add to Collection</Button>
+                <Button
+                  variant="primary"
+                  onClick={() =>
+                    handleAddAlbum({
+                      cover_image: result.cover_image,
+                      title: result.title,
+                      artist: result.artist,
+                    })
+                  }
+                >
+                  Add to Albums
+                </Button>
               </Card.Body>
             </Card>
           </div>

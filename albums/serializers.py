@@ -26,7 +26,10 @@ class UserAlbumSerializer(serializers.ModelSerializer):
         fields = ('cover_image', 'artist', 'title')
 
     def create(self, validated_data):
-        pass
+        # pass
+        # what to put here?
+        # https://stackoverflow.com/questions/41735113/how-to-call-serializers-create-method-from-one-serializer
+        return Album.objects.create(**validated_data)
 
 
 class CommentSerializer(serializers.ModelSerializer):

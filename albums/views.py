@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from rest_framework import generics
+from rest_framework import generics, status
 from .models import AlbumDetail, Album, Comment
 from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializer, UserAlbumSerializer
 from django.http import JsonResponse
@@ -127,6 +127,11 @@ class UserAlbumListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Album.objects.filter(user=self.request.user)
 
+    def perform_create(self, serializer):
+        api_id = self.request.data.get('api_id')
+        if Album.objects.filter(id=api_id).exists():
+            return Response({'error': 'Album with this ID already exists'}, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save(user=self.request.user)
     # def perform_create(self, serializer):
     #     # if id doesn't exist:
     #     if 'api_key' not in self.request:
