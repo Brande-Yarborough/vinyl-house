@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
 
 function ProfileForm() {
-  const [profile, setProfile] = useState();
+  const [profile, setProfile] = useState({});
   const [avatar, setAvatar] = useState(null);
   const [displayName, setDisplayName] = useState("");
   const [favoriteGenre, setFavoriteGenre] = useState("");
