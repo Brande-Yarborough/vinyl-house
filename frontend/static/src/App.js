@@ -26,8 +26,8 @@ const App = () => {
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<Albums />} />
           <Route path="album-search" element={<AlbumSearch />} />
-          <Route path="/collection/:username" element={<MyCollection />} />
           <Route path="my-albums" element={<MyAlbums />} />
+          {/* <Route path="my-friends" element={<MyFriends />} /> */}
           <Route path="profile" element={<ProfileForm />} />
         </Route>
       </Routes>
