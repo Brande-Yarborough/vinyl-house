@@ -122,21 +122,12 @@ class CommentListAPIView(generics.ListCreateAPIView):
 
 class UserAlbumListAPIView(generics.ListCreateAPIView):
     serializer_class = UserAlbumSerializer
-    # permission_classes = (IsUser,)
 
     def get_queryset(self):
         return Album.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
-        api_id = self.request.data.get('api_id')
-        if Album.objects.filter(id=api_id).exists():
-            return Response({'error': 'Album with this ID already exists'}, status=status.HTTP_400_BAD_REQUEST)
         serializer.save(user=self.request.user)
-    # def perform_create(self, serializer):
-    #     # if id doesn't exist:
-    #     if 'api_key' not in self.request:
-
-    #         serializer.save(user=self.request.user)
 
 
 class UserAlbumDetailAPIView(generics.RetrieveUpdateDestroyAPIView):

@@ -17,13 +17,23 @@ function AlbumSearch() {
   };
 
   const handleAddAlbum = async (album) => {
+    const album_detail = {
+      artist: album.artist,
+      cover_image: album.cover_image,
+      title: album.title,
+      year: album.year,
+      tracks: album.tracks,
+      genre: album.genre,
+      api_id: album.api_id,
+    };
+
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-CSRFToken": Cookies.get("csrftoken"),
       },
-      body: JSON.stringify(album),
+      body: JSON.stringify({ album_detail }),
     };
     const response = await fetch("/api_v1/user/albums/", options);
     if (!response.ok) {
@@ -32,7 +42,6 @@ function AlbumSearch() {
 
     const data = await response.json();
     console.log({ data });
-    setAlbums([...albums, data]);
   };
 
   return (
@@ -87,13 +96,7 @@ function AlbumSearch() {
                 </ListGroup>
                 <Button
                   variant="primary"
-                  onClick={() =>
-                    handleAddAlbum({
-                      cover_image: result.cover_image,
-                      title: result.title,
-                      artist: result.artist,
-                    })
-                  }
+                  onClick={() => handleAddAlbum(result)}
                 >
                   Add to Albums
                 </Button>

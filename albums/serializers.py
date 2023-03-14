@@ -9,27 +9,31 @@ class AlbumDetailSerializer(serializers.ModelSerializer):
 
 
 class AlbumSerializer(serializers.ModelSerializer):
+    # nested serializer
+    album_detail = AlbumDetailSerializer()
+
     class Meta:
         model = Album
         fields = '__all__'
 
 
 class UserAlbumSerializer(serializers.ModelSerializer):
-    # user_name = serializers.ReadOnlyField(source='user.username')
-    # details = AlbumDetailSerializer(many=False, read_only=True)
-    cover_image = serializers.ReadOnlyField(source="detail.cover_image")
-    artist = serializers.ReadOnlyField(source="detail.artist")
-    title = serializers.ReadOnlyField(source="detail.title")
+    album_detail = AlbumDetailSerializer()
 
     class Meta:
         model = Album
-        fields = ('cover_image', 'artist', 'title')
+        fields = '__all__'
 
     def create(self, validated_data):
-        # pass
-        # what to put here?
-        # https://stackoverflow.com/questions/41735113/how-to-call-serializers-create-method-from-one-serializer
-        return Album.objects.create(**validated_data)
+        album_detail_data = validated_data.pop('album_detail')
+        album_detail_api_id = album_detail_data.pop('api_id')
+        # retrieve exisiting instance or create new one if it doesn't exist
+
+        album_detail, _ = AlbumDetail.objects.get_or_create(api_id=album_detail_api_id,
+                                                            **album_detail_data)
+        validated_data['album_detail'] = album_detail
+        instance = Album.objects.create(**validated_data)
+        return instance
 
 
 class CommentSerializer(serializers.ModelSerializer):

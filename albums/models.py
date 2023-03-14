@@ -12,7 +12,7 @@ class AlbumDetail(models.Model):
     year = models.IntegerField()
     tracks = models.JSONField(null=True)
     genre = models.JSONField(null=True)
-    api_id = models.IntegerField(unique=True, null=True)
+    api_id = models.IntegerField(null=True)
 
     def __str__(self):
         return self.title
@@ -21,13 +21,13 @@ class AlbumDetail(models.Model):
 # user input album detail
 class Album(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    detail = models.ForeignKey(AlbumDetail, on_delete=models.CASCADE)
-    note = models.TextField(null=True)
-    user_image = models.ImageField(upload_to="albums/", null=True)
+                             on_delete=models.CASCADE, blank=True)
+    album_detail = models.ForeignKey(AlbumDetail, on_delete=models.CASCADE)
+    note = models.TextField(blank=True, null=True)
+    user_image = models.ImageField(upload_to="albums/", blank=True, null=True)
 
     def __str__(self):
-        return self.detail.title
+        return self.album_detail.title
 
 
 # user detail comment

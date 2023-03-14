@@ -26,9 +26,7 @@ const AuthenticatedHeader = () => {
               <li className="nav-item">
                 <NavLink to="/">Albums</NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/collection/:username">My Collection</NavLink>
-              </li>
+
               <li className="nav-item">
                 <NavLink to="/my-albums">My Albums</NavLink>
               </li>

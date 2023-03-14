@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import { Card } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 
 function MyAlbums() {
   const [myAlbums, setMyAlbums] = useState([]);
@@ -19,15 +19,15 @@ function MyAlbums() {
   }, []);
 
   const MyAlbumListHTML = myAlbums.map((album) => (
-    <Card style={{ width: "18rem" }} key={album.api_id}>
-      <Card.Img variant="top" src={album.cover_image} />
-      <Card.Body>
-        <Card.Title>
-          {album.artist}-{album.title}
-        </Card.Title>
-        <Button variant="primary">Album Detail</Button>
-      </Card.Body>
-    </Card>
+    <Container className="d-flex">
+      <Card style={{ width: "18rem" }} key={album.api_id}>
+        <Card.Img variant="top" src={album.album_detail.cover_image} />
+        <Card.Body>
+          <Card.Title>{album.album_detail.title}</Card.Title>
+          <Button variant="primary">Album Detail</Button>
+        </Card.Body>
+      </Card>
+    </Container>
   ));
 
   return (

@@ -10,7 +10,6 @@ import AuthenticatedHeader from "./components/AuthenticatedHeader";
 import UnauthenticatedHeader from "./components/UnauthenticatedHeader";
 import Albums from "./pages/Albums";
 import AlbumSearch from "./pages/AlbumSearch";
-import MyCollection from "./pages/MyCollection";
 import MyAlbums from "./pages/MyAlbums";
 import ProfileForm from "./pages/ProfileForm";
 

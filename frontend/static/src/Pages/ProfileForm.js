@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
+import { Container, Form, Button } from "react-bootstrap";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({});
@@ -26,7 +27,7 @@ function ProfileForm() {
       body: formData,
     };
 
-    const response = await fetch("/api_v1/accounts/profiles/", options).catch(
+    const response = await fetch("/api_v1/profiles/", options).catch(
       handleError
     );
     if (!response.ok) {
@@ -76,32 +77,46 @@ function ProfileForm() {
   };
 
   return (
-    <form>
-      <div>
-        <input type="file" onChange={handleImage} />
-      </div>
-      <div>
-        <label htmlFor="display-name">
+    <Container>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicImage">
+          <Form.Label>Upload Profile Image</Form.Label>
+          <Form.Control name="image" type="file" onChange={handleImage} />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Label htmlFor="display_name" />
           Display Name:
-          <input type="text" value={displayName} onChange={handleChange} />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="genre">
+          <Form.Control
+            name="display-name"
+            placeholder="Enter display name"
+            type="text"
+            value={displayName}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="favorite_genre" />
           Favorite Genre:
-          <input type="text" value={favoriteGenre} onChange={handleChange} />
-        </label>
-      </div>
-      {!profile.id ? (
-        <button type="button" onClick={handleCreate}>
-          Create Profile
-        </button>
-      ) : (
-        <button type="button" onClick={handleUpdate}>
-          Update Profile
-        </button>
-      )}
-    </form>
+          <Form.Control
+            name="favorite-genre"
+            placeholder="Enter favorite genre"
+            type="text"
+            value={favoriteGenre}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {!profile.id ? (
+          <Button type="submit" onClick={handleCreate}>
+            Create Profile
+          </Button>
+        ) : (
+          <Button type="submit" onClick={handleUpdate}>
+            Update Profile
+          </Button>
+        )}
+      </Form>
+    </Container>
   );
 }
 
