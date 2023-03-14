@@ -13,12 +13,17 @@ User = get_user_model()
 # Create your views here.
 
 
-class ProfileCreateAPIView(generics.CreateAPIView):
+class ProfileListAPIView(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
 
 # Function based views for Friend Request

@@ -12,6 +12,7 @@ import Albums from "./pages/Albums";
 import AlbumSearch from "./pages/AlbumSearch";
 import MyCollection from "./pages/MyCollection";
 import MyAlbums from "./pages/MyAlbums";
+import ProfileForm from "./pages/ProfileForm";
 
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="album-search" element={<AlbumSearch />} />
           <Route path="/collection/:username" element={<MyCollection />} />
           <Route path="my-albums" element={<MyAlbums />} />
+          <Route path="profile" element={<ProfileForm />} />
         </Route>
       </Routes>
       <Footer />

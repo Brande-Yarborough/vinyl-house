@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import Cookies from "js-cookie";
 

@@ -40,6 +40,9 @@ const AuthenticatedHeader = () => {
                 <NavLink to="/my-friends">My Friends</NavLink>
               </li>
               <li className="nav-item">
+                <NavLink to="/profile">Profile</NavLink>
+              </li>
+              <li className="nav-item">
                 <Button onClick={logout}>Logout</Button>
               </li>
             </ul>
