@@ -78,12 +78,6 @@ function MyAlbumDetail() {
                 Year: {albumDetails?.album_detail?.year}
               </ListGroup.Item>
 
-              {/* <div>
-                <Button type="submit" onClick={deleteAlbum}>
-                  Delete Album
-                </Button>
-              </div> */}
-
               <ListGroup.Item>Tracklist</ListGroup.Item>
               {albumDetails?.album_detail?.tracks.map((track) => (
                 <ListGroup.Item key={track}>{track}</ListGroup.Item>
@@ -92,11 +86,23 @@ function MyAlbumDetail() {
           </Card.Body>
         </Card>
       </Container>
-      {/* This form/text area will only show up if user wants to add or edit note: also need options to delete note */}
       <Container>
+        <Card>
+          <Card.Title>User Personal Note:</Card.Title>
+          <Card.Body>{albumDetails?.note}</Card.Body>
+        </Card>
+      </Container>
+
+      <Container>
+        <Image src={albumDetails?.user_image} alt="user submitted image" />
+        <div>
+          <Button>Edit Image</Button>
+        </div>
+      </Container>
+      {/* This form/text area will only show up if user wants to add or edit note: also need options to delete note */}
+      {/* <Container>
         <FloatingLabel controlId="floatingTextarea2" label="Note">
           <Form.Control
-            //   {albumDetails?.album_detail?.note}
             as="textarea"
             placeholder="Put a note here for a personal memory related to album"
             style={{ height: "100px" }}
@@ -104,17 +110,10 @@ function MyAlbumDetail() {
         </FloatingLabel>
         <Button>Edit Note</Button>
         <Button>Submit Note</Button>
-        <div>
-          <Image
-            src={albumDetails?.album_detail?.user_image}
-            alt="user submitted image"
-          />
-          <Button>Edit Image</Button>
-        </div>
-      </Container>
+      </Container> */}
 
       <Container>
-        <FloatingLabel controlId="floatingTextarea2" label="Comments">
+        <FloatingLabel controlId="floatingTextarea2" label="Add Comments">
           <Form.Control
             as="textarea"
             placeholder="Comments"
