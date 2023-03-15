@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Card, Container, ListGroup, Image, Button } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 function MyAlbumDetail() {
   const [albumDetails, setAlbumDetails] = useState(null);
   let { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getAlbumDetails = async () => {
@@ -29,8 +30,35 @@ function MyAlbumDetail() {
     getAlbumDetails();
   }, []);
 
+  //   const deleteAlbum = async (event) => {
+  //     const id = event.currentTarget.value;
+  //     const options = {
+  //       method: "DELETE",
+  //       headers: {
+  //         "X-CSRFToken": Cookies.get("csrftoken"),
+  //       },
+  //     };
+  //     const response = await fetch(`/api_v1/user/albums/${id}/`, options);
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     } else {
+  //       console.log(response);
+  //       //create shallow copy of albums
+  //       let updatedAlbums = [...albums];
+  //       //find index of album we want to delete
+  //       const index = updatedAlbums.findIndex((x) => x.id == id);
+  //       //removing album from array
+  //       updatedAlbums.splice(index, 1);
+  //       //reset state with updatedAlbums
+  //       setAlbumDetails(updatedAlbums);
+  //       console.log(albums);
+  //     }
+  //   };
+
   return (
     <>
+      <Link to="/my-albums">Back to My Albums</Link>
+
       <Container className="d-flex">
         <Card
           style={{ width: "18rem" }}
@@ -50,9 +78,11 @@ function MyAlbumDetail() {
                 Year: {albumDetails?.album_detail?.year}
               </ListGroup.Item>
 
-              <div>
-                <Button>Delete Album</Button>
-              </div>
+              {/* <div>
+                <Button type="submit" onClick={deleteAlbum}>
+                  Delete Album
+                </Button>
+              </div> */}
 
               <ListGroup.Item>Tracklist</ListGroup.Item>
               {albumDetails?.album_detail?.tracks.map((track) => (
@@ -62,10 +92,11 @@ function MyAlbumDetail() {
           </Card.Body>
         </Card>
       </Container>
-
+      {/* This form/text area will only show up if user wants to add or edit note: also need options to delete note */}
       <Container>
         <FloatingLabel controlId="floatingTextarea2" label="Note">
           <Form.Control
+            //   {albumDetails?.album_detail?.note}
             as="textarea"
             placeholder="Put a note here for a personal memory related to album"
             style={{ height: "100px" }}
