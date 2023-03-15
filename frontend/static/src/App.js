@@ -12,6 +12,7 @@ import Albums from "./pages/Albums";
 import AlbumSearch from "./pages/AlbumSearch";
 import MyAlbums from "./pages/MyAlbums";
 import ProfileForm from "./pages/ProfileForm";
+import MyAlbumDetail from "./pages/MyAlbumDetail";
 
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -28,10 +29,10 @@ const App = () => {
           <Route path="my-albums" element={<MyAlbums />} />
           {/* <Route path="my-friends" element={<MyFriends />} /> */}
           <Route path="profile" element={<ProfileForm />} />
-          {/* <Route path="my-album-detail" element={<MyAlbumDetail />} /> */}
+          <Route path="my-album-detail/:id" element={<MyAlbumDetail />} />
         </Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
