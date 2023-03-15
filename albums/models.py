@@ -22,7 +22,8 @@ class AlbumDetail(models.Model):
 class Album(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, blank=True)
-    album_detail = models.ForeignKey(AlbumDetail, on_delete=models.CASCADE)
+    album_detail = models.ForeignKey(
+        AlbumDetail, on_delete=models.CASCADE, blank=True)
     note = models.TextField(blank=True, null=True)
     user_image = models.ImageField(upload_to="albums/", blank=True, null=True)
 
