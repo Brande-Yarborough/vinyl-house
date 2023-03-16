@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
-import { Button, Container, Card } from "react-bootstrap";
+import { Form, Button, Container, Card } from "react-bootstrap";
 
 function Comment({ comment, ...props }) {
   const updatedAt = new Date(comment.updated_at);
   const formattedDate = updatedAt.toLocaleString();
+  const [isEditing, setEditing] = useState(false);
+  const [text, setText] = useState(comment.text);
+
+  const updateComment = () => {
+    props.handleSubmitComment(comment.id, text);
+    setEditing(false);
+  };
 
   return (
     <div>
@@ -14,18 +21,43 @@ function Comment({ comment, ...props }) {
             <Card.Subtitle className="mb-2 text-muted">
               {formattedDate}
             </Card.Subtitle>
-            <Card.Text>{comment.text}</Card.Text>
-            <Card.Link href="#">Reply</Card.Link>
+            <Form>
+              <Form.Control
+                name="comment"
+                as="textarea"
+                value={text}
+                style={{ height: "100px" }}
+                onChange={(e) => setText(e.target.value)}
+                disabled={!isEditing}
+                className={`${!isEditing && "input-preview"}`}
+              />
+            </Form>
+
+            {/* Reply is a  Dream, not a need */}
+            {/* <Card.Link href="#">Reply</Card.Link> */}
           </Card.Body>
         </Card>
       </Container>
 
-      {comment.is_author ? (
-        <Button type="button" onClick={() => props.deleteComment(comment.id)}>
-          delete comment
-        </Button>
-      ) : null}
-      {comment.is_author ? <Button type="button">edit comment</Button> : null}
+      <Container>
+        {comment.is_author && !isEditing && (
+          <Button type="button" onClick={() => setEditing(true)}>
+            edit comment
+          </Button>
+        )}
+
+        {comment.is_author && isEditing && (
+          <Button type="button" onClick={updateComment}>
+            save comment
+          </Button>
+        )}
+
+        {comment.is_author && (
+          <Button type="button" onClick={() => props.deleteComment(comment.id)}>
+            delete comment
+          </Button>
+        )}
+      </Container>
     </div>
   );
 }

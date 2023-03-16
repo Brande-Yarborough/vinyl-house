@@ -39,11 +39,6 @@ function MyAlbumDetail() {
   /////Add Comment/////
   const addComment = async (event) => {
     event.preventDefault();
-    // const message = {
-    //   text: "Welcome to the channel.",
-    //   channel: 1,
-    //   author: 1,
-    // };
     const newComment = {
       text: comment,
       album: albumDetails.id,
@@ -101,11 +96,42 @@ function MyAlbumDetail() {
     }
   };
 
+  /////Handle Submit for Comment Edit/////
+  const handleSubmitComment = async (id, text) => {
+    alert("hey");
+    // const formData = new FormData();
+    // formData.append("comment", albumDetails?.comment);
+
+    const options = {
+      method: "PATCH",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text,
+      }),
+    };
+
+    const response = await fetch(`/api_v1/comments/${id}/`, options);
+
+    if (!response.ok) {
+      throw new Error("Network response not ok.");
+    }
+
+    // const data = await response.json();
+    const updatedComments = [...albumDetails.comments];
+    const index = updatedComments.findIndex((comment) => comment.id === id);
+    updatedComments[index].text = text;
+    setAlbumDetails({ ...albumDetails, comments: updatedComments });
+  };
+
   /////handle Change event for Note/////
   const handleChange = (event) => {
     const { name, value } = event.target;
     setAlbumDetails({ ...albumDetails, [name]: value });
   };
+
   /////handle Submit for Note/////
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -166,6 +192,7 @@ function MyAlbumDetail() {
         </Form>
       </Container>
     );
+
     //////////This will show the list of my albums//////////
   } else {
     myAlbumDetailHTML = (
@@ -261,6 +288,8 @@ function MyAlbumDetail() {
             key={comment.id}
             comment={comment}
             deleteComment={deleteComment}
+            handleSubmitComment={handleSubmitComment}
+            // editComment={editComment}
           />
         ))}
       </div>

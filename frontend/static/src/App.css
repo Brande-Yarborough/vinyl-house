@@ -107,3 +107,9 @@ footer {
 button.btn.btn-primary {
   background-color: black;
 }
+
+.form-control.input-preview:disabled {
+  background-color: #fff;
+  border: none;
+  outline: none;
+}
