@@ -13,6 +13,7 @@ import AlbumSearch from "./pages/AlbumSearch";
 import MyAlbums from "./pages/MyAlbums";
 import ProfileForm from "./pages/ProfileForm";
 import MyAlbumDetail from "./pages/MyAlbumDetail";
+import CommentList from "./pages/CommentList";
 
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);

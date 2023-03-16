@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .permissions import IsUser, IsAuthor
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 # Create your views here.
@@ -111,10 +112,11 @@ class AlbumListAPIView(generics.ListCreateAPIView):
 
 class CommentListAPIView(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
-    permission_classes = (IsAuthor,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
-        return Comment.objects.filter(author=self.request.user).order_by('-created_at')
+        album = self.request.query_params.get('album')
+        return Comment.objects.filter(album=album).order_by('-created_at')
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

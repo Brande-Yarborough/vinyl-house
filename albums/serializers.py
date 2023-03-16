@@ -58,11 +58,15 @@ class UserAlbumDetailSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     # Do I need author name here?
     author_name = serializers.ReadOnlyField(source='author.username')
+    is_author = serializers.SerializerMethodField('get_author_status')
+
+    # serializer method field is getting author status as boolean, to return and determine if author is equal to user
+    # will use this to determine if edit and delete buttons will show up for specific author/user
+    def get_author_status(self, comment):
+        return comment.author == self.context.get('request').user
 
     class Meta:
         model = Comment
         fields = '__all__'
 
     # Do I need to add serializer method field for edit, delete, and reply?
-    # serializer method field is getting author status as boolean, to return and determine if author is equal to user
-    # will use this to determine if edit and delete buttons will show up for specific author/user
