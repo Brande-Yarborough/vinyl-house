@@ -11,6 +11,7 @@ urlpatterns = [
     path('user/albums/', views.UserAlbumListAPIView.as_view()),
     path('user/albums/<int:pk>/', views.UserAlbumDetailAPIView.as_view()),
     path('comments/', views.CommentListAPIView.as_view()),
+    path('comments/<int:pk>/', views.CommentDetailAPIView.as_view()),
 ]
 
 # will need to do something like this:

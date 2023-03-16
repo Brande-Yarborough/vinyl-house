@@ -5,7 +5,7 @@ from .serializers import AlbumDetailSerializer, AlbumSerializer, CommentSerializ
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .permissions import IsUser, IsAuthor
+from .permissions import IsUser, IsAuthorOrReadOnly
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
@@ -122,6 +122,12 @@ class CommentListAPIView(generics.ListCreateAPIView):
         serializer.save(author=self.request.user)
 
 
+class CommentDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = (IsAuthorOrReadOnly,)
+
+
 class UserAlbumListAPIView(generics.ListCreateAPIView):
     serializer_class = UserAlbumSerializer
 
@@ -134,7 +140,7 @@ class UserAlbumListAPIView(generics.ListCreateAPIView):
 
 class UserAlbumDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserAlbumDetailSerializer
-    permission_classes = (IsUser,)
+    # permission_classes = (IsUser,)
 
     def get_queryset(self):
         return Album.objects.filter(user=self.request.user)

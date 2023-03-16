@@ -12,7 +12,9 @@ function MyAlbumDetail() {
   const navigate = useNavigate();
   const [isEditingNote, setIsEditingNote] = useState(false);
   //for delete comment//
-  const [comments, setComments] = useState([]);
+  //   const [comments, setComments] = useState([]);
+  ///for handle new comment///
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     const getAlbumDetails = async () => {
@@ -34,6 +36,46 @@ function MyAlbumDetail() {
     getAlbumDetails();
   }, []);
 
+  /////Add Comment/////
+  const addComment = async (event) => {
+    event.preventDefault();
+    // const message = {
+    //   text: "Welcome to the channel.",
+    //   channel: 1,
+    //   author: 1,
+    // };
+    const newComment = {
+      text: comment,
+      album: albumDetails.id,
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": Cookies.get("csrftoken"),
+      },
+      body: JSON.stringify(newComment),
+    };
+
+    const response = await fetch(`/api_v1/comments/`, options);
+    if (!response.ok) {
+      throw new Error("Network response not OK");
+    }
+
+    const data = await response.json();
+    // console.log({ data });
+    const comments = [...albumDetails.comments, data];
+    setAlbumDetails({ ...albumDetails, comments });
+    // setComments([...comments, data]);
+    //clears new comment form back out
+    setComment("");
+  };
+
+  const handleNewComment = (event) => {
+    setComment(event.target.value);
+  };
+
   /////Delete Comment/////
   const deleteComment = async (id) => {
     const options = {
@@ -43,22 +85,19 @@ function MyAlbumDetail() {
       },
     };
 
-    const response = await fetch(
-      `/api_v1/user/albums/${comments.id}/`,
-      options
-    );
+    const response = await fetch(`/api_v1/comments/${id}/`, options);
     if (!response.ok) {
       throw new Error("Network response not OK");
     } else {
       console.log(response);
       //create shallow copy of comments
-      let updatedComments = [...comments];
+      let updatedComments = [...albumDetails.comments];
       //find index of comment we want to delete
       const index = updatedComments.findIndex((x) => x.id == id);
       //removing comment from array
       updatedComments.splice(index, 1);
       //reset state with updatedComments
-      setComments(updatedComments);
+      setAlbumDetails({ ...albumDetails, comments: updatedComments });
     }
   };
 
@@ -194,14 +233,20 @@ function MyAlbumDetail() {
         </Container>
 
         <Container>
-          <FloatingLabel controlId="floatingTextarea2" label="Add Comments">
-            <Form.Control
-              as="textarea"
-              placeholder="Comments"
-              style={{ height: "100px" }}
-            />
-          </FloatingLabel>
-          <Button>Submit</Button>
+          <Form onSubmit={addComment}>
+            <FloatingLabel controlId="floatingTextarea2" label="Add Comments">
+              <Form.Control
+                as="textarea"
+                placeholder="Comments"
+                style={{ height: "100px" }}
+                value={comment}
+                onChange={handleNewComment}
+              />
+            </FloatingLabel>
+            <Button type="submit" variant="primary">
+              Submit
+            </Button>
+          </Form>
         </Container>
       </>
     );

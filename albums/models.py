@@ -37,7 +37,7 @@ class Comment(models.Model):
         Album, on_delete=models.CASCADE, related_name="comments")
     text = models.TextField()
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     # time stamp with moment of creation
     created_at = models.DateTimeField(auto_now_add=True)
     # automatically updates with any changes made to comment

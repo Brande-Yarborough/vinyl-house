@@ -13,7 +13,7 @@ class IsUser(permissions.BasePermission):
         return obj.user == request.user
 
 
-class IsAuthor(permissions.BasePermission):
+class IsAuthorOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         # if doing get request, return true
         # if request.method in permissions.SAFE_METHODS:  # get is safe method

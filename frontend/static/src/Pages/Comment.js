@@ -21,11 +21,11 @@ function Comment({ comment, ...props }) {
       </Container>
 
       {comment.is_author ? (
-        <Button value={() => props.deleteComment(comment.id)}>
+        <Button type="button" onClick={() => props.deleteComment(comment.id)}>
           delete comment
         </Button>
       ) : null}
-      {comment.is_author ? <Button>edit comment</Button> : null}
+      {comment.is_author ? <Button type="button">edit comment</Button> : null}
     </div>
   );
 }
