@@ -11,6 +11,8 @@ function MyAlbumDetail() {
   let { id } = useParams();
   const navigate = useNavigate();
   const [isEditingNote, setIsEditingNote] = useState(false);
+  //for delete comment//
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const getAlbumDetails = async () => {
@@ -32,8 +34,32 @@ function MyAlbumDetail() {
     getAlbumDetails();
   }, []);
 
-  const deleteComment = (id) => {
-    // logic goes here
+  /////Delete Comment/////
+  const deleteComment = async (id) => {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+      },
+    };
+
+    const response = await fetch(
+      `/api_v1/user/albums/${comments.id}/`,
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network response not OK");
+    } else {
+      console.log(response);
+      //create shallow copy of comments
+      let updatedComments = [...comments];
+      //find index of comment we want to delete
+      const index = updatedComments.findIndex((x) => x.id == id);
+      //removing comment from array
+      updatedComments.splice(index, 1);
+      //reset state with updatedComments
+      setComments(updatedComments);
+    }
   };
 
   /////handle Change event for Note/////

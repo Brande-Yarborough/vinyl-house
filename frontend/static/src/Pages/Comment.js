@@ -2,16 +2,17 @@ import { useState, useEffect } from "react";
 import { Button, Container, Card } from "react-bootstrap";
 
 function Comment({ comment, ...props }) {
+  const updatedAt = new Date(comment.updated_at);
+  const formattedDate = updatedAt.toLocaleString();
+
   return (
     <div>
-      {/* <div>{comment.text}</div> */}
-
       <Container>
         <Card key={comment.id} style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>{comment.author_name}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              {comment.updated_at}
+              {formattedDate}
             </Card.Subtitle>
             <Card.Text>{comment.text}</Card.Text>
             <Card.Link href="#">Reply</Card.Link>
@@ -24,7 +25,7 @@ function Comment({ comment, ...props }) {
           delete comment
         </Button>
       ) : null}
-      {comment.is_author ? <button>edit comment</button> : null}
+      {comment.is_author ? <Button>edit comment</Button> : null}
     </div>
   );
 }
