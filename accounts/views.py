@@ -26,6 +26,16 @@ class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializer
 
 
+class CurrentUserProfileAPIView(generics.RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    def get_object(self):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset, user=self.request.user)
+        return obj
+
+
 # Function based views for Friend Request
 @api_view(['POST'])
 def send_friend_request(request, userID):

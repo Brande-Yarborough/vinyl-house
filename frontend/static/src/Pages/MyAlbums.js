@@ -6,7 +6,6 @@ import Cookies from "js-cookie";
 
 function MyAlbums() {
   const [myAlbums, setMyAlbums] = useState([]);
-  //   const [albums, setAlbums] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {

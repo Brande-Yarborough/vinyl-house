@@ -1,13 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Image } from "react-bootstrap";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({});
   const [avatar, setAvatar] = useState(null);
   const [displayName, setDisplayName] = useState("");
   const [favoriteGenre, setFavoriteGenre] = useState("");
+
+  useEffect(() => {
+    getMyProfile();
+  }, []);
+  //for page re-render to load after editing fields
+  const getMyProfile = async () => {
+    const response = await fetch(`/api_v1/profiles/current_user/`);
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+
+    const data = await response.json();
+    setProfile(data);
+  };
 
   const handleCreate = async (event) => {
     event.preventDefault();
@@ -35,14 +49,14 @@ function ProfileForm() {
     }
   };
 
-  const handleUpdate = async (event) => {
+  const handleUpdate = async () => {
     const formData = new FormData();
 
-    if (avatar instanceof File) {
-      formData.append("avatar", avatar);
+    if (profile.avatar instanceof File) {
+      formData.append("avatar", profile.avatar);
     }
-    formData.append("display_name", displayName);
-    formData.append("favorite_genre", favoriteGenre);
+    formData.append("display_name", profile.display_name);
+    formData.append("favorite_genre", profile.favorite_genre);
 
     const options = {
       method: "PUT",
@@ -58,6 +72,8 @@ function ProfileForm() {
     if (!response.ok) {
       throw new Error("Network response not ok");
     }
+    const data = await response.json();
+    getMyProfile();
   };
 
   const handleChange = (event) => {
@@ -81,28 +97,32 @@ function ProfileForm() {
       <Form>
         <Form.Group className="mb-3" controlId="formBasicImage">
           <Form.Label>Upload Profile Image</Form.Label>
-          <Form.Control name="image" type="file" onChange={handleImage} />
+          <Form.Control name="avatar" type="file" onChange={handleImage} />
+          <Image
+            src={profile.avatar}
+            style={{ width: "35%", display: "block" }}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label htmlFor="display_name" />
+          <Form.Label />
           Display Name:
           <Form.Control
-            name="display-name"
+            name="display_name"
             placeholder="Enter display name"
             type="text"
-            value={displayName}
+            value={profile.display_name}
             onChange={handleChange}
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="favorite_genre" />
+          <Form.Label />
           Favorite Genre:
           <Form.Control
-            name="favorite-genre"
+            name="favorite_genre"
             placeholder="Enter favorite genre"
             type="text"
-            value={favoriteGenre}
+            value={profile.favorite_genre}
             onChange={handleChange}
           />
         </Form.Group>
@@ -111,7 +131,7 @@ function ProfileForm() {
             Create Profile
           </Button>
         ) : (
-          <Button type="submit" onClick={handleUpdate}>
+          <Button type="button" onClick={handleUpdate}>
             Update Profile
           </Button>
         )}

@@ -9,8 +9,7 @@ function MyAlbumDetail() {
   const [albumDetails, setAlbumDetails] = useState(null);
   let { id } = useParams();
   const navigate = useNavigate();
-  const [isEditing, setIsEditing] = useState(false);
-  //   const [note, setNote] = useState({});
+  const [isEditingNote, setIsEditingNote] = useState(false);
 
   useEffect(() => {
     const getAlbumDetails = async () => {
@@ -57,33 +56,44 @@ function MyAlbumDetail() {
     }
 
     const data = await response.json();
-    setIsEditing(false);
+    setIsEditingNote(false);
+  };
+
+  /////handle Image for user uploaded image/////
+  const handleImage = (event) => {
+    const file = event.target.files[0];
+    setAlbumDetails({ ...albumDetails, image: file });
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
   };
 
   let myAlbumDetailHTML; //instantiating instance of new variable myAlbumHTML
   //////////This will show the edit album note option form//////////
-  if (isEditing) {
+  if (isEditingNote) {
     myAlbumDetailHTML = (
-      //  This form/text area will only show up if user wants to add or edit note: also need options to delete note */}
+      //  This form/text area will only show up if user wants to add or edit note */}
       <Container>
-        <FloatingLabel controlId="floatingTextarea2" label="Note">
-          <Form.Control
-            name="note"
-            as="textarea"
-            value={albumDetails?.note}
-            placeholder="Put a note here for a personal memory related to album"
-            style={{ height: "100px" }}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
-        <Button
-          id="note"
-          variant="primary"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit Note
-        </Button>
+        <Form>
+          <FloatingLabel controlId="floatingTextarea2" label="Note">
+            <Form.Control
+              name="note"
+              as="textarea"
+              value={albumDetails?.note}
+              placeholder="Put a note here for a personal memory related to album"
+              style={{ height: "100px" }}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
+
+          <Button
+            id="note"
+            variant="primary"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Submit Note
+          </Button>
+        </Form>
       </Container>
     );
     //////////This will show the list of my albums//////////
@@ -123,24 +133,33 @@ function MyAlbumDetail() {
             <Card.Body>{albumDetails?.note}</Card.Body>
           </Card>
           {/* only show if user logged in is owner of note */}
-          <Button type="button" onClick={() => setIsEditing(true)}>
+          <Button type="button" onClick={() => setIsEditingNote(true)}>
             Edit Note
           </Button>
-          <Button>Delete</Button>
         </Container>
 
         <Container>
-          <Card.Img
-            variant="left"
-            src={albumDetails?.user_image}
-            alt="user submitted image"
-            style={{ width: "35%", display: "block" }}
-          />
-          <div>
-            {/* ///// only show if user logged in is owner of image///// */}
-            <Button>Edit Image</Button>
-            <Button>Delete</Button>
-          </div>
+          {albumDetails?.user_image !== null ? (
+            <>
+              <Card.Title>User Image:</Card.Title>
+              <Card.Img
+                variant="left"
+                src={albumDetails?.user_image}
+                alt="user submitted image"
+                style={{ width: "35%", display: "block" }}
+              />
+
+              {/* <div className="d-flex">
+                <div>Add Image: </div>
+                <input type="file"></input>
+              </div> */}
+            </>
+          ) : (
+            <div>
+              <div>Add Image: </div>
+              <input type="file"></input>
+            </div>
+          )}
         </Container>
 
         <Container>
