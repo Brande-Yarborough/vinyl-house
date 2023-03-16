@@ -4,6 +4,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Card, Container, ListGroup, Image, Button } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import Comment from "./Comment";
 
 function MyAlbumDetail() {
   const [albumDetails, setAlbumDetails] = useState(null);
@@ -30,6 +31,10 @@ function MyAlbumDetail() {
     };
     getAlbumDetails();
   }, []);
+
+  const deleteComment = (id) => {
+    // logic goes here
+  };
 
   /////handle Change event for Note/////
   const handleChange = (event) => {
@@ -172,19 +177,6 @@ function MyAlbumDetail() {
           </FloatingLabel>
           <Button>Submit</Button>
         </Container>
-
-        <Container>
-          <Card style={{ width: "18rem" }}>
-            <Card.Body>
-              <Card.Title>Username</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Created March 14, 2023
-              </Card.Subtitle>
-              <Card.Text>I saw him in Charleston! Love this album!</Card.Text>
-              <Card.Link href="#">Reply</Card.Link>
-            </Card.Body>
-          </Card>
-        </Container>
       </>
     );
   }
@@ -192,6 +184,15 @@ function MyAlbumDetail() {
     <>
       <Link to="/my-albums">Back to My Albums</Link>
       <div>{myAlbumDetailHTML}</div>
+      <div>
+        {albumDetails?.comments.map((comment) => (
+          <Comment
+            key={comment.id}
+            comment={comment}
+            deleteComment={deleteComment}
+          />
+        ))}
+      </div>
     </>
   );
 }

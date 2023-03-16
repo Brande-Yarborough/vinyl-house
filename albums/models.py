@@ -21,9 +21,9 @@ class AlbumDetail(models.Model):
 # user input album detail
 class Album(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE, blank=True)
+                             on_delete=models.CASCADE, blank=True,)
     album_detail = models.ForeignKey(
-        AlbumDetail, on_delete=models.CASCADE, blank=True)
+        AlbumDetail, on_delete=models.CASCADE, blank=True, related_name="album")
     note = models.TextField(blank=True, null=True)
     user_image = models.ImageField(upload_to="albums/", blank=True, null=True)
 
@@ -33,7 +33,8 @@ class Album(models.Model):
 
 # user detail comment
 class Comment(models.Model):
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    album = models.ForeignKey(
+        Album, on_delete=models.CASCADE, related_name="comments")
     text = models.TextField()
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
