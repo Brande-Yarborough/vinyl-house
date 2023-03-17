@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework import generics
 from rest_framework.response import Response
 from .models import Profile, User, Friend_Request
-from .serializers import ProfileSerializer
+from .serializers import ProfileSerializer, UserSerializer
 
 # Create your views here.
 User = get_user_model()
@@ -36,12 +36,17 @@ class CurrentUserProfileAPIView(generics.RetrieveAPIView):
         return obj
 
 
+class UserListAPIView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
 # Function based views for Friend Request
 @api_view(['POST'])
 def send_friend_request(request, userID):
     from_user = request.user
-    to_user = User.Objects.get(id=userID)
-    friend_request, created = Friend_Request.objects.getorcreate(
+    to_user = User.objects.get(id=userID)
+    friend_request, created = Friend_Request.objects.get_or_create(
         from_user=from_user, to_user=to_user)
     if created:
         return Response('friend request sent')
@@ -50,11 +55,18 @@ def send_friend_request(request, userID):
 
 
 @api_view(['POST'])
-def accept_friend_request(request, requestID):
-    friend_request = Friend_Request.objects.get(id=requestID)
-    if friend_request.to_user == request.user:
-        friend_request.to_user.friends.add(friend_request.from_user)
-        friend_request.from_user.friends.add(friend_request.to_user)
+def accept_friend_request(request):
+    friend_request = Friend_Request.objects.get(to_user=request.user.id)
+    to_profile = Profile.objects.get(user=request.user.id)
+    from_profile = Profile.objects.get(user=friend_request.from_user.id)
+
+    if friend_request.to_user:
+        to_profile.friends.add(friend_request.from_user)
+        from_profile.friends.add(friend_request.to_user)
+        print(friend_request.to_user)
+
+        # friend_request.to_user.friends.add(friend_request.from_user)
+        # friend_request.from_user.friends.add(friend_request.to_user)
         friend_request.delete()
         return Response('friend request accepted')
     else:

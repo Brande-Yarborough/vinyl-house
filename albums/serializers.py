@@ -71,5 +71,3 @@ class UserAlbumDetailSerializer(serializers.ModelSerializer):
             validated_data['album_detail'] = album_detail
             instance = Album.objects.get(**validated_data)
             return instance
-
-    # Do I need to add serializer method field for edit, delete, and reply?

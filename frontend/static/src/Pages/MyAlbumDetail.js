@@ -289,7 +289,6 @@ function MyAlbumDetail() {
             comment={comment}
             deleteComment={deleteComment}
             handleSubmitComment={handleSubmitComment}
-            // editComment={editComment}
           />
         ))}
       </div>

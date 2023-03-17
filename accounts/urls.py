@@ -11,6 +11,6 @@ urlpatterns = [
          CurrentUserProfileAPIView.as_view(), name="profile_detail"),
     path('send_friend_request/<int:userID>/',
          send_friend_request, name='send friend request'),
-    path('accept_friend_request/<int:requestID>/',
+    path('accept_friend_request/',
          accept_friend_request, name='accept friend request'),
 ]

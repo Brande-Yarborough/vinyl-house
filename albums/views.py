@@ -147,3 +147,15 @@ class UserAlbumDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+# View to see friends album collection
+class FriendAlbumListAPIView(generics.ListCreateAPIView):
+    serializer_class = UserAlbumSerializer
+
+    def get_queryset(self):
+        id = self.request.query_params.get('id')
+        return Album.objects.filter(id=id)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
