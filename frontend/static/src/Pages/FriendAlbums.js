@@ -29,7 +29,7 @@ function FriendAlbums() {
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body>
           <Card.Title>{album.album_detail.title}</Card.Title>
-          <Link to={`/friend-album-detail`} type="primary">
+          <Link to={`/friend-album-detail/${album.id}`} type="primary">
             Album Detail
           </Link>
         </Card.Body>

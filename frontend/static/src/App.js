@@ -30,7 +30,10 @@ const App = () => {
           <Route index element={<MyAlbums />} />
           <Route path="album-search" element={<AlbumSearch />} />
           <Route path="my-friends" element={<MyFriendList />} />
-          <Route path="friend-album-detail" element={<FriendAlbumDetail />} />
+          <Route
+            path="friend-album-detail/:albumId"
+            element={<FriendAlbumDetail />}
+          />
           <Route path="friend-albums/:friendId" element={<FriendAlbums />} />
           <Route path="profile" element={<ProfileForm />} />
           <Route path="my-album-detail/:id" element={<MyAlbumDetail />} />

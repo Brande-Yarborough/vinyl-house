@@ -8,7 +8,7 @@ import Comment from "./Comment";
 
 function FriendAlbumDetail() {
   const [albumDetails, setAlbumDetails] = useState(null);
-  let { id } = useParams();
+  let { albumId } = useParams();
   const navigate = useNavigate();
   const [isEditingNote, setIsEditingNote] = useState(false);
   //for delete comment//
@@ -17,7 +17,9 @@ function FriendAlbumDetail() {
   const [comment, setComment] = useState("");
 
   useEffect(() => {
-    const getAlbumDetails = async () => {
+    // read the params of the album id
+    setAlbumDetails();
+    const getAlbumDetails = async (albumId) => {
       const options = {
         method: "GET",
         headers: {
@@ -25,7 +27,10 @@ function FriendAlbumDetail() {
           "X-CSRFToken": Cookies.get("csrftoken"),
         },
       };
-      const response = await fetch(`/api_v1/user/albums/${id}/`, options);
+      const response = await fetch(
+        `/api_v1/friend/${albumId}/albumdetail/`,
+        options
+      );
       if (!response.ok) {
         throw new Error("Network response not ok");
       }
@@ -33,7 +38,7 @@ function FriendAlbumDetail() {
       setAlbumDetails(data);
       console.log({ data });
     };
-    getAlbumDetails();
+    getAlbumDetails(albumId);
   }, []);
 
   /////Add Comment/////
@@ -146,7 +151,10 @@ function FriendAlbumDetail() {
       body: formData,
     };
 
-    const response = await fetch(`/api_v1/user/albums/${id}/`, options);
+    const response = await fetch(
+      `/api_v1/friend/${albumId}/albumdetail/`,
+      options
+    );
     if (!response.ok) {
       throw new Error("Network response not ok.");
     }
@@ -162,6 +170,8 @@ function FriendAlbumDetail() {
     const reader = new FileReader();
     reader.readAsDataURL(file);
   };
+
+  console.log(albumDetails?.[0]);
 
   let myAlbumDetailHTML; //instantiating instance of new variable myAlbumHTML
   //////////This will show the edit album note option form//////////
@@ -193,31 +203,31 @@ function FriendAlbumDetail() {
       </Container>
     );
 
-    //////////This will show the list of my albums//////////
+    //////////This will show the album detail//////////
   } else {
     myAlbumDetailHTML = (
       <>
         <Container className="d-flex">
           <Card
             style={{ width: "18rem" }}
-            key={albumDetails?.album_detail?.api_id}
+            key={albumDetails?.[0].album_detail?.api_id}
           >
             <Card.Img
               variant="top"
-              src={albumDetails?.album_detail?.cover_image}
+              src={albumDetails?.[0].album_detail?.cover_image}
             />
             <Card.Body>
-              <Card.Title>{albumDetails?.album_detail?.title}</Card.Title>
+              <Card.Title>{albumDetails?.[0].album_detail?.title}</Card.Title>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  Genre: {albumDetails?.album_detail?.genre}
+                  Genre: {albumDetails?.[0].album_detail?.genre}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Year: {albumDetails?.album_detail?.year}
+                  Year: {albumDetails?.[0].album_detail?.year}
                 </ListGroup.Item>
 
                 <ListGroup.Item>Tracklist</ListGroup.Item>
-                {albumDetails?.album_detail?.tracks.map((track) => (
+                {albumDetails?.[0].album_detail?.tracks.map((track) => (
                   <ListGroup.Item key={track}>{track}</ListGroup.Item>
                 ))}
               </ListGroup>
@@ -227,7 +237,7 @@ function FriendAlbumDetail() {
         <Container>
           <Card>
             <Card.Title>User Personal Note:</Card.Title>
-            <Card.Body>{albumDetails?.note}</Card.Body>
+            <Card.Body>{albumDetails?.[0].note}</Card.Body>
           </Card>
           {/* only show if user logged in is owner of note */}
           <Button type="button" onClick={() => setIsEditingNote(true)}>
@@ -236,20 +246,15 @@ function FriendAlbumDetail() {
         </Container>
 
         <Container>
-          {albumDetails?.user_image !== null ? (
+          {albumDetails?.[0].user_image !== null ? (
             <>
               <Card.Title>User Image:</Card.Title>
               <Card.Img
                 variant="left"
-                src={albumDetails?.user_image}
+                src={albumDetails?.[0].user_image}
                 alt="user submitted image"
                 style={{ width: "35%", display: "block" }}
               />
-
-              {/* <div className="d-flex">
-                <div>Add Image: </div>
-                <input type="file"></input>
-              </div> */}
             </>
           ) : (
             <div>
@@ -283,7 +288,7 @@ function FriendAlbumDetail() {
       <Link to={`/friend-albums/:friendId`}>Back to Friends Albums</Link>
       <div>{myAlbumDetailHTML}</div>
       <div>
-        {albumDetails?.comments.map((comment) => (
+        {albumDetails?.[0].comments?.map((comment) => (
           <Comment
             key={comment.id}
             comment={comment}

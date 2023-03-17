@@ -127,6 +127,7 @@ class UserAlbumListAPIView(generics.ListCreateAPIView):
 
 class UserAlbumDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserAlbumDetailSerializer
+    # queryset = Album.objects.all()
     # permission_classes = (IsUser,)
 
     def get_queryset(self):
@@ -148,3 +149,11 @@ class FriendAlbumListAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class FriendAlbumDetailListView(generics.ListAPIView):
+    serializer_class = UserAlbumSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs.get('pk')
+        return Album.objects.filter(id=pk)

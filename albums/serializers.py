@@ -35,10 +35,13 @@ class AlbumSerializer(serializers.ModelSerializer):
 
 class UserAlbumSerializer(serializers.ModelSerializer):
     album_detail = AlbumDetailSerializer()
+    comments = CommentSerializer(
+        many=True, read_only=True)
 
     class Meta:
         model = Album
         fields = '__all__'
+        # depth = 1
 
     def create(self, validated_data):
         album_detail_data = validated_data.pop('album_detail')

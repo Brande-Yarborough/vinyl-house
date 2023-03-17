@@ -13,6 +13,8 @@ urlpatterns = [
     path('comments/', views.CommentListAPIView.as_view()),
     path('comments/<int:pk>/', views.CommentDetailAPIView.as_view()),
     path('friend/<int:pk>/albums/', views.FriendAlbumListAPIView.as_view()),
+    path('friend/<int:pk>/albumdetail/',
+         views.FriendAlbumDetailListView.as_view()),
 ]
 
 # will need to do something like this:

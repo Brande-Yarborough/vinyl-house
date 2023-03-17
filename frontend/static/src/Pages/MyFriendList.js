@@ -97,7 +97,7 @@ function FriendList() {
 
   const myFriendListHTML = profile.friends?.map((friend) => (
     <Container>
-      <div>My Friends:</div>
+      <h1>My Friends</h1>
       <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Text>{friend.username}</Card.Text>
