@@ -52,9 +52,15 @@ function MyAlbums() {
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body>
           <Card.Title>{album.album_detail.title}</Card.Title>
-          <Link to={`/my-album-detail/${album.id}`} type="primary">
-            Album Detail
-          </Link>
+          <div id="album-detail-button">
+            <Link
+              id="album-detail"
+              to={`/my-album-detail/${album.id}`}
+              type="primary"
+            >
+              Album Detail
+            </Link>
+          </div>
           <div>
             <Button type="submit" onClick={() => deleteAlbum(album.id)}>
               Delete Album
@@ -68,7 +74,7 @@ function MyAlbums() {
   return (
     <div>
       {" "}
-      <h1>Brande's Albums</h1>
+      <h1>My Albums</h1>
       {MyAlbumListHTML}
     </div>
   );

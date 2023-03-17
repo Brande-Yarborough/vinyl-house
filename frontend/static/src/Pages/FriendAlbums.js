@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { Card, Container, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function MyAlbums() {
+function FriendAlbums() {
   const [friendAlbums, setFriendAlbums] = useState([]);
   const navigate = useNavigate();
+  let { friendId } = useParams();
 
   useEffect(() => {
-    const getFriendAlbums = async () => {
-      const response = await fetch(`api_v1/friend/<int:pk>/albums/`);
+    const getFriendAlbums = async (id) => {
+      const response = await fetch(`/api_v1/friend/${id}/albums/`);
       if (!response.ok) {
         throw new Error("Network response was not OK");
       }
@@ -18,7 +19,8 @@ function MyAlbums() {
       const data = await response.json();
       setFriendAlbums(data);
     };
-    getFriendAlbums();
+
+    getFriendAlbums(friendId);
   }, []);
 
   const FriendAlbumListHTML = friendAlbums.map((album) => (
@@ -27,7 +29,7 @@ function MyAlbums() {
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body>
           <Card.Title>{album.album_detail.title}</Card.Title>
-          <Link to={`/my-album-detail/${album.id}`} type="primary">
+          <Link to={`/friend-album-detail`} type="primary">
             Album Detail
           </Link>
         </Card.Body>
@@ -38,10 +40,16 @@ function MyAlbums() {
   return (
     <div>
       {" "}
-      <h1>Brande's Albums</h1>
+      <h1>Friends Albums</h1>
       {FriendAlbumListHTML}
     </div>
   );
 }
 
-export default MyAlbums;
+export default FriendAlbums;
+
+// function add(num1, num2) {
+//     return num1 + num2;
+// }
+
+// add()

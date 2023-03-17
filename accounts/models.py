@@ -22,11 +22,10 @@ class Friend_Request(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
-    avatar = models.ImageField(upload_to='profiles/', blank=True)
+    avatar = models.ImageField(upload_to='profiles/', blank=True, null=True)
     display_name = models.CharField(max_length=255)
     favorite_genre = models.CharField(max_length=255)
-    friends = models.ManyToManyField(
-        "User", blank=True, related_name="friends")
+    friends = models.ManyToManyField("User", related_name="friends",)
 
     def __str__(self):
         return self.user.username

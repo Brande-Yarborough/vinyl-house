@@ -79,19 +79,6 @@ def testing(request):
     return JsonResponse(album, safe=False)
 
 
-# def fetchDiscOgsData(request):
-#     if request.method == 'POST':
-#         type = 'release'
-#         title = 'Lemonade'
-#         artist = 'Beyonce'
-#         genre = ''
-#         year = ''
-
-#     results = d.search(artist=artist, type=type, title=title,)
-#     print(results[0])
-#     return results
-
-
 # API end point to show all albums detail, List gets many records
 class AlbumDetailListAPIView(generics.ListCreateAPIView):
     # what am i getting,  go to table and get all objects or albums detail

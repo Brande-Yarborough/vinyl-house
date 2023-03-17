@@ -10,7 +10,7 @@ class FriendSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    friends = FriendSerializer(many=True)
+    friends = FriendSerializer(many=True, read_only=True)
 
     class Meta:
         model = Profile

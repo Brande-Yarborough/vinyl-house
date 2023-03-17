@@ -13,6 +13,9 @@ import MyAlbums from "./pages/MyAlbums";
 import ProfileForm from "./pages/ProfileForm";
 import MyAlbumDetail from "./pages/MyAlbumDetail";
 import CommentList from "./pages/Comment";
+import FriendAlbums from "./pages/FriendAlbums";
+import MyFriendList from "./pages/MyFriendList";
+import FriendAlbumDetail from "./pages/FriendAlbumDetail";
 
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -26,7 +29,9 @@ const App = () => {
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<MyAlbums />} />
           <Route path="album-search" element={<AlbumSearch />} />
-          {/* <Route path="my-friends" element={<MyFriends />} /> */}
+          <Route path="my-friends" element={<MyFriendList />} />
+          <Route path="friend-album-detail" element={<FriendAlbumDetail />} />
+          <Route path="friend-albums/:friendId" element={<FriendAlbums />} />
           <Route path="profile" element={<ProfileForm />} />
           <Route path="my-album-detail/:id" element={<MyAlbumDetail />} />
         </Route>
