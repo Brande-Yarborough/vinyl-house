@@ -23,10 +23,6 @@ function ProfileForm() {
     setProfile(data);
   };
 
-  //   const getMyFriends = async () => {
-  //     const response = await fetch(`/api_v1/profiles`);
-  //   };
-
   const handleCreate = async (event) => {
     event.preventDefault();
 
@@ -109,7 +105,6 @@ function ProfileForm() {
       </Card>
     </Container>
   ));
-  console.log(myFriendListHTML);
 
   return (
     <>

@@ -24,11 +24,7 @@ const AuthenticatedHeader = () => {
           <Nav className="ml-auto">
             <ul className="nav d-flex align-items-center" id="main-nav">
               <li className="nav-item">
-                <NavLink to="/">Albums</NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink to="/my-albums">My Albums</NavLink>
+                <NavLink to="/">My Albums</NavLink>
               </li>
 
               <li className="nav-item">

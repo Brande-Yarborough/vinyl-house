@@ -280,7 +280,7 @@ function MyAlbumDetail() {
   }
   return (
     <>
-      <Link to="/my-albums">Back to My Albums</Link>
+      <Link to="/">Back to My Albums</Link>
       <div>{myAlbumDetailHTML}</div>
       <div>
         {albumDetails?.comments.map((comment) => (
