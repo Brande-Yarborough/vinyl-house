@@ -3,8 +3,14 @@ from rest_framework import serializers
 from .models import Profile, User
 
 
+class FriendSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'id',)
+
+
 class ProfileSerializer(serializers.ModelSerializer):
-    # friends = serializers.SerializerMethodField()
+    friends = FriendSerializer(many=True)
 
     class Meta:
         model = Profile
@@ -13,12 +19,6 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = '__all__'
-
-
-class FriendSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'

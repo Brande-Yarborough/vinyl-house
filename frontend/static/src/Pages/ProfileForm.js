@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
-import { Container, Form, Button, Image } from "react-bootstrap";
+import { Container, Form, Button, Image, Card } from "react-bootstrap";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({});
@@ -22,6 +22,10 @@ function ProfileForm() {
     const data = await response.json();
     setProfile(data);
   };
+
+  //   const getMyFriends = async () => {
+  //     const response = await fetch(`/api_v1/profiles`);
+  //   };
 
   const handleCreate = async (event) => {
     event.preventDefault();
@@ -91,56 +95,81 @@ function ProfileForm() {
     const reader = new FileReader();
     reader.readAsDataURL(file);
   };
+  /////Friend List/////
+  console.log({ profile });
+
+  const myFriendListHTML = profile.friends?.map((friend) => (
+    <Container>
+      <div>My Friends:</div>
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Text>{friend.username}</Card.Text>
+          <Button variant="primary">View Albums</Button>
+        </Card.Body>
+      </Card>
+    </Container>
+  ));
+  console.log(myFriendListHTML);
 
   return (
-    <Container>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicImage">
-          {/* <Form.Label>Upload Profile Image</Form.Label>
+    <>
+      <Container>
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicImage">
+            {/* <Form.Label>Upload Profile Image</Form.Label>
           <Form.Control name="avatar" type="file" onChange={handleImage} /> */}
-          <Image
-            id="avatar"
-            src={profile.avatar}
-            style={{ width: "35%", display: "block" }}
-          />
-          <Form.Label>Upload Profile Image</Form.Label>
-          <Form.Control name="avatar" type="file" onChange={handleImage} />
-        </Form.Group>
+            <Image
+              id="avatar"
+              src={profile.avatar}
+              style={{ width: "35%", display: "block" }}
+            />
+            <Form.Label>Upload Profile Image</Form.Label>
+            <Form.Control name="avatar" type="file" onChange={handleImage} />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label />
-          Display Name:
-          <Form.Control
-            name="display_name"
-            placeholder="Enter display name"
-            type="text"
-            value={profile.display_name}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label />
-          Favorite Genre:
-          <Form.Control
-            name="favorite_genre"
-            placeholder="Enter favorite genre"
-            type="text"
-            value={profile.favorite_genre}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        {!profile.id ? (
-          <Button type="submit" onClick={handleCreate}>
-            Create Profile
-          </Button>
-        ) : (
-          <Button type="button" onClick={handleUpdate}>
-            Update Profile
-          </Button>
-        )}
-      </Form>
-    </Container>
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label />
+            Display Name:
+            <Form.Control
+              name="display_name"
+              placeholder="Enter display name"
+              type="text"
+              value={profile.display_name}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label />
+            Favorite Genre:
+            <Form.Control
+              name="favorite_genre"
+              placeholder="Enter favorite genre"
+              type="text"
+              value={profile.favorite_genre}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          {!profile.id ? (
+            <Button type="submit" onClick={handleCreate}>
+              Create Profile
+            </Button>
+          ) : (
+            <Button type="button" onClick={handleUpdate}>
+              Update Profile
+            </Button>
+          )}
+        </Form>
+      </Container>
+      <div>{myFriendListHTML}</div>
+    </>
   );
 }
 
 export default ProfileForm;
+
+// const profile = {
+//     name: 'Brande',
+//     friends: ['Sophia', 'Stephanie', 'Jack']
+// }
+
+// profile.friends.map(friend => console.log(friend));

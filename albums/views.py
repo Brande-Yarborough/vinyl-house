@@ -154,8 +154,10 @@ class FriendAlbumListAPIView(generics.ListCreateAPIView):
     serializer_class = UserAlbumSerializer
 
     def get_queryset(self):
+        # target the kwargs and pull out the pk value
+        # use the pk value to filter the albums table
         id = self.request.query_params.get('id')
-        return Album.objects.filter(id=id)
+        return Album.objects.filter(user=somevalue)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
