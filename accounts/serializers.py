@@ -4,7 +4,7 @@ from .models import Profile, User
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    friends = serializers.SerializerMethodField()
+    # friends = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile

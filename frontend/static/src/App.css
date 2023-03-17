@@ -82,6 +82,13 @@ form#register {
   width: 50%;
 }
 
+/* Profile Form */
+img#avatar {
+  border-radius: 50%;
+  border: solid;
+  margin-top: 35px;
+}
+
 form#search {
   margin-bottom: 20px;
   margin-top: 15px;

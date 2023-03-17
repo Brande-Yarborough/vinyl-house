@@ -38,7 +38,7 @@ function AlbumSearch() {
     const response = await fetch("/api_v1/user/albums/", options);
     if (!response.ok) {
       throw new Error("Network response not ok");
-    }
+    } else alert("Album added!");
 
     const data = await response.json();
     console.log({ data });

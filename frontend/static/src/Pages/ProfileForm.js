@@ -96,12 +96,15 @@ function ProfileForm() {
     <Container>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicImage">
-          <Form.Label>Upload Profile Image</Form.Label>
-          <Form.Control name="avatar" type="file" onChange={handleImage} />
+          {/* <Form.Label>Upload Profile Image</Form.Label>
+          <Form.Control name="avatar" type="file" onChange={handleImage} /> */}
           <Image
+            id="avatar"
             src={profile.avatar}
             style={{ width: "35%", display: "block" }}
           />
+          <Form.Label>Upload Profile Image</Form.Label>
+          <Form.Control name="avatar" type="file" onChange={handleImage} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicName">
