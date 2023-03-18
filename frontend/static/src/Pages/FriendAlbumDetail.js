@@ -4,7 +4,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Card, Container, ListGroup, Image, Button } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import Comment from "./Comment";
+import Comment from "./Comment.js";
 
 function FriendAlbumDetail() {
   const [albumDetails, setAlbumDetails] = useState(null);
