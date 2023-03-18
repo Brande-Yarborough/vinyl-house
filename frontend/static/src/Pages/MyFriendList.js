@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Container, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { handleError } from "../utils/utilities";
 
 function FriendList() {
   const [profile, setProfile] = useState({});
@@ -53,12 +55,37 @@ function FriendList() {
     setProfileList(data);
   };
 
+  const handleSendFriendRequest = async (profileID) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ profileID }),
+    };
+
+    const response = await fetch(
+      `/api_v1/send_friend_request/${profileID}/`,
+      options
+    ).catch(handleError);
+    if (!response.ok) {
+      throw new Error("Failed to send friend request");
+    }
+    const data = await response.json();
+    console.log("Friend request sent:", data);
+  };
+
   const profileListHTML = profileList.map((profile) => (
     <Container key={profile.id}>
       <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Text>{profile.display_name}</Card.Text>
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="button"
+            onClick={() => handleSendFriendRequest(profile.id)}
+          >
             Send Friend Request
           </Button>
         </Card.Body>

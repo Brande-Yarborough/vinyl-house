@@ -96,8 +96,10 @@ function FriendAlbumDetail() {
       const index = comments.findIndex((x) => x.id == id);
       //removing comment from array
       comments.splice(index, 1);
+      console.log(albumDetails);
       //reset state with comments
-      setAlbumDetails([{ ...albumDetails, comments }]);
+      setAlbumDetails([{ ...albumDetails[0], comments }]);
+      console.log(albumDetails);
     }
   };
 

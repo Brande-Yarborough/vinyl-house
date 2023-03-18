@@ -15,6 +15,7 @@ function MyAlbumDetail() {
   //   const [comments, setComments] = useState([]);
   ///for handle new comment///
   const [comment, setComment] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     const getAlbumDetails = async () => {
@@ -31,6 +32,7 @@ function MyAlbumDetail() {
       }
       const data = await response.json();
       setAlbumDetails(data);
+      setImage(data?.user_image);
     };
     getAlbumDetails();
   }, []);
@@ -173,12 +175,15 @@ function MyAlbumDetail() {
     if (!response.ok) {
       throw new Error("Network response not ok.");
     }
+    const data = await response.json();
+    console.log(data);
     ///need to updated these 2 lines to update state without having to refresh page to show image
-    const user_image = { ...albumDetails, user_image: user_image };
+    setImage(data?.user_image);
+    console.log(response);
+    // const user_image = { ...albumDetails, user_image: user_image };
 
     setAlbumDetails({ ...albumDetails, user_image: file });
   };
-
   let myAlbumDetailHTML; //instantiating instance of new variable myAlbumHTML
   //////////This will show the edit album note option form//////////
   if (isEditingNote) {
@@ -257,7 +262,7 @@ function MyAlbumDetail() {
               <Card.Title>User Image:</Card.Title>
               <Card.Img
                 variant="left"
-                src={albumDetails?.user_image}
+                src={image}
                 alt="user submitted image"
                 style={{ width: "35%", display: "block" }}
               />
@@ -294,6 +299,8 @@ function MyAlbumDetail() {
       </>
     );
   }
+  console.log({ image });
+
   return (
     <>
       <Link to="/">Back to My Albums</Link>
