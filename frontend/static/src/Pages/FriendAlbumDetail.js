@@ -240,28 +240,28 @@ function FriendAlbumDetail() {
             <Card.Body>{albumDetails?.[0].note}</Card.Body>
           </Card>
           {/* only show if user logged in is owner of note */}
-          <Button type="button" onClick={() => setIsEditingNote(true)}>
+          {/* <Button type="button" onClick={() => setIsEditingNote(true)}>
             Edit Note
-          </Button>
+          </Button> */}
         </Container>
 
         <Container>
-          {albumDetails?.[0].user_image !== null ? (
-            <>
-              <Card.Title>User Image:</Card.Title>
-              <Card.Img
-                variant="left"
-                src={albumDetails?.[0].user_image}
-                alt="user submitted image"
-                style={{ width: "35%", display: "block" }}
-              />
-            </>
-          ) : (
+          {/* {albumDetails?.[0].user_image !== null ? ( */}
+          <>
+            <Card.Title>User Image:</Card.Title>
+            <Card.Img
+              variant="left"
+              src={albumDetails?.[0].user_image}
+              //   alt="user submitted image"
+              style={{ width: "35%", display: "block" }}
+            />
+          </>
+          {/* ) : (
             <div>
               <div>Add Image: </div>
               <input type="file"></input>
             </div>
-          )}
+          )} */}
         </Container>
 
         <Container>
@@ -285,7 +285,7 @@ function FriendAlbumDetail() {
   }
   return (
     <>
-      <Link to={`/friend-albums/:friendId`}>Back to Friends Albums</Link>
+      {/* <Link to={`/friend-albums/:friendId`}>Back to Friends Albums</Link> */}
       <div>{myAlbumDetailHTML}</div>
       <div>
         {albumDetails?.[0].comments?.map((comment) => (
