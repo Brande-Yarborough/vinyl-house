@@ -248,7 +248,7 @@ function FriendAlbumDetail() {
         <Container>
           {/* {albumDetails?.[0].user_image !== null ? ( */}
           <>
-            <Card.Title>User Image:</Card.Title>
+            {/* <Card.Title>User Image:</Card.Title> */}
             <Card.Img
               variant="left"
               src={albumDetails?.[0].user_image}

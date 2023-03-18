@@ -24,74 +24,6 @@ function FriendList() {
     setProfile(data);
   };
 
-  const handleCreate = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    if (avatar instanceof File) {
-      formData.append("avatar", avatar);
-    }
-    formData.append("display_name", profile.display_name);
-    formData.append("favorite_genre", profile.favorite_genre);
-
-    const options = {
-      method: "POST",
-      headers: {
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
-      body: formData,
-    };
-
-    const response = await fetch("/api_v1/profiles/", options).catch(
-      handleError
-    );
-    if (!response.ok) {
-      throw new Error("Network response not ok");
-    }
-  };
-
-  const handleUpdate = async () => {
-    const formData = new FormData();
-
-    if (profile.avatar instanceof File) {
-      formData.append("avatar", profile.avatar);
-    }
-    formData.append("display_name", profile.display_name);
-    formData.append("favorite_genre", profile.favorite_genre);
-
-    const options = {
-      method: "PUT",
-      headers: {
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
-      body: formData,
-    };
-    const response = await fetch(
-      `/api_v1/profiles/${profile.id}/`,
-      options
-    ).catch(handleError);
-    if (!response.ok) {
-      throw new Error("Network response not ok");
-    }
-    const data = await response.json();
-    getMyProfile();
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setProfile({ ...profile, [name]: value });
-  };
-
-  const handleImage = (event) => {
-    const file = event.target.files[0];
-    setProfile({
-      ...profile,
-      avatar: file,
-    });
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-  };
   /////Friend List/////
   console.log({ profile });
 
@@ -110,9 +42,55 @@ function FriendList() {
     </Container>
   ));
 
+  /////Send Friend Request/////
+
+  // function SendFriendRequestButton(props) {
+  //   const [isSending, setIsSending] = useState(false);
+
+  //   function handleSendRequest() {
+  //     setIsSending(true);
+
+  //     fetch(`/api_v1/send_friend_request/${props.userId}/`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${props.token}`,
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         setIsSending(false);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //         setIsSending(false);
+  //       });
+  //   }
+  // }
+
   return (
     <>
-      <div>{myFriendListHTML}</div>
+      <Container>
+        <div>{myFriendListHTML}</div>
+        <Container>
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Friend Request</Form.Label>
+              <Form.Control type="text" placeholder="Enter friend name" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Send Friend Request
+            </Button>
+          </Form>
+        </Container>
+
+        {/* <div>
+          <Button onClick={handleSendRequest} disabled={isSending}>
+            {isSending ? "Sending..." : "Send Friend Request"}
+          </Button>
+        </div> */}
+      </Container>
     </>
   );
 }
