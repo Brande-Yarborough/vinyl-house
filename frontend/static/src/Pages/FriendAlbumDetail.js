@@ -7,18 +7,19 @@ import Form from "react-bootstrap/Form";
 import Comment from "./Comment.js";
 
 function FriendAlbumDetail() {
-  const [albumDetails, setAlbumDetails] = useState(null);
   let { albumId } = useParams();
   const navigate = useNavigate();
+
+  const [albumDetails, setAlbumDetails] = useState([{}]);
+  const [comment, setComment] = useState("");
   const [isEditingNote, setIsEditingNote] = useState(false);
+
   //for delete comment//
   //   const [comments, setComments] = useState([]);
   ///for handle new comment///
-  const [comment, setComment] = useState("");
 
   useEffect(() => {
     // read the params of the album id
-    setAlbumDetails();
     const getAlbumDetails = async (albumId) => {
       const options = {
         method: "GET",
@@ -46,8 +47,9 @@ function FriendAlbumDetail() {
     event.preventDefault();
     const newComment = {
       text: comment,
-      album: albumDetails.id,
+      album: albumDetails?.[0].id,
     };
+    console.log(albumDetails?.[0].id);
 
     const options = {
       method: "POST",
@@ -64,10 +66,8 @@ function FriendAlbumDetail() {
     }
 
     const data = await response.json();
-    // console.log({ data });
-    const comments = [...albumDetails.comments, data];
-    setAlbumDetails({ ...albumDetails, comments });
-    // setComments([...comments, data]);
+    const comments = [...albumDetails?.[0].comments, data];
+    setAlbumDetails([{ ...albumDetails?.[0], comments }]);
     //clears new comment form back out
     setComment("");
   };
@@ -91,13 +91,13 @@ function FriendAlbumDetail() {
     } else {
       console.log(response);
       //create shallow copy of comments
-      let updatedComments = [...albumDetails.comments];
+      let comments = [...albumDetails?.[0].comments];
       //find index of comment we want to delete
-      const index = updatedComments.findIndex((x) => x.id == id);
+      const index = comments.findIndex((x) => x.id == id);
       //removing comment from array
-      updatedComments.splice(index, 1);
-      //reset state with updatedComments
-      setAlbumDetails({ ...albumDetails, comments: updatedComments });
+      comments.splice(index, 1);
+      //reset state with comments
+      setAlbumDetails([{ ...albumDetails, comments }]);
     }
   };
 

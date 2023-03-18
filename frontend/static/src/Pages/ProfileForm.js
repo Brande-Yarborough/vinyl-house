@@ -88,7 +88,7 @@ function ProfileForm() {
       ...profile,
       avatar: file,
     });
-
+    console.log(profile.avatar);
     const reader = new FileReader();
     reader.readAsDataURL(file);
   };

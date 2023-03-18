@@ -31,7 +31,6 @@ function MyAlbumDetail() {
       }
       const data = await response.json();
       setAlbumDetails(data);
-      console.log({ data });
     };
     getAlbumDetails();
   }, []);
@@ -84,7 +83,6 @@ function MyAlbumDetail() {
     if (!response.ok) {
       throw new Error("Network response not OK");
     } else {
-      console.log(response);
       //create shallow copy of comments
       let updatedComments = [...albumDetails.comments];
       //find index of comment we want to delete
@@ -156,11 +154,29 @@ function MyAlbumDetail() {
   };
 
   /////handle Image for user uploaded image/////
-  const handleImage = (event) => {
+  const handleImage = async (event) => {
+    const formData = new FormData();
     const file = event.target.files[0];
-    setAlbumDetails({ ...albumDetails, image: file });
+    formData.append("user_image", file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
+
+    const options = {
+      method: "PATCH",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+      },
+      body: formData,
+    };
+
+    const response = await fetch(`/api_v1/user/albums/${id}/`, options);
+    if (!response.ok) {
+      throw new Error("Network response not ok.");
+    }
+    ///need to updated these 2 lines to update state without having to refresh page to show image
+    const user_image = { ...albumDetails, user_image: user_image };
+
+    setAlbumDetails({ ...albumDetails, user_image: file });
   };
 
   let myAlbumDetailHTML; //instantiating instance of new variable myAlbumHTML
@@ -254,7 +270,7 @@ function MyAlbumDetail() {
           ) : (
             <div>
               <div>Add Image: </div>
-              <input type="file"></input>
+              <input type="file" onChange={handleImage}></input>
             </div>
           )}
         </Container>
