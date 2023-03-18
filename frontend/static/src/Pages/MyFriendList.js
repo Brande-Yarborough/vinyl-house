@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import { handleError } from "../utils/utilities";
-import { Container, Form, Button, Image, Card } from "react-bootstrap";
+import { Container, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function FriendList() {
   const [profile, setProfile] = useState({});
-  const [avatar, setAvatar] = useState(null);
-  //   const [displayName, setDisplayName] = useState("");
-  //   const [favoriteGenre, setFavoriteGenre] = useState("");
+  const [profileList, setProfileList] = useState([]);
 
   useEffect(() => {
     getMyProfile();
@@ -37,6 +33,34 @@ function FriendList() {
           <Link to={`/friend-albums/${friend.id}`} type="primary">
             View Albums
           </Link>
+        </Card.Body>
+      </Card>
+    </Container>
+  ));
+
+  /////Get User Profiles for Friend Request/////
+  useEffect(() => {
+    getProfileList();
+  }, []);
+  //for page re-render to load after editing fields
+  const getProfileList = async () => {
+    const response = await fetch(`/api_v1/profiles/`);
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+
+    const data = await response.json();
+    setProfileList(data);
+  };
+
+  const profileListHTML = profileList.map((profile) => (
+    <Container key={profile.id}>
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Text>{profile.display_name}</Card.Text>
+          <Button variant="primary" type="submit">
+            Send Friend Request
+          </Button>
         </Card.Body>
       </Card>
     </Container>
@@ -73,17 +97,10 @@ function FriendList() {
     <>
       <Container>
         <div>{myFriendListHTML}</div>
-        <Container>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Friend Request</Form.Label>
-              <Form.Control type="text" placeholder="Enter friend name" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Send Friend Request
-            </Button>
-          </Form>
-        </Container>
+        <div>
+          <h1>Vinyl House Members</h1>
+          {profileListHTML}
+        </div>
 
         {/* <div>
           <Button onClick={handleSendRequest} disabled={isSending}>
