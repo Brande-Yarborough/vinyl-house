@@ -3,9 +3,10 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import Profile, User, Friend_Request
-from .serializers import ProfileSerializer, UserSerializer
+from .serializers import ProfileSerializer, UserSerializer, FriendRequestSerializer
 
 # Create your views here.
 User = get_user_model()
@@ -71,3 +72,12 @@ def accept_friend_request(request):
         return Response('friend request accepted')
     else:
         return Response('friend request not accepted')
+
+
+class FriendRequestListAPIView(generics.ListAPIView):
+    serializer_class = FriendRequestSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Friend_Request.objects.filter(to_user=user)

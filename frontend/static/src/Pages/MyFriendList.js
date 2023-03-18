@@ -31,7 +31,6 @@ function FriendList() {
       <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Text>{friend.username}</Card.Text>
-          {/* <Button variant="primary">View Albums</Button> */}
           <Link to={`/friend-albums/${friend.id}`} type="primary">
             View Albums
           </Link>
@@ -44,7 +43,6 @@ function FriendList() {
   useEffect(() => {
     getProfileList();
   }, []);
-  //for page re-render to load after editing fields
   const getProfileList = async () => {
     const response = await fetch(`/api_v1/profiles/`);
     if (!response.ok) {
@@ -55,6 +53,7 @@ function FriendList() {
     setProfileList(data);
   };
 
+  /////SEND FRIEND REQUEST/////
   const handleSendFriendRequest = async (profileID) => {
     const options = {
       method: "POST",
@@ -93,32 +92,29 @@ function FriendList() {
     </Container>
   ));
 
-  /////Send Friend Request/////
+  /////ACCEPT FRIEND REQUEST/////
+  const handleAcceptFriendRequest = async (requestID) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ requestID }),
+    };
 
-  // function SendFriendRequestButton(props) {
-  //   const [isSending, setIsSending] = useState(false);
+    const response = await fetch(
+      `/api_v1/accept_friend_request/${requestID}/`,
+      options
+    ).catch(handleError);
 
-  //   function handleSendRequest() {
-  //     setIsSending(true);
+    if (!response.ok) {
+      throw new Error("Failed to accept friend request");
+    }
 
-  //     fetch(`/api_v1/send_friend_request/${props.userId}/`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${props.token}`,
-  //       },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         setIsSending(false);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //         setIsSending(false);
-  //       });
-  //   }
-  // }
+    const data = await response.json();
+    console.log("Friend request accepted:", data);
+  };
 
   return (
     <>
@@ -128,12 +124,6 @@ function FriendList() {
           <h1>Vinyl House Members</h1>
           {profileListHTML}
         </div>
-
-        {/* <div>
-          <Button onClick={handleSendRequest} disabled={isSending}>
-            {isSending ? "Sending..." : "Send Friend Request"}
-          </Button>
-        </div> */}
       </Container>
     </>
   );
