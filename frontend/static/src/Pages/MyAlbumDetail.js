@@ -295,6 +295,16 @@ function MyAlbumDetail() {
               Submit
             </Button>
           </Form>
+          <div>
+            {albumDetails?.comments.map((comment) => (
+              <Comment
+                key={comment.id}
+                comment={comment}
+                deleteComment={deleteComment}
+                handleSubmitComment={handleSubmitComment}
+              />
+            ))}
+          </div>
         </Container>
       </>
     );
@@ -305,16 +315,6 @@ function MyAlbumDetail() {
     <>
       <Link to="/">Back to My Albums</Link>
       <div>{myAlbumDetailHTML}</div>
-      <div>
-        {albumDetails?.comments.map((comment) => (
-          <Comment
-            key={comment.id}
-            comment={comment}
-            deleteComment={deleteComment}
-            handleSubmitComment={handleSubmitComment}
-          />
-        ))}
-      </div>
     </>
   );
 }
