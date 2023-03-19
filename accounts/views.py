@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import Profile, User, Friend_Request
 from .serializers import ProfileSerializer, UserSerializer, FriendRequestSerializer
+from django.db.models import Q
 
 # Create your views here.
 User = get_user_model()
@@ -15,11 +16,15 @@ User = get_user_model()
 
 
 class ProfileListAPIView(generics.ListCreateAPIView):
-    queryset = Profile.objects.all()
+    # queryset = Profile.objects.filter()
+    # queryset = Profile.objects.filter(~Q(id=request.user.id))
     serializer_class = ProfileSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return Profile.objects.filter(~Q(user=self.request.user))
 
 
 class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -56,22 +61,29 @@ def send_friend_request(request, userID):
 
 
 @api_view(['POST'])
-def accept_friend_request(request):
-    friend_request = Friend_Request.objects.get(to_user=request.user.id)
+def accept_friend_request(request, friend_request_ID):
+    friend_request = Friend_Request.objects.get(id=friend_request_ID)
     to_profile = Profile.objects.get(user=request.user.id)
-    from_profile = Profile.objects.get(user=friend_request.from_user.id)
+    from_profile = Profile.objects.get(user=friend_request.from_user)
 
     if friend_request.to_user:
         to_profile.friends.add(friend_request.from_user)
-        from_profile.friends.add(friend_request.to_user)
-        print(friend_request.to_user)
-
-        # friend_request.to_user.friends.add(friend_request.from_user)
-        # friend_request.from_user.friends.add(friend_request.to_user)
+        from_profile.friends.add(request.user.id)
         friend_request.delete()
         return Response('friend request accepted')
     else:
         return Response('friend request not accepted')
+
+
+@api_view(['POST'])
+def reject_friend_request(request, friend_request_id):
+    friend_request = Friend_Request.objects.get(id=friend_request_id)
+
+    if friend_request.to_user == request.user:
+        friend_request.delete()
+        return Response('Friend request rejected.')
+    else:
+        return Response('You are not authorized to reject this friend request.')
 
 
 class FriendRequestListAPIView(generics.ListAPIView):

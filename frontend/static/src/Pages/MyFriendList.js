@@ -3,6 +3,7 @@ import { Container, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
+import FriendRequests from "./FriendRequestList";
 
 function FriendList() {
   const [profile, setProfile] = useState({});
@@ -27,7 +28,6 @@ function FriendList() {
 
   const myFriendListHTML = profile.friends?.map((friend) => (
     <Container>
-      <h1>My Friends</h1>
       <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Text>{friend.username}</Card.Text>
@@ -93,37 +93,23 @@ function FriendList() {
     </Container>
   ));
 
-  /////ACCEPT FRIEND REQUEST/////
-  const handleAcceptFriendRequest = async (requestID) => {
-    const options = {
-      method: "POST",
-      headers: {
-        "X-CSRFToken": Cookies.get("csrftoken"),
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ requestID }),
-    };
-
-    const response = await fetch(
-      `/api_v1/accept_friend_request/${requestID}/`,
-      options
-    ).catch(handleError);
-
-    if (!response.ok) {
-      throw new Error("Failed to accept friend request");
-    }
-
-    const data = await response.json();
-    console.log("Friend request accepted:", data);
-  };
-
   return (
     <>
       <Container>
-        <div>{myFriendListHTML}</div>
+        <div>
+          <h1>My Friends</h1>
+          {myFriendListHTML}
+        </div>
         <div>
           <h1>Vinyl House Members</h1>
           {profileListHTML}
+        </div>
+      </Container>
+      <Container>
+        <div>
+          <h1>Friend Requests</h1>
+
+          <FriendRequests />
         </div>
       </Container>
     </>
