@@ -257,27 +257,27 @@ function MyAlbumDetail() {
         </Container>
 
         <Container>
-          {albumDetails?.user_image !== null ? (
-            <>
-              <Card.Title>User Image:</Card.Title>
-              <Card.Img
-                variant="left"
-                src={image}
-                alt="user submitted image"
-                style={{ width: "35%", display: "block" }}
-              />
+          {/* {albumDetails?.user_image !== null ? ( */}
+          <>
+            <Card.Title>User Image:</Card.Title>
+            <Card.Img
+              variant="left"
+              src={image}
+              alt="user submitted image"
+              style={{ width: "35%", display: "block" }}
+            />
 
-              {/* <div className="d-flex">
+            {/* <div className="d-flex">
                 <div>Add Image: </div>
                 <input type="file"></input>
               </div> */}
-            </>
-          ) : (
-            <div>
-              <div>Add Image: </div>
-              <input type="file" onChange={handleImage}></input>
-            </div>
-          )}
+          </>
+          {/* ) : ( */}
+          <div>
+            <div>Add Image: </div>
+            <input type="file" onChange={handleImage}></input>
+          </div>
+          {/* )} */}
         </Container>
 
         <Container>

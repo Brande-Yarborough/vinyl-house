@@ -142,7 +142,6 @@ function ProfileForm() {
           )}
         </Form>
       </Container>
-      {/* <div>{myFriendListHTML}</div> */}
     </>
   );
 }

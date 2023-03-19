@@ -72,7 +72,7 @@ function MyAlbums() {
   ));
 
   return (
-    <div>
+    <div className="my-albums-container">
       {" "}
       <h1>My Albums</h1>
       {MyAlbumListHTML}

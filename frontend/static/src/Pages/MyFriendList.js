@@ -23,6 +23,26 @@ function FriendList() {
     setProfile(data);
   };
 
+  /////REMOVE FRIEND/////
+  const handleRemoveFriend = async (friendId) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetch(`/api_v1/remove_friend/${friendId}/`, options);
+    if (!response.ok) {
+      throw new Error("Failed to remove friend");
+    }
+
+    // Update the friend list
+    const updatedProfile = await response.json();
+    setProfile(updatedProfile);
+  };
+
   /////Friend List/////
   console.log("PROFILE", { profile });
 
@@ -31,9 +51,20 @@ function FriendList() {
       <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Text>{friend.username}</Card.Text>
-          <Link to={`/friend-albums/${friend.id}`} type="primary">
+          <Link
+            id="friend-albums"
+            to={`/friend-albums/${friend.id}`}
+            type="primary"
+          >
             View Albums
           </Link>
+          <Button
+            variant="primary"
+            type="button"
+            onClick={() => handleRemoveFriend(friend.id)}
+          >
+            Remove Friend
+          </Button>
         </Card.Body>
       </Card>
     </Container>

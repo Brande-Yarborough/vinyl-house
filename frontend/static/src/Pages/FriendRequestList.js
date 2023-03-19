@@ -82,16 +82,6 @@ function FriendRequests() {
         </Card.Body>
       </Card>
     </Container>
-
-    // <div key={request.id}>
-    //   <p>{request.sender.username} wants to be your friend</p>
-    //   <button onClick={() => handleAcceptFriendRequest(request.id)}>
-    //     Accept
-    //   </button>
-    //   <button onClick={() => handleRejectFriendRequest(request.id)}>
-    //     Reject
-    //   </button>
-    // </div>
   ));
 
   return <div>{friendRequestsList}</div>;

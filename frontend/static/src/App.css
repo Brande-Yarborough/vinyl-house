@@ -134,6 +134,19 @@ a#album-detail {
   font-size: 18px;
 }
 
+/* Friend Album */
+a#friend-albums {
+  text-decoration: none;
+  align-items: center;
+  border-radius: 0.375rem;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  font-size: 18px;
+}
+
 footer {
   padding: 15px;
   background-color: black;
@@ -144,6 +157,7 @@ footer {
 
 button.btn.btn-primary {
   background-color: black;
+  border-color: black;
 }
 
 .form-control.input-preview:disabled {
