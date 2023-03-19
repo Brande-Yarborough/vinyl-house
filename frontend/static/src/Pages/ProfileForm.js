@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
 import { Container, Form, Button, Image, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({});
