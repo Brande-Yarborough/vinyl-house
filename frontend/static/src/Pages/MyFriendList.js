@@ -23,7 +23,7 @@ function FriendList() {
   };
 
   /////Friend List/////
-  console.log({ profile });
+  console.log("PROFILE", { profile });
 
   const myFriendListHTML = profile.friends?.map((friend) => (
     <Container>
@@ -51,21 +51,22 @@ function FriendList() {
 
     const data = await response.json();
     setProfileList(data);
+    console.log("User Profiles", data);
   };
 
   /////SEND FRIEND REQUEST/////
-  const handleSendFriendRequest = async (profileID) => {
+  const handleSendFriendRequest = async (profileUserID) => {
     const options = {
       method: "POST",
       headers: {
         "X-CSRFToken": Cookies.get("csrftoken"),
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ profileID }),
+      body: JSON.stringify({ profileUserID }),
     };
 
     const response = await fetch(
-      `/api_v1/send_friend_request/${profileID}/`,
+      `/api_v1/send_friend_request/${profileUserID}/`,
       options
     ).catch(handleError);
     if (!response.ok) {
@@ -83,7 +84,7 @@ function FriendList() {
           <Button
             variant="primary"
             type="button"
-            onClick={() => handleSendFriendRequest(profile.id)}
+            onClick={() => handleSendFriendRequest(profile.user.id)}
           >
             Send Friend Request
           </Button>

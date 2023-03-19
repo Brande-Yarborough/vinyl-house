@@ -32,9 +32,6 @@ function Comment({ comment, ...props }) {
                 className={`${!isEditing && "input-preview"}`}
               />
             </Form>
-
-            {/* Reply is a  Dream, not a need */}
-            {/* <Card.Link href="#">Reply</Card.Link> */}
           </Card.Body>
         </Card>
       </Container>
