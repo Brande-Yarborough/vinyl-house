@@ -6,9 +6,6 @@ import { Link } from "react-router-dom";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({});
-  const [avatar, setAvatar] = useState(null);
-  //   const [displayName, setDisplayName] = useState("");
-  //   const [favoriteGenre, setFavoriteGenre] = useState("");
 
   useEffect(() => {
     getMyProfile();
@@ -28,8 +25,8 @@ function ProfileForm() {
     event.preventDefault();
 
     const formData = new FormData();
-    if (avatar instanceof File) {
-      formData.append("avatar", avatar);
+    if (profile.avatar instanceof File) {
+      formData.append("avatar", profile.avatar);
     }
     formData.append("display_name", profile.display_name);
     formData.append("favorite_genre", profile.favorite_genre);
@@ -48,6 +45,8 @@ function ProfileForm() {
     if (!response.ok) {
       throw new Error("Network response not ok");
     }
+    ////recall getMyProfile to re-render page so profile info updates////
+    getMyProfile();
   };
 
   const handleUpdate = async () => {
@@ -88,27 +87,10 @@ function ProfileForm() {
       ...profile,
       avatar: file,
     });
-    console.log(profile.avatar);
+    console.log("Avatar", profile.avatar);
     const reader = new FileReader();
     reader.readAsDataURL(file);
   };
-  //   /////Friend List/////
-  //   console.log({ profile });
-
-  //   const myFriendListHTML = profile.friends?.map((friend) => (
-  //     <Container>
-  //       <div>My Friends:</div>
-  //       <Card style={{ width: "18rem" }}>
-  //         <Card.Body>
-  //           <Card.Text>{friend.username}</Card.Text>
-  //           {/* <Button variant="primary">View Albums</Button> */}
-  //           <Link to={`/friend-albums/${friend.id}`} type="primary">
-  //             View Albums
-  //           </Link>
-  //         </Card.Body>
-  //       </Card>
-  //     </Container>
-  //   ));
 
   return (
     <>
@@ -117,11 +99,13 @@ function ProfileForm() {
           <Form.Group className="mb-3" controlId="formBasicImage">
             {/* <Form.Label>Upload Profile Image</Form.Label>
           <Form.Control name="avatar" type="file" onChange={handleImage} /> */}
-            <Image
-              id="avatar"
-              src={profile.avatar}
-              style={{ width: "35%", display: "block" }}
-            />
+            <div className="avatar-container">
+              <Image
+                id="avatar"
+                src={profile.avatar}
+                // style={{ width: "35%" }}
+              />
+            </div>
             <Form.Control name="avatar" type="file" onChange={handleImage} />
           </Form.Group>
 

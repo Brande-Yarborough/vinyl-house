@@ -51,7 +51,7 @@ export const AuthContextProvider = ({ children }) => {
     const data = await response.json();
     Cookies.set("Authorization", `Token ${data.key}`);
     setIsAuthenticated(true);
-    navigate("/");
+    navigate("/profile");
   };
 
   const logout = async () => {

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import { AuthContext } from "../context/AuthContext";
 
@@ -13,6 +13,7 @@ const INITIAL_STATE = {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
   const { isAuthenticated, register } = useContext(AuthContext);
   const [state, setState] = useState(INITIAL_STATE);
   const [passwordMatch, setPasswordMatch] = useState(true);
@@ -41,7 +42,7 @@ const Register = () => {
   };
 
   if (isAuthenticated) {
-    return <Navigate to="/" />;
+    <Navigate to="/profile" />;
   }
 
   return (
