@@ -4,13 +4,15 @@ from .models import Profile, User, Friend_Request
 
 
 class FriendSerializer(serializers.ModelSerializer):
+    profile_id = serializers.ReadOnlyField(source='profile.id')
+
     class Meta:
         model = User
-        fields = ('username', 'id',)
+        fields = ('username', 'id', 'profile_id')
 
 
 class FriendRequestSerializer(serializers.ModelSerializer):
-    # represented as string representations of the related User objects using StringRelatedField
+    # represented as string representations of the related User objects
     from_user = serializers.StringRelatedField()
     to_user = serializers.StringRelatedField()
 

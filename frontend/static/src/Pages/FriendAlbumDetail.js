@@ -105,7 +105,7 @@ function FriendAlbumDetail() {
 
   /////Handle Submit for Comment Edit/////
   const handleSubmitComment = async (id, text) => {
-    alert("hey");
+    // alert("hey");
     // const formData = new FormData();
     // formData.append("comment", albumDetails?.comment);
 

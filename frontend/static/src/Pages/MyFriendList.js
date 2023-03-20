@@ -62,7 +62,7 @@ function FriendList() {
           <Button
             variant="primary"
             type="button"
-            onClick={() => handleRemoveFriend(friend.id)}
+            onClick={() => handleRemoveFriend(friend.profile_id)}
           >
             Remove Friend
           </Button>
@@ -128,20 +128,21 @@ function FriendList() {
   return (
     <>
       <Container>
-        <div>
-          <h1>My Friends</h1>
-          {myFriendListHTML}
-        </div>
-        <div>
-          <h1>Vinyl House Members</h1>
-          {profileListHTML}
-        </div>
-      </Container>
-      <Container>
-        <div>
-          <h1>Friend Requests</h1>
+        <h1>My Friends</h1>
+        <div className="row">
+          <div className="col">{myFriendListHTML}</div>
 
-          <FriendRequests />
+          <div className="col">
+            <h1>Vinyl House Members</h1>
+            {profileListHTML}
+          </div>
+        </div>
+
+        <h1>Friend Requests</h1>
+        <div className="row">
+          <div className="col">
+            <FriendRequests />
+          </div>
         </div>
       </Container>
     </>

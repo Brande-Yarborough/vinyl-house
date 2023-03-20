@@ -12,8 +12,6 @@ from django.db.models import Q
 # Create your views here.
 User = get_user_model()
 
-# Create your views here.
-
 
 class ProfileListAPIView(generics.ListCreateAPIView):
     # queryset = Profile.objects.filter()
@@ -85,9 +83,8 @@ def reject_friend_request(request, friend_request_id):
     else:
         return Response('You are not authorized to reject this friend request.')
 
+
 ## view for Remove Friend##
-
-
 @api_view(['POST'])
 def remove_friend(request, friend_id):
     # Get the authenticated user's profile
