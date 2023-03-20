@@ -16,7 +16,3 @@ urlpatterns = [
     path('friend/<int:pk>/albumdetail/',
          views.FriendAlbumDetailListView.as_view()),
 ]
-
-# will need to do something like this:
-# path('user/albums/<int:pk>/', views.UserAlbumDetailAPIView.as_view()),
-# path('comments/', views.CommentListAPIView.as_view()),

@@ -7,7 +7,24 @@ import Cookies from "js-cookie";
 function MyAlbums() {
   const [myAlbums, setMyAlbums] = useState([]);
   const navigate = useNavigate();
+  //To display authenticated username for My Albums//
+  const [username, setUsername] = useState("");
 
+  /////Get username to display for My Albums/////
+  useEffect(() => {
+    const getUsername = async () => {
+      const response = await fetch(`/dj-rest-auth/user/`);
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+
+      const data = await response.json();
+      setUsername(data.username);
+    };
+    getUsername();
+  }, []);
+
+  /////Fetch authenticated user's albums/////
   useEffect(() => {
     const getMyAlbums = async () => {
       const response = await fetch(`/api_v1/user/albums/`);
@@ -74,7 +91,7 @@ function MyAlbums() {
   return (
     <div className="my-albums-container">
       {" "}
-      <h1>Brande's Albums</h1>
+      <h1>{username}'s Albums</h1>
       <Container>
         <Row>{MyAlbumListHTML}</Row>
       </Container>
