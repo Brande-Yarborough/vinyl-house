@@ -66,7 +66,7 @@ function AlbumSearch() {
         </Form>
       </Container>
 
-      <Row>
+      <Row id="search-results">
         {results.map((result) => (
           <Container className="col-md-3">
             <div className="d-flex flex-column">
@@ -104,7 +104,6 @@ function AlbumSearch() {
             </div>
           </Container>
         ))}
-        ;
       </Row>
     </div>
   );

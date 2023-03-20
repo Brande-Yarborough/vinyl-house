@@ -220,7 +220,7 @@ function MyAlbumDetail() {
       <>
         <Container className="d-flex">
           <Card
-            style={{ width: "18rem" }}
+            style={{ width: "20rem" }}
             key={albumDetails?.album_detail?.api_id}
           >
             <Card.Img

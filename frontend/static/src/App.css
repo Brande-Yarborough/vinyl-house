@@ -127,6 +127,10 @@ input#formBasicSearch.form-control {
   width: 350px;
 }
 
+div#search-results.row {
+  margin-left: 50px;
+}
+
 div#album-detail-button {
   margin-bottom: 15px;
 }
