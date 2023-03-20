@@ -136,14 +136,14 @@ function FriendList() {
             <h1>Vinyl House Members</h1>
             {profileListHTML}
           </div>
-        </div>
 
-        <h1>Friend Requests</h1>
-        <div className="row">
+          <h1>Friend Requests</h1>
+          {/* <div className="row"> */}
           <div className="col">
             <FriendRequests />
           </div>
         </div>
+        {/* </div> */}
       </Container>
     </>
   );

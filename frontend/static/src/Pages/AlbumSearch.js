@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Card, Container, Row } from "react-bootstrap";
@@ -9,6 +10,7 @@ function AlbumSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [albums, setAlbums] = useState(null);
+  const navigate = useNavigate();
 
   const handleSearch = async () => {
     const response = await fetch(`/api_v1/search/${query}/`);
@@ -42,6 +44,7 @@ function AlbumSearch() {
 
     const data = await response.json();
     console.log({ data });
+    navigate("/");
   };
 
   return (
@@ -67,7 +70,7 @@ function AlbumSearch() {
         {results.map((result) => (
           <Container className="col-md-3">
             <div className="d-flex flex-column">
-              <Card style={{ width: "12rem" }} key={result.title}>
+              <Card style={{ width: "15rem" }} key={result.title}>
                 <Card.Img
                   variant="left"
                   src={result.cover_image}

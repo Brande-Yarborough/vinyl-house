@@ -74,7 +74,7 @@ function MyAlbums() {
   return (
     <div className="my-albums-container">
       {" "}
-      <h1>My Albums</h1>
+      <h1>Brande's Albums</h1>
       <Container>
         <Row>{MyAlbumListHTML}</Row>
       </Container>

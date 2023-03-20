@@ -6,6 +6,7 @@ import "../App.css";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({});
+  const [preview, setPreview] = useState("");
 
   useEffect(() => {
     getMyProfile();
@@ -87,8 +88,11 @@ function ProfileForm() {
       ...profile,
       avatar: file,
     });
-    console.log("Avatar", profile.avatar);
+
     const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreview(reader.result);
+    };
     reader.readAsDataURL(file);
   };
 
@@ -102,12 +106,25 @@ function ProfileForm() {
             <div className="avatar-container text-center">
               <Image
                 id="avatar"
-                src={profile.avatar}
-                // style={{ width: "35%" }}
+                src={preview || profile.avatar}
+                style={{
+                  maxWidth: "300px",
+                  borderRadius: "100%",
+                  maxHeight: "300px",
+                }}
               />
             </div>
 
             <Form.Control name="avatar" type="file" onChange={handleImage} />
+            {profile.avatar && (
+              <div id="image-preview">
+                {/* <Image
+                  src={preview || profile.avatar}
+                  alt=""
+                  style={{ maxWidth: "300px" }}
+                /> */}
+              </div>
+            )}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicName">
@@ -137,7 +154,7 @@ function ProfileForm() {
               Create Profile
             </Button>
           ) : (
-            <Button type="button" onClick={handleUpdate}>
+            <Button type="submit" onClick={handleUpdate}>
               Update Profile
             </Button>
           )}

@@ -85,7 +85,6 @@ form#register {
 /* Profile Form */
 img#avatar {
   border-radius: 0.375rem;
-  /* border: solid 1px black; */
   object-fit: cover;
   object-position: center;
   width: 100%;
@@ -93,8 +92,8 @@ img#avatar {
 }
 
 div.avatar-container {
-  width: 500px;
-  height: 375px;
+  /* width: 500px;
+  height: 375px; */
   position: relative;
   margin-top: 25px;
 }
