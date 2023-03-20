@@ -99,6 +99,16 @@ div.avatar-container {
   margin-top: 25px;
 }
 
+.avatar-container {
+  width: 100%;
+  max-width: 500px; /* Set the maximum width of the container to the desired value */
+  margin: 0 auto; /* Center the container horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Set the height of the container to the desired value */
+}
+
 input#formBasicImage.form-control {
   margin-top: 30px;
 }

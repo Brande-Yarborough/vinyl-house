@@ -7,15 +7,15 @@ function FriendRequests() {
   const [friendRequests, setFriendRequests] = useState([]);
 
   useEffect(() => {
-    const fetchFriendRequests = async () => {
-      const response = await fetch("/api_v1/friend_requests/");
-      const data = await response.json();
-      setFriendRequests(data);
-      console.log(data);
-    };
     fetchFriendRequests();
   }, []);
 
+  const fetchFriendRequests = async () => {
+    const response = await fetch("/api_v1/friend_requests/");
+    const data = await response.json();
+    setFriendRequests(data);
+    console.log(data);
+  };
   /////ACCEPT FRIEND REQUEST/////
   const handleAcceptFriendRequest = async (requestID) => {
     const options = {
@@ -38,6 +38,8 @@ function FriendRequests() {
 
     const data = await response.json();
     console.log("Friend request accepted:", data);
+    fetchFriendRequests();
+
   };
 
   ////REJECT FRIEND REQUEST/////

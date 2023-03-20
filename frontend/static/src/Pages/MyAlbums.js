@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -47,7 +47,7 @@ function MyAlbums() {
   };
 
   const MyAlbumListHTML = myAlbums.map((album) => (
-    <Container className="d-flex" key={album.album_detail.api_id}>
+    <Col key={album.album_detail.api_id}>
       <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body>
@@ -68,14 +68,16 @@ function MyAlbums() {
           </div>
         </Card.Body>
       </Card>
-    </Container>
+    </Col>
   ));
 
   return (
     <div className="my-albums-container">
       {" "}
       <h1>My Albums</h1>
-      {MyAlbumListHTML}
+      <Container>
+        <Row>{MyAlbumListHTML}</Row>
+      </Container>
     </div>
   );
 }

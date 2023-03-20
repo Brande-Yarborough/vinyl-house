@@ -84,8 +84,10 @@ def reject_friend_request(request, friend_request_id):
         return Response('Friend request rejected.')
     else:
         return Response('You are not authorized to reject this friend request.')
-    
-##view for Remove Friend##
+
+## view for Remove Friend##
+
+
 @api_view(['POST'])
 def remove_friend(request, friend_id):
     # Get the authenticated user's profile
@@ -101,7 +103,6 @@ def remove_friend(request, friend_id):
     friend_profile.friends.remove(request.user)
 
     return Response('Friend removed successfully.')
-
 
 
 class FriendRequestListAPIView(generics.ListAPIView):

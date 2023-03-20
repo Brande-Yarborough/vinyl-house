@@ -24,6 +24,7 @@ function FriendList() {
   };
 
   /////REMOVE FRIEND/////
+  //need to use the correct ID currently using USER ID...need to use PROFILE ID
   const handleRemoveFriend = async (friendId) => {
     const options = {
       method: "POST",
@@ -44,7 +45,7 @@ function FriendList() {
   };
 
   /////Friend List/////
-  console.log("PROFILE", { profile });
+  console.log("PROFILE FRIENDS", profile.friends);
 
   const myFriendListHTML = profile.friends?.map((friend) => (
     <Container>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
 import { Container, Form, Button, Image, Card } from "react-bootstrap";
+import "../App.css";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({});
@@ -98,13 +99,14 @@ function ProfileForm() {
           <Form.Group className="mb-3" controlId="formBasicImage">
             {/* <Form.Label>Upload Profile Image</Form.Label>
           <Form.Control name="avatar" type="file" onChange={handleImage} /> */}
-            <div className="avatar-container">
+            <div className="avatar-container text-center">
               <Image
                 id="avatar"
                 src={profile.avatar}
                 // style={{ width: "35%" }}
               />
             </div>
+
             <Form.Control name="avatar" type="file" onChange={handleImage} />
           </Form.Group>
 
