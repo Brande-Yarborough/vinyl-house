@@ -2,20 +2,23 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Container, Row, Spinner } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import Cookies from "js-cookie";
 
 function AlbumSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [albums, setAlbums] = useState(null);
   const navigate = useNavigate();
 
   const handleSearch = async () => {
+    setLoading(true);
     const response = await fetch(`/api_v1/search/${query}/`);
     const data = await response.json();
     setResults(data.results);
+    setLoading(false);
   };
 
   const handleAddAlbum = async (album) => {
@@ -65,46 +68,51 @@ function AlbumSearch() {
           </Button>
         </Form>
       </Container>
+      {!loading ? (
+        <Row id="search-results">
+          {results.map((result) => (
+            <Container className="col-md-3">
+              <div className="d-flex flex-column">
+                <Card style={{ width: "15rem" }} key={result.title}>
+                  <Card.Img
+                    variant="left"
+                    src={result.cover_image}
+                    alt="album cover"
+                  />
 
-      <Row id="search-results">
-        {results.map((result) => (
-          <Container className="col-md-3">
-            <div className="d-flex flex-column">
-              <Card style={{ width: "15rem" }} key={result.title}>
-                <Card.Img
-                  variant="left"
-                  src={result.cover_image}
-                  alt="album cover"
-                />
+                  <Card.Body>
+                    <Card.Title>{result.title}</Card.Title>
+                    <ListGroup variant="flush">
+                      <ListGroup.Item>Genre: {result.genre}</ListGroup.Item>
+                      <ListGroup.Item>Year: {result.year}</ListGroup.Item>
+                      {result.formats.map((format) => (
+                        <ListGroup.Item key={format}>
+                          Format: {format}
+                        </ListGroup.Item>
+                      ))}
 
-                <Card.Body>
-                  <Card.Title>{result.title}</Card.Title>
-                  <ListGroup variant="flush">
-                    <ListGroup.Item>Genre: {result.genre}</ListGroup.Item>
-                    <ListGroup.Item>Year: {result.year}</ListGroup.Item>
-                    {result.formats.map((format) => (
-                      <ListGroup.Item key={format}>
-                        Format: {format}
-                      </ListGroup.Item>
-                    ))}
-
-                    {/* <ListGroup.Item>Tracklist</ListGroup.Item>
+                      {/* <ListGroup.Item>Tracklist</ListGroup.Item>
                   {result.tracks.map((track) => (
                     <ListGroup.Item key={track}>{track}</ListGroup.Item>
                   ))} */}
-                  </ListGroup>
-                  <Button
-                    variant="primary"
-                    onClick={() => handleAddAlbum(result)}
-                  >
-                    Add to Albums
-                  </Button>
-                </Card.Body>
-              </Card>
-            </div>
-          </Container>
-        ))}
-      </Row>
+                    </ListGroup>
+                    <Button
+                      variant="primary"
+                      onClick={() => handleAddAlbum(result)}
+                    >
+                      Add to Albums
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </div>
+            </Container>
+          ))}
+        </Row>
+      ) : (
+        <div className="loading-spinner">
+          <Spinner></Spinner>
+        </div>
+      )}
     </div>
   );
 }

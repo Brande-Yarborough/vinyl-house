@@ -147,6 +147,12 @@ a#album-detail {
   font-size: 18px;
 }
 
+.loading-spinner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 /* Friend Album */
 a#friend-albums {
   text-decoration: none;

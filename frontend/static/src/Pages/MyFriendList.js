@@ -42,6 +42,7 @@ function FriendList() {
     // Update the friend list
     const updatedProfile = await response.json();
     setProfile(updatedProfile);
+    getMyProfile();
   };
 
   /////Friend List/////
@@ -140,7 +141,7 @@ function FriendList() {
           <h1>Friend Requests</h1>
           {/* <div className="row"> */}
           <div className="col">
-            <FriendRequests />
+            <FriendRequests getMyProfile={getMyProfile} />
           </div>
         </div>
         {/* </div> */}

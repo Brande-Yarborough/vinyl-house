@@ -3,7 +3,7 @@ import { Container, Button, Card } from "react-bootstrap";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
 
-function FriendRequests() {
+function FriendRequests(props) {
   const [friendRequests, setFriendRequests] = useState([]);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function FriendRequests() {
     const data = await response.json();
     console.log("Friend request accepted:", data);
     fetchFriendRequests();
-
+    props.getMyProfile();
   };
 
   ////REJECT FRIEND REQUEST/////
@@ -64,6 +64,7 @@ function FriendRequests() {
 
     const data = await response.json();
     console.log("Friend request rejected:", data);
+    fetchFriendRequests();
   };
 
   const friendRequestsList = friendRequests.map((request) => (
