@@ -137,6 +137,10 @@ input#formBasicImage.form-control {
   margin-top: 20px;
 }
 
+.create-profile-button {
+  margin-top: 20px;
+}
+
 /* SEARCH ALBUMS */
 .search-header {
   display: flex;
@@ -155,8 +159,9 @@ input#formBasicImage.form-control {
 #search-background-image {
   background: url("../src/assets/searchalbums.jpg") no-repeat;
   padding-top: 10px;
-  height: 100vh;
+  /* height: 100vh; */
   background-size: 100% 100%;
+  min-height: 100vh;
 }
 
 form#search {
@@ -207,6 +212,15 @@ a#album-detail {
   justify-content: center;
 }
 
+/* MY ALBUMS */
+.my-albums-header {
+  margin-left: 15px;
+}
+
+#my-album-list.container {
+  margin-top: 25px;
+}
+
 /* FRIEND LIST */
 .friend-list-buttons {
   display: flex;
@@ -220,6 +234,18 @@ a#album-detail {
   height: 100vh;
   width: 100vw;
   background-size: 100% 100%;
+}
+
+#my-friends-header {
+  color: white;
+}
+
+#vinyl-house-members {
+  color: white;
+}
+
+#friend-requests {
+  color: white;
 }
 
 /* FRIEND ALBUMS */

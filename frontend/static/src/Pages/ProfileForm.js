@@ -150,7 +150,11 @@ function ProfileForm() {
             />
           </Form.Group>
           {!profile.id ? (
-            <Button type="submit" onClick={handleCreate}>
+            <Button
+              type="submit"
+              className="create-profile-button"
+              onClick={handleCreate}
+            >
               Create Profile
             </Button>
           ) : (

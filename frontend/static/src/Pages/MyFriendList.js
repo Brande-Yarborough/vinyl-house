@@ -50,29 +50,27 @@ function FriendList() {
   console.log("PROFILE FRIENDS", profile.friends);
 
   const myFriendListHTML = profile.friends?.map((friend) => (
-    <Container>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Text>{friend.username}</Card.Text>
-          <div className="friend-list-buttons">
-            <Link
-              id="friend-albums"
-              to={`/friend-albums/${friend.id}`}
-              type="primary"
-            >
-              View Albums
-            </Link>
-            <Button
-              variant="primary"
-              type="button"
-              onClick={() => handleRemoveFriend(friend.profile_id)}
-            >
-              <FaTrash />
-            </Button>
-          </div>
-        </Card.Body>
-      </Card>
-    </Container>
+    <Card key={friend.id} style={{ width: "18rem" }}>
+      <Card.Body>
+        <Card.Text>{friend.username}</Card.Text>
+        <div className="friend-list-buttons">
+          <Link
+            id="friend-albums"
+            to={`/friend-albums/${friend.id}`}
+            type="primary"
+          >
+            View Albums
+          </Link>
+          <Button
+            variant="primary"
+            type="button"
+            onClick={() => handleRemoveFriend(friend.profile_id)}
+          >
+            <FaTrash />
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
   ));
 
   /////Get User Profiles for Friend Request/////
@@ -113,41 +111,37 @@ function FriendList() {
   };
 
   const profileListHTML = profileList.map((profile) => (
-    <Container key={profile.id}>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Text>{profile.display_name}</Card.Text>
-          <Button
-            variant="primary"
-            type="button"
-            onClick={() => handleSendFriendRequest(profile.user.id)}
-          >
-            Send Friend Request
-          </Button>
-        </Card.Body>
-      </Card>
-    </Container>
+    <Card key={profile.id} style={{ width: "18rem" }}>
+      <Card.Body>
+        <Card.Text>{profile.display_name}</Card.Text>
+        <Button
+          variant="primary"
+          type="button"
+          onClick={() => handleSendFriendRequest(profile.user.id)}
+        >
+          Send Friend Request
+        </Button>
+      </Card.Body>
+    </Card>
   ));
 
   return (
     <div id="friend-background-image">
       <Container>
-        <h1>My Friends</h1>
         <div className="row">
-          <div className="col">{myFriendListHTML}</div>
-
-          <div className="col">
-            <h1>Vinyl House Members</h1>
+          <div className="col-12 col-md">
+            <h2 id="my-friends-header">My Friends</h2>
+            {myFriendListHTML}
+          </div>
+          <div className="col-12 col-md">
+            <h2 id="vinyl-house-members">Vinyl House Members</h2>
             {profileListHTML}
           </div>
-
-          <h1>Friend Requests</h1>
-          {/* <div className="row"> */}
-          <div className="col">
+          <div className="col-12 col-md">
+            <h2 id="friend-requests">Friend Requests</h2>
             <FriendRequests getMyProfile={getMyProfile} />
           </div>
         </div>
-        {/* </div> */}
       </Container>
     </div>
   );

@@ -17,7 +17,7 @@ function AlbumSearch() {
     setLoading(true);
     const response = await fetch(`/api_v1/search/${query}/`);
     const data = await response.json();
-    setResults(data.results);
+    setResults(data.results.slice(0, 4));
     setLoading(false);
   };
 

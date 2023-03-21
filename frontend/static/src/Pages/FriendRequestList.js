@@ -68,23 +68,21 @@ function FriendRequests(props) {
   };
 
   const friendRequestsList = friendRequests.map((request) => (
-    <Container key={request.id}>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Text>{request.from_user}</Card.Text>
-          <Button
-            variant="primary"
-            type="button"
-            onClick={() => handleAcceptFriendRequest(request.id)}
-          >
-            Accept
-          </Button>
-          <Button onClick={() => handleRejectFriendRequest(request.id)}>
-            Reject
-          </Button>
-        </Card.Body>
-      </Card>
-    </Container>
+    <Card style={{ width: "18rem" }} key={request.id}>
+      <Card.Body>
+        <Card.Text>{request.from_user}</Card.Text>
+        <Button
+          variant="primary"
+          type="button"
+          onClick={() => handleAcceptFriendRequest(request.id)}
+        >
+          Accept
+        </Button>
+        <Button onClick={() => handleRejectFriendRequest(request.id)}>
+          Reject
+        </Button>
+      </Card.Body>
+    </Card>
   ));
 
   return <div>{friendRequestsList}</div>;
