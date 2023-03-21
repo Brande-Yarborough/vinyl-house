@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
 import FriendRequests from "./FriendRequestList";
+import { FaTrash } from "react-icons/fa";
 
 function FriendList() {
   const [profile, setProfile] = useState({});
@@ -53,20 +54,22 @@ function FriendList() {
       <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Text>{friend.username}</Card.Text>
-          <Link
-            id="friend-albums"
-            to={`/friend-albums/${friend.id}`}
-            type="primary"
-          >
-            View Albums
-          </Link>
-          <Button
-            variant="primary"
-            type="button"
-            onClick={() => handleRemoveFriend(friend.profile_id)}
-          >
-            Remove Friend
-          </Button>
+          <div className="friend-list-buttons">
+            <Link
+              id="friend-albums"
+              to={`/friend-albums/${friend.id}`}
+              type="primary"
+            >
+              View Albums
+            </Link>
+            <Button
+              variant="primary"
+              type="button"
+              onClick={() => handleRemoveFriend(friend.profile_id)}
+            >
+              <FaTrash />
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </Container>

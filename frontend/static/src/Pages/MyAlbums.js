@@ -3,6 +3,7 @@ import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { FaTrash } from "react-icons/fa";
 
 function MyAlbums() {
   const [myAlbums, setMyAlbums] = useState([]);
@@ -69,7 +70,7 @@ function MyAlbums() {
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body>
           <Card.Title>{album.album_detail.title}</Card.Title>
-          <div id="album-detail-button">
+          <div id="album-detail-buttons">
             <Link
               id="album-detail"
               to={`/my-album-detail/${album.id}`}
@@ -77,10 +78,8 @@ function MyAlbums() {
             >
               Album Detail
             </Link>
-          </div>
-          <div>
             <Button type="submit" onClick={() => deleteAlbum(album.id)}>
-              Delete Album
+              <FaTrash />
             </Button>
           </div>
         </Card.Body>

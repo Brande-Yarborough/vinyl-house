@@ -131,15 +131,22 @@ div#search-results.row {
   margin-left: 50px;
 }
 
-div#album-detail-button {
+div#album-detail-buttons {
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title {
+  margin-bottom: 20px;
 }
 
 a#album-detail {
   text-decoration: none;
   align-items: center;
   border-radius: 0.375rem;
-  margin-right: 10px;
+  margin-right: 25px;
   padding: 5px 10px;
   background-color: black;
   color: white;
@@ -153,12 +160,19 @@ a#album-detail {
   justify-content: center;
 }
 
+/* Friend List */
+.friend-list-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Friend Album */
 a#friend-albums {
   text-decoration: none;
   align-items: center;
   border-radius: 0.375rem;
-  margin-right: 10px;
+  margin-right: 25px;
   padding: 5px 10px;
   background-color: black;
   color: white;
