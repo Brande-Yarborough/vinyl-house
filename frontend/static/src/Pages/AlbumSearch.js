@@ -113,7 +113,7 @@ function AlbumSearch() {
         </Row>
       ) : (
         <div className="loading-spinner">
-          <Spinner></Spinner>
+          <Spinner animation="border" variant="warning"></Spinner>
         </div>
       )}
     </div>

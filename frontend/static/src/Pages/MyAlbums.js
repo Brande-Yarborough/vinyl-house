@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { FaTrash } from "react-icons/fa";
 
 function MyAlbums() {
-  const [myAlbums, setMyAlbums] = useState([]);
+  const [myAlbums, setMyAlbums] = useState(null);
   const navigate = useNavigate();
   //To display authenticated username for My Albums//
   const [username, setUsername] = useState("");
@@ -38,6 +38,10 @@ function MyAlbums() {
     };
     getMyAlbums();
   }, []);
+
+  if (!myAlbums) {
+    return null;
+  }
 
   const deleteAlbum = async (id) => {
     // const id = event.currentTarget.value;

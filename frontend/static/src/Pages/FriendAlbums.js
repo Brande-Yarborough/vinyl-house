@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
 function FriendAlbums() {
-  const [friendAlbums, setFriendAlbums] = useState([]);
+  const [friendAlbums, setFriendAlbums] = useState(null);
   const navigate = useNavigate();
   let { friendId } = useParams();
+  //get username for friend albums header
+  const [username, setUsername] = useState();
 
   useEffect(() => {
     const getFriendAlbums = async (id) => {
@@ -17,11 +19,16 @@ function FriendAlbums() {
       }
 
       const data = await response.json();
+      setUsername(data[0].username);
       setFriendAlbums(data);
     };
 
     getFriendAlbums(friendId);
   }, []);
+
+  if (!friendAlbums) {
+    return null;
+  }
 
   const FriendAlbumListHTML = friendAlbums.map((album) => (
     <Col md={3} key={album.album_detail.api_id}>
@@ -40,7 +47,7 @@ function FriendAlbums() {
   return (
     <div>
       {" "}
-      <h1>Friends Albums</h1>
+      <h1>{username}'s Albums</h1>
       <Container>
         <Row>{FriendAlbumListHTML}</Row>
       </Container>

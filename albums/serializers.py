@@ -37,6 +37,7 @@ class UserAlbumSerializer(serializers.ModelSerializer):
     album_detail = AlbumDetailSerializer()
     comments = CommentSerializer(
         many=True, read_only=True)
+    username = serializers.ReadOnlyField(source="user.username")
 
     class Meta:
         model = Album

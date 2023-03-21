@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+/* NAVBAR */
 img#logo {
   width: 100px;
   margin-left: 10px;
@@ -39,6 +40,7 @@ a.active {
   color: black;
 }
 
+/* LOGIN FORM */
 div#login-container.container {
   display: flex;
   flex-direction: column;
@@ -73,6 +75,7 @@ a#register-here {
   text-decoration: underline;
 }
 
+/* REGISTRATION FORM */
 div#register-container.container {
   display: flex;
   flex-direction: column;
@@ -91,7 +94,7 @@ form#register {
   width: 50%;
 }
 
-/* Profile Form */
+/* PROFILE FORM */
 .profile-container {
   max-width: 500px;
   background-color: rgba(237, 216, 174, 0.9);
@@ -134,7 +137,7 @@ input#formBasicImage.form-control {
   margin-top: 20px;
 }
 
-/* Search Albums */
+/* SEARCH ALBUMS */
 .search-header {
   display: flex;
   margin-top: 15px;
@@ -204,7 +207,7 @@ a#album-detail {
   justify-content: center;
 }
 
-/* Friend List */
+/* FRIEND LIST */
 .friend-list-buttons {
   display: flex;
   align-items: center;
@@ -219,7 +222,7 @@ a#album-detail {
   background-size: 100% 100%;
 }
 
-/* Friend Album */
+/* FRIEND ALBUMS */
 a#friend-albums {
   text-decoration: none;
   align-items: center;
@@ -232,6 +235,7 @@ a#friend-albums {
   font-size: 18px;
 }
 
+/* FOOTER */
 footer {
   padding: 15px;
   background-color: black;
@@ -240,6 +244,7 @@ footer {
   justify-content: center;
 }
 
+/* BUTTON */
 button.btn.btn-primary {
   background-color: black;
   border-color: black;
