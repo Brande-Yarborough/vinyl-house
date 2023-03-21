@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
 .App {
   text-align: center;
 }
@@ -14,11 +16,22 @@ a.navbar-brand {
 
 .navbar {
   border-bottom: solid 1px black;
+  justify-content: space-between;
 }
 
 span.app-header.navbar-brand {
   cursor: pointer;
-  margin-left: 30px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 32px;
+}
+
+.logo-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-button-container {
+  padding-right: 25px;
 }
 
 li.nav-item {
@@ -155,7 +168,7 @@ input#formBasicImage.form-control {
 }
 
 .search-title {
-  font-weight: 600;
+  font-family: "Permanent Marker", cursive;
   color: black;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
@@ -257,6 +270,10 @@ a#album-detail {
   height: 100vh;
   width: 100vw;
   background-size: 100% 100%;
+}
+
+#friend-list-container {
+  margin-top: 50px;
 }
 
 #my-friends-header {
