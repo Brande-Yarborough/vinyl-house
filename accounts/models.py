@@ -22,7 +22,8 @@ class Friend_Request(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
-    avatar = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    avatar = models.ImageField(
+        upload_to='profiles/', blank=True, default='profile-default.png')
     display_name = models.CharField(max_length=255)
     favorite_genre = models.CharField(max_length=255)
     friends = models.ManyToManyField("User", related_name="friends",)

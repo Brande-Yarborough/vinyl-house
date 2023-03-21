@@ -53,6 +53,7 @@ div#login-container.container {
   max-height: 500px;
   border: 1px solid rgba(237, 216, 174, 0.066);
   border-radius: 25px;
+  box-shadow: 0 3px 10px rgb(0 0 0/0.2);
 }
 
 .welcome {
@@ -64,6 +65,7 @@ div#background-image {
   padding-top: 75px;
   height: 90vh;
   background-size: 100% 100%;
+  /* background-size: cover; */
 }
 
 p#register-link {
@@ -88,6 +90,7 @@ div#register-container.container {
   max-height: 525px;
   border: 1px solid rgba(237, 216, 174, 0.066);
   border-radius: 25px;
+  box-shadow: 0 3px 10px rgb(0 0 0/0.2);
 }
 
 form#register {
@@ -102,6 +105,7 @@ form#register {
   padding: 10px 20px 30px;
   border: 1px solid rgba(237, 216, 174, 0.066);
   border-radius: 25px;
+  box-shadow: 0 3px 10px rgb(0 0 0/0.2);
 }
 
 img#avatar {
@@ -110,6 +114,8 @@ img#avatar {
   object-position: center;
   width: 100%;
   height: 100%;
+  background: no-repeat center / contain
+    url("../src/assets/profile-default.png");
 }
 
 div.avatar-container {
@@ -211,6 +217,10 @@ div#search-results.row {
   padding-bottom: 15px;
 }
 
+.my-albums-card {
+  box-shadow: 0 3px 10px rgb(0 0 0/0.2);
+}
+
 div#album-detail-buttons {
   margin-bottom: 15px;
   display: flex;
@@ -228,6 +238,7 @@ a#album-detail {
   color: white;
   border: solid 1px black;
   font-size: 18px;
+  box-shadow: 0 3px 10px rgb(0 0 0/0.2);
 }
 /* to prevent footer overlapping content */
 .my-albums-container {

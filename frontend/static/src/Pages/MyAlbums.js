@@ -70,7 +70,7 @@ function MyAlbums() {
 
   const MyAlbumListHTML = myAlbums.map((album) => (
     <Col key={album.album_detail.api_id}>
-      <Card style={{ width: "18rem" }}>
+      <Card className="my-albums-card" style={{ width: "18rem" }}>
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body>
           <Card.Title id="my-albums-card-title">
