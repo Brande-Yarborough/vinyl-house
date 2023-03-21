@@ -73,7 +73,9 @@ function MyAlbums() {
       <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body>
-          <Card.Title>{album.album_detail.title}</Card.Title>
+          <Card.Title id="my-albums-card-title">
+            {album.album_detail.title}
+          </Card.Title>
           <div id="album-detail-buttons">
             <Link
               id="album-detail"

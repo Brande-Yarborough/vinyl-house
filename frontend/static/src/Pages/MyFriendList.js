@@ -50,7 +50,11 @@ function FriendList() {
   console.log("PROFILE FRIENDS", profile.friends);
 
   const myFriendListHTML = profile.friends?.map((friend) => (
-    <Card key={friend.id} style={{ width: "18rem" }}>
+    <Card
+      className="friend-list-card"
+      key={friend.id}
+      style={{ width: "18rem" }}
+    >
       <Card.Body>
         <Card.Text>{friend.username}</Card.Text>
         <div className="friend-list-buttons">
@@ -111,7 +115,11 @@ function FriendList() {
   };
 
   const profileListHTML = profileList.map((profile) => (
-    <Card key={profile.id} style={{ width: "18rem" }}>
+    <Card
+      className="vinyl-house-members-card"
+      key={profile.id}
+      style={{ width: "18rem" }}
+    >
       <Card.Body>
         <Card.Text>{profile.display_name}</Card.Text>
         <Button

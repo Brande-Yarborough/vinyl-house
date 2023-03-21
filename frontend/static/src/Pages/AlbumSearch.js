@@ -83,9 +83,9 @@ function AlbumSearch() {
                     alt="album cover"
                   />
 
-                  <Card.Body>
+                  <Card.Body className="search-results-card">
                     <Card.Title>{result.title}</Card.Title>
-                    <ListGroup variant="flush">
+                    <ListGroup variant="flush" className="list-group">
                       <ListGroup.Item>Genre: {result.genre}</ListGroup.Item>
                       <ListGroup.Item>Year: {result.year}</ListGroup.Item>
                       {result.formats.map((format) => (
@@ -100,6 +100,7 @@ function AlbumSearch() {
                   ))} */}
                     </ListGroup>
                     <Button
+                      className="add-to-albums-button"
                       variant="primary"
                       onClick={() => handleAddAlbum(result)}
                     >

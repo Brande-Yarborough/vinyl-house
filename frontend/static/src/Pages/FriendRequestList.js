@@ -68,17 +68,25 @@ function FriendRequests(props) {
   };
 
   const friendRequestsList = friendRequests.map((request) => (
-    <Card style={{ width: "18rem" }} key={request.id}>
+    <Card
+      className="friend-request-card"
+      style={{ width: "18rem" }}
+      key={request.id}
+    >
       <Card.Body>
         <Card.Text>{request.from_user}</Card.Text>
         <Button
+          className="accept-friend-request-button"
           variant="primary"
           type="button"
           onClick={() => handleAcceptFriendRequest(request.id)}
         >
           Accept
         </Button>
-        <Button onClick={() => handleRejectFriendRequest(request.id)}>
+        <Button
+          className="reject-friend-request-button"
+          onClick={() => handleRejectFriendRequest(request.id)}
+        >
           Reject
         </Button>
       </Card.Body>
