@@ -39,7 +39,7 @@ const App = () => {
           <Route path="my-album-detail/:id" element={<MyAlbumDetail />} />
         </Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, HttpResponse
 from rest_framework import generics, status
 from .models import AlbumDetail, Album, Comment
@@ -12,7 +13,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 # Create your views here.
 import discogs_client
 d = discogs_client.Client('VinylHouse/0.1',
-                          user_token="AhPySnZsfOSbHSygKTMUmTGyWvQwGJvyfhYgDRoC")
+                          user_token=os.environ['DISCOGS_USER_TOKEN'])
 
 
 # Search function for album
