@@ -51,23 +51,26 @@ function AlbumSearch() {
   };
 
   return (
-    <div>
-      <Container id="search-container">
-        <Form id="search">
-          <Form.Group className="mb-3" controlId="formBasicSearch">
-            <Form.Control
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search artists and albums"
-            />
-          </Form.Group>
+    <div id="search-background-image">
+      <div className="search-header">
+        <h3 className="search-title">Browse the collection...</h3>
+        <Container id="search-container">
+          <Form id="search">
+            <Form.Group controlId="formBasicSearch">
+              <Form.Control
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search artists and albums"
+              />
+            </Form.Group>
 
-          <Button variant="primary" onClick={handleSearch}>
-            Search
-          </Button>
-        </Form>
-      </Container>
+            <Button variant="primary" onClick={handleSearch}>
+              Search
+            </Button>
+          </Form>
+        </Container>
+      </div>
       {!loading ? (
         <Row id="search-results">
           {results.map((result) => (

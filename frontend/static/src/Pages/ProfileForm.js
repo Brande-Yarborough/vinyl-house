@@ -97,8 +97,8 @@ function ProfileForm() {
   };
 
   return (
-    <>
-      <Container>
+    <div id="background-image">
+      <Container className="profile-container">
         <Form>
           <Form.Group className="mb-3" controlId="formBasicImage">
             {/* <Form.Label>Upload Profile Image</Form.Label>
@@ -154,13 +154,17 @@ function ProfileForm() {
               Create Profile
             </Button>
           ) : (
-            <Button type="submit" onClick={handleUpdate}>
+            <Button
+              type="submit"
+              className="update-profile-btn"
+              onClick={handleUpdate}
+            >
               Update Profile
             </Button>
           )}
         </Form>
       </Container>
-    </>
+    </div>
   );
 }
 

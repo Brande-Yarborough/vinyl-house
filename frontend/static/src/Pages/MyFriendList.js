@@ -130,7 +130,7 @@ function FriendList() {
   ));
 
   return (
-    <>
+    <div id="friend-background-image">
       <Container>
         <h1>My Friends</h1>
         <div className="row">
@@ -149,7 +149,7 @@ function FriendList() {
         </div>
         {/* </div> */}
       </Container>
-    </>
+    </div>
   );
 }
 

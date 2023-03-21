@@ -49,6 +49,7 @@ const Register = () => {
     <>
       <div id="background-image">
         <Container id="register-container">
+          <h1 className="welcome">Welcome to Vinyl House</h1>
           <Form id="register" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>

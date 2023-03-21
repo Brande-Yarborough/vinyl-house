@@ -42,6 +42,7 @@ const Login = () => {
     <>
       <div id="background-image">
         <Container id="login-container">
+          <h1 className="welcome">Welcome to Vinyl House</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>

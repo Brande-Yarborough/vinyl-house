@@ -11,7 +11,7 @@ const AuthenticatedHeader = () => {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar expand="lg">
         <div id="logo">
           <img id="logo" src={logo} alt="My Logo" />
         </div>
