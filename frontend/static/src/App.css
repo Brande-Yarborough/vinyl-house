@@ -462,6 +462,7 @@ footer {
   color: white;
   font-weight: 300;
   justify-content: center;
+  font-family: "Permanent Marker", cursive;
 }
 
 /* BUTTON */
@@ -475,4 +476,10 @@ button.btn.btn-primary {
   background-color: #fff;
   border: none;
   outline: none;
+}
+
+@media (max-width: 768px) {
+  [class*="col-"] {
+    width: 100%;
+  }
 }
