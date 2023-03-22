@@ -187,30 +187,31 @@ function MyAlbumDetail() {
   //////////This will show the edit album note option form//////////
   if (isEditingNote) {
     myAlbumDetailHTML = (
-      //  This form/text area will only show up if user wants to add or edit note */}
-      <Container>
-        <Form>
-          <FloatingLabel controlId="floatingTextarea2" label="Note">
-            <Form.Control
-              name="note"
-              as="textarea"
-              value={albumDetails?.note}
-              placeholder="Put a note here for a personal memory related to album"
-              style={{ height: "100px" }}
-              onChange={handleChange}
-            />
-          </FloatingLabel>
+      <div id="background-image">
+        <Container className="edit-note-container">
+          <Form>
+            <FloatingLabel controlId="floatingTextarea2" label="Note">
+              <Form.Control
+                name="note"
+                as="textarea"
+                value={albumDetails?.note}
+                placeholder="Put a note here for a personal memory related to album"
+                style={{ height: "100px" }}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
 
-          <Button
-            id="note"
-            variant="primary"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Submit Note
-          </Button>
-        </Form>
-      </Container>
+            <Button
+              id="note"
+              variant="primary"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Submit Note
+            </Button>
+          </Form>
+        </Container>
+      </div>
     );
 
     //////////This will show the list of my albums//////////

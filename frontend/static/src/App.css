@@ -345,6 +345,14 @@ a#album-detail {
   padding-left: 10px;
 }
 
+.edit-note-container {
+  margin-top: 30px;
+}
+
+#note.btn.btn-primary {
+  margin-top: 15px;
+}
+
 /* FRIEND LIST */
 .friend-list-buttons {
   display: flex;
