@@ -260,6 +260,12 @@ a#album-detail {
 }
 
 /* MY ALBUM DETAIL */
+.detail-back {
+  margin-left: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 18px;
+}
+
 .my-album-detail-page {
   padding-bottom: 150px;
 }
@@ -272,10 +278,11 @@ a#album-detail {
 .album-detail-container {
   justify-content: center;
   width: 40%;
+  height: 0%;
 }
 
 .friend-comment-container {
-  margin-left: 730px;
+  padding-top: 10px;
   padding-bottom: 50px;
 }
 
@@ -288,6 +295,7 @@ a#album-detail {
   padding-right: 200px;
   display: flex;
   flex-direction: column;
+  height: 100%
 }
 
 .comment-sub-btn {

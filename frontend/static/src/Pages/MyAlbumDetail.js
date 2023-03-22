@@ -296,17 +296,17 @@ function MyAlbumDetail() {
                 </Button>
               </Form>
             </Container>
+            <div className="friend-comment-container">
+              {albumDetails?.comments.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  comment={comment}
+                  deleteComment={deleteComment}
+                  handleSubmitComment={handleSubmitComment}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="friend-comment-container">
-          {albumDetails?.comments.map((comment) => (
-            <Comment
-              key={comment.id}
-              comment={comment}
-              deleteComment={deleteComment}
-              handleSubmitComment={handleSubmitComment}
-            />
-          ))}
         </div>
       </div>
     );
@@ -315,7 +315,9 @@ function MyAlbumDetail() {
 
   return (
     <>
-      <Link to="/">Back to My Albums</Link>
+      <Link className="detail-back" to="/">
+        Back to My Albums
+      </Link>
       <div>{myAlbumDetailHTML}</div>
     </>
   );
