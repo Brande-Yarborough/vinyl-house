@@ -267,17 +267,43 @@ a#album-detail {
 .album-detail-main {
   display: flex;
   padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 .album-detail-container {
   justify-content: center;
-  width: 45%;
+  width: 40%;
+}
+
+.friend-comment-container {
+  margin-left: 730px;
+  padding-bottom: 50px;
+}
+
+.comment-container {
+  padding-top: 50px;
 }
 
 .user-note-image {
-  width: 50%;
+  width: 65%;
   padding-right: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-sub-btn {
+  margin-top: 10px;
+}
+
+.friend-comment {
+  padding-bottom: 15px;
+}
+
+.friend-comment .container {
+  padding-bottom: 5px;
+}
+
+.comment-btn-container .btn {
+  margin-right: 10px;
 }
 
 .personal-note {

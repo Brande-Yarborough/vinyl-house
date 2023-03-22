@@ -13,7 +13,7 @@ function Comment({ comment, ...props }) {
   };
 
   return (
-    <div>
+    <div className="friend-comment">
       <Container>
         <Card key={comment.id} style={{ width: "18rem" }}>
           <Card.Body>
@@ -36,22 +36,22 @@ function Comment({ comment, ...props }) {
         </Card>
       </Container>
 
-      <Container>
+      <Container className="comment-btn-container">
         {comment.is_author && !isEditing && (
           <Button type="button" onClick={() => setEditing(true)}>
-            edit comment
+            Edit Comment
           </Button>
         )}
 
         {comment.is_author && isEditing && (
           <Button type="button" onClick={updateComment}>
-            save comment
+            Save Comment
           </Button>
         )}
 
         {comment.is_author && (
           <Button type="button" onClick={() => props.deleteComment(comment.id)}>
-            delete comment
+            Delete Comment
           </Button>
         )}
       </Container>

@@ -98,7 +98,6 @@ function MyAlbumDetail() {
 
   /////Handle Submit for Comment Edit/////
   const handleSubmitComment = async (id, text) => {
-    alert("hey");
     // const formData = new FormData();
     // formData.append("comment", albumDetails?.comment);
 
@@ -221,7 +220,7 @@ function MyAlbumDetail() {
         <div className="album-detail-main">
           <Container className="album-detail-container d-flex">
             <Card
-              style={{ width: "30rem" }}
+              style={{ width: "25rem" }}
               key={albumDetails?.album_detail?.api_id}
             >
               <Card.Img
@@ -265,7 +264,7 @@ function MyAlbumDetail() {
                   variant="left"
                   src={image}
                   alt="user submitted image"
-                  style={{ width: "35%", display: "block" }}
+                  style={{ width: "40%", display: "block" }}
                 />
               </>
               {/* ) : ( */}
@@ -274,34 +273,41 @@ function MyAlbumDetail() {
               </div>
               {/* )} */}
             </Container>
+            <Container className="comment-container">
+              <Form onSubmit={addComment}>
+                <FloatingLabel
+                  controlId="floatingTextarea2"
+                  label="Add Comments"
+                >
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Comments"
+                    style={{ height: "100px" }}
+                    value={comment}
+                    onChange={handleNewComment}
+                  />
+                </FloatingLabel>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="comment-sub-btn"
+                >
+                  Submit
+                </Button>
+              </Form>
+            </Container>
           </div>
         </div>
-        <Container>
-          <Form onSubmit={addComment}>
-            <FloatingLabel controlId="floatingTextarea2" label="Add Comments">
-              <Form.Control
-                as="textarea"
-                placeholder="Comments"
-                style={{ height: "100px" }}
-                value={comment}
-                onChange={handleNewComment}
-              />
-            </FloatingLabel>
-            <Button type="submit" variant="primary">
-              Submit
-            </Button>
-          </Form>
-          <div>
-            {albumDetails?.comments.map((comment) => (
-              <Comment
-                key={comment.id}
-                comment={comment}
-                deleteComment={deleteComment}
-                handleSubmitComment={handleSubmitComment}
-              />
-            ))}
-          </div>
-        </Container>
+        <div className="friend-comment-container">
+          {albumDetails?.comments.map((comment) => (
+            <Comment
+              key={comment.id}
+              comment={comment}
+              deleteComment={deleteComment}
+              handleSubmitComment={handleSubmitComment}
+            />
+          ))}
+        </div>
       </div>
     );
   }
