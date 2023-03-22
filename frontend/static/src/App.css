@@ -291,8 +291,9 @@ a#album-detail {
 
 .album-detail-container {
   justify-content: center;
-  width: 40%;
-  height: 0%;
+  /* width: 40%; */
+  /* height: 0%; */
+  align-self: flex-start;
 }
 
 .friend-comment-container {
@@ -305,11 +306,12 @@ a#album-detail {
 }
 
 .user-note-image {
-  width: 65%;
-  padding-right: 200px;
+  /* width: 65%; */
+  padding-right: 50px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* height: 100%; */
+  align-self: flex-start;
 }
 
 .comment-sub-btn {
@@ -507,5 +509,9 @@ button.btn.btn-primary {
   }
   .album-detail-main {
     flex-direction: column;
+  }
+
+  .personal-note {
+    margin-top: 25px;
   }
 }
