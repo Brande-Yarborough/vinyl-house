@@ -43,7 +43,6 @@ li.nav-item {
   text-decoration: none;
   align-items: center;
   margin-right: 10px;
-  /* font-family: "Antonio", sans-serif; */
   font-family: "Permanent Marker", cursive;
   font-weight: 500;
   font-size: 20px;
@@ -80,6 +79,7 @@ div#login-container.container {
 
 .welcome {
   padding-bottom: 25px;
+  font-family: "Permanent Marker", cursive;
 }
 
 div#background-image {
@@ -427,6 +427,7 @@ a#friend-albums {
   color: white;
   border: solid 1px black;
   font-size: 18px;
+  font-family: "Permanent Marker", cursive;
 }
 
 #friend-album-title {
@@ -467,6 +468,7 @@ footer {
 button.btn.btn-primary {
   background-color: black;
   border-color: black;
+  font-family: "Permanent Marker", cursive;
 }
 
 .form-control.input-preview:disabled {

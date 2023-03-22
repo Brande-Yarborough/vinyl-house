@@ -9,26 +9,33 @@ const UnauthenticatedHeader = () => {
   return (
     <>
       <Navbar expand="lg">
-        <div id="logo">
-          <img id="logo" src={logo} alt="My Logo" />
+        <div className="logo-title-container">
+          <div id="logo">
+            <img id="logo" src={logo} alt="My Logo" />
+          </div>
+          <Navbar.Brand
+            className="app-header"
+            onClick={() => navigate("/login")}
+          >
+            Vinyl House
+          </Navbar.Brand>
         </div>
-        <Navbar.Brand className="app-header" onClick={() => navigate("/login")}>
-          Vinyl House
-        </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <ul className="nav d-flex align-items-center" id="main-nav">
-              <li className="nav-item">
-                <NavLink to="/login">Login</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/register">Register</NavLink>
-              </li>
-            </ul>
-          </Nav>
-        </Navbar.Collapse>
+        <div className="nav-button-container">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <ul className="nav d-flex align-items-center" id="main-nav">
+                <li className="nav-item">
+                  <NavLink to="/login">Login</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/register">Register</NavLink>
+                </li>
+              </ul>
+            </Nav>
+          </Navbar.Collapse>
+        </div>
       </Navbar>
     </>
   );
