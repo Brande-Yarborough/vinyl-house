@@ -256,7 +256,47 @@ a#album-detail {
 /* to prevent footer overlapping content */
 .my-albums-container {
   padding-bottom: 90px;
+  justify-content: center;
 }
+
+/* MY ALBUM DETAIL */
+.my-album-detail-page {
+  padding-bottom: 150px;
+}
+
+.album-detail-main {
+  display: flex;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.album-detail-container {
+  justify-content: center;
+  width: 45%;
+}
+
+.user-note-image {
+  width: 50%;
+  padding-right: 200px;
+}
+
+.personal-note {
+  padding-bottom: 50px;
+}
+
+.personal-note .card {
+  margin-bottom: 10px;
+}
+
+.personal-note .card-body {
+  padding: 10px;
+}
+
+.personal-note .card-title {
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
 /* FRIEND LIST */
 .friend-list-buttons {
   display: flex;
@@ -278,14 +318,23 @@ a#album-detail {
 
 #my-friends-header {
   color: white;
+  font-family: "Permanent Marker", cursive;
 }
 
 #vinyl-house-members {
   color: white;
+  font-family: "Permanent Marker", cursive;
 }
 
 #friend-requests {
   color: white;
+  font-family: "Permanent Marker", cursive;
+}
+
+.friend-list-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .friend-list-card {

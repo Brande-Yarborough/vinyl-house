@@ -217,63 +217,65 @@ function MyAlbumDetail() {
     //////////This will show the list of my albums//////////
   } else {
     myAlbumDetailHTML = (
-      <>
-        <Container className="d-flex">
-          <Card
-            style={{ width: "20rem" }}
-            key={albumDetails?.album_detail?.api_id}
-          >
-            <Card.Img
-              variant="top"
-              src={albumDetails?.album_detail?.cover_image}
-            />
-            <Card.Body>
-              <Card.Title>{albumDetails?.album_detail?.title}</Card.Title>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  Genre: {albumDetails?.album_detail?.genre}
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Year: {albumDetails?.album_detail?.year}
-                </ListGroup.Item>
+      <div className="my-album-detail-page">
+        <div className="album-detail-main">
+          <Container className="album-detail-container d-flex">
+            <Card
+              style={{ width: "30rem" }}
+              key={albumDetails?.album_detail?.api_id}
+            >
+              <Card.Img
+                variant="top"
+                src={albumDetails?.album_detail?.cover_image}
+              />
+              <Card.Body>
+                <Card.Title>{albumDetails?.album_detail?.title}</Card.Title>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    Genre: {albumDetails?.album_detail?.genre}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Year: {albumDetails?.album_detail?.year}
+                  </ListGroup.Item>
 
-                <ListGroup.Item>Tracklist</ListGroup.Item>
-                {albumDetails?.album_detail?.tracks.map((track) => (
-                  <ListGroup.Item key={track}>{track}</ListGroup.Item>
-                ))}
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Container>
-        <Container>
-          <Card>
-            <Card.Title>User Personal Note</Card.Title>
-            <Card.Body>{albumDetails?.note}</Card.Body>
-          </Card>
-          {/* only show if user logged in is owner of note */}
-          <Button type="button" onClick={() => setIsEditingNote(true)}>
-            Edit Note
-          </Button>
-        </Container>
-
-        <Container>
-          {/* {albumDetails?.user_image !== null ? ( */}
-          <>
-            <Card.Title>User Image</Card.Title>
-            <Card.Img
-              variant="left"
-              src={image}
-              alt="user submitted image"
-              style={{ width: "35%", display: "block" }}
-            />
-          </>
-          {/* ) : ( */}
-          <div>
-            <input type="file" onChange={handleImage}></input>
+                  <ListGroup.Item>Tracklist</ListGroup.Item>
+                  {albumDetails?.album_detail?.tracks.map((track) => (
+                    <ListGroup.Item key={track}>{track}</ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </Container>
+          <div className="user-note-image">
+            <Container className="personal-note">
+              <Card>
+                <Card.Title>Personal Note</Card.Title>
+                <Card.Body>{albumDetails?.note}</Card.Body>
+              </Card>
+              {/* only show if user logged in is owner of note */}
+              <Button type="button" onClick={() => setIsEditingNote(true)}>
+                Edit Note
+              </Button>
+            </Container>
+            <Container className="user-image">
+              {/* {albumDetails?.user_image !== null ? ( */}
+              <>
+                <Card.Title>Image Memory</Card.Title>
+                <Card.Img
+                  variant="left"
+                  src={image}
+                  alt="user submitted image"
+                  style={{ width: "35%", display: "block" }}
+                />
+              </>
+              {/* ) : ( */}
+              <div>
+                <input type="file" onChange={handleImage}></input>
+              </div>
+              {/* )} */}
+            </Container>
           </div>
-          {/* )} */}
-        </Container>
-
+        </div>
         <Container>
           <Form onSubmit={addComment}>
             <FloatingLabel controlId="floatingTextarea2" label="Add Comments">
@@ -300,7 +302,7 @@ function MyAlbumDetail() {
             ))}
           </div>
         </Container>
-      </>
+      </div>
     );
   }
   console.log({ image });

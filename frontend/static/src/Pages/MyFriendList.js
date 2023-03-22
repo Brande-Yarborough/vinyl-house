@@ -137,15 +137,15 @@ function FriendList() {
     <div id="friend-background-image">
       <Container>
         <div className="row" id="friend-list-container">
-          <div className="col-12 col-md">
+          <div className="friend-list-col col-12 col-md">
             <h2 id="my-friends-header">My Friends</h2>
             {myFriendListHTML}
           </div>
-          <div className="col-12 col-md">
+          <div className="friend-list-col col-12 col-md">
             <h2 id="vinyl-house-members">Vinyl House Members</h2>
             {profileListHTML}
           </div>
-          <div className="col-12 col-md">
+          <div className="friend-list-col col-12 col-md">
             <h2 id="friend-requests">Friend Requests</h2>
             <FriendRequests getMyProfile={getMyProfile} />
           </div>
