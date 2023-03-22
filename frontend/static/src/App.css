@@ -196,7 +196,8 @@ input#formBasicImage.form-control {
   background: url("../src/assets/searchalbums.jpg") no-repeat;
   padding-top: 10px;
   /* height: 100vh; */
-  background-size: 100% 100%;
+  /* background-size: 100% 100%; */
+  background-size: cover;
   min-height: 100vh;
 }
 
@@ -382,7 +383,8 @@ a#album-detail {
   padding-top: 10px;
   /* height: 100vh; */
   width: 100vw;
-  background-size: 100% 100%;
+  /* background-size: 100% 100%; */
+  background-size: cover;
 }
 
 #friend-list-container {
@@ -510,9 +512,9 @@ button.btn.btn-primary {
   #search {
     flex-direction: column;
   }
-  .profile-container {
+  /* .profile-container {
     padding-bottom: 150px;
-  }
+  } */
   .my-album-detail-page {
     display: flex;
   }
