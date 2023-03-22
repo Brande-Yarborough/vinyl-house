@@ -58,6 +58,7 @@ function AlbumSearch() {
           <Form id="search">
             <Form.Group controlId="formBasicSearch">
               <Form.Control
+                name="search-bar"
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}

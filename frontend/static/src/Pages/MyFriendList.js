@@ -135,7 +135,7 @@ function FriendList() {
 
   return (
     <div id="friend-background-image">
-      <Container>
+      <Container id="friend-main-container">
         <div className="row" id="friend-list-container">
           <div className="friend-list-col col-12 col-md">
             <h2 id="my-friends-header">My Friends</h2>

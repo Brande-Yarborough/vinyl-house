@@ -354,6 +354,12 @@ a#album-detail {
 }
 
 /* FRIEND LIST */
+
+/* to prevent overlap with footer */
+#friend-main-container {
+  padding-bottom: 150px;
+}
+
 .friend-list-buttons {
   display: flex;
   align-items: center;
@@ -489,5 +495,17 @@ button.btn.btn-primary {
 @media (max-width: 768px) {
   [class*="col-"] {
     width: 100%;
+  }
+  #search {
+    flex-direction: column;
+  }
+  .profile-container {
+    padding-bottom: 150px;
+  }
+  .my-album-detail-page {
+    display: flex;
+  }
+  .album-detail-main {
+    flex-direction: column;
   }
 }
