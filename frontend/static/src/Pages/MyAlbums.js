@@ -69,8 +69,8 @@ function MyAlbums() {
   };
 
   const MyAlbumListHTML = myAlbums.map((album) => (
-    <Col key={album.album_detail.api_id}>
-      <Card className="my-albums-card" style={{ width: "18rem" }}>
+    <Col id="card-column" key={album.album_detail.api_id}>
+      <Card className="my-albums-card h-100" style={{ width: "18rem" }}>
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body>
           <Card.Title id="my-albums-card-title">
@@ -82,7 +82,7 @@ function MyAlbums() {
               to={`/my-album-detail/${album.id}`}
               type="primary"
             >
-              Album Detail
+              View Album
             </Link>
             <Button type="submit" onClick={() => deleteAlbum(album.id)}>
               <FaTrash />

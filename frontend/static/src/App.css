@@ -51,6 +51,7 @@ li.nav-item {
 a {
   text-decoration: none;
   color: grey;
+  font-weight: 800;
 }
 a:hover {
   color: black;
@@ -180,8 +181,11 @@ input#formBasicImage.form-control {
 /* SEARCH ALBUMS */
 .search-header {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-top: 15px;
-  padding-left: 10px;
+  /* padding-left: 10px; */
+  /* width: 21%; */
 }
 
 .search-title {
@@ -190,6 +194,9 @@ input#formBasicImage.form-control {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
   padding: 3px;
+  text-align: center;
+  margin-left: 750px;
+  margin-right: 750px;
 }
 
 #search-background-image {
@@ -204,10 +211,11 @@ input#formBasicImage.form-control {
 form#search {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #search-container {
-  margin-left: 10px;
+  padding: 0;
 }
 
 input#formBasicSearch.form-control {
@@ -240,6 +248,9 @@ div#search-results.row {
 .my-albums-header {
   margin-left: 15px;
   font-family: "Antonio", sans-serif;
+  text-align: center;
+  padding-top: 15px;
+  font-family: "Permanent Marker", cursive;
 }
 
 #my-album-list.container {
@@ -276,6 +287,10 @@ a#album-detail {
   font-size: 18px;
   box-shadow: 0 3px 10px rgb(0 0 0/0.2);
   font-family: "Permanent Marker", cursive;
+}
+
+#card-column {
+  margin-bottom: 30px;
 }
 /* to prevent footer overlapping content */
 .my-albums-container {
@@ -436,8 +451,10 @@ a#album-detail {
 
 /* FRIEND ALBUMS */
 .friend-album-page-header {
-  font-family: Antonio, sans-serif;
+  font-family: "Permanent Marker", cursive;
   margin-left: 15px;
+  text-align: center;
+  padding-top: 15px;
 }
 
 .friend-album-container {

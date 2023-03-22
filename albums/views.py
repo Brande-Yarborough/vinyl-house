@@ -21,7 +21,9 @@ d = discogs_client.Client('VinylHouse/0.1',
 @api_view(['GET'])
 def search_album(request, query):
     # search for albums matching given query using the 'search' function from the 'd' module, and filter by 'release' type
-    results = d.search(query, type='release').page(1)
+    # results = d.search(query, type='release').page(1)
+    results = d.search(query, type='release', per_page=10, page=1)
+
     # create empty list to store details of matching releases
     releases = []
     # loop through each result from search

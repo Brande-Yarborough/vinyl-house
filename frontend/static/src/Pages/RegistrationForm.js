@@ -75,7 +75,7 @@ const Register = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword2">
-              <Form.Label>Verify Password</Form.Label>
+              <Form.Label>Verify password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Verify password"
@@ -92,7 +92,7 @@ const Register = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email Address</Form.Label>
+              <Form.Label>Email address</Form.Label>
               <Form.Control
                 //   id="email"
                 type="email"

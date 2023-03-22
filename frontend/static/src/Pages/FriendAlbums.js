@@ -51,7 +51,7 @@ function FriendAlbums() {
   ));
 
   return (
-    <div>
+    <div id="friend-album-main">
       {" "}
       <h1 className="friend-album-page-header">{username}'s Albums</h1>
       <Container className="friend-album-container">
