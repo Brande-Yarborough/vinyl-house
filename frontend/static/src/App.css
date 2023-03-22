@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;500&display=swap");
 
 .App {
   text-align: center;
+}
+
+.card-title {
+  font-family: "Permanent Marker", cursive;
 }
 
 /* NAVBAR */
@@ -38,6 +43,10 @@ li.nav-item {
   text-decoration: none;
   align-items: center;
   margin-right: 10px;
+  /* font-family: "Antonio", sans-serif; */
+  font-family: "Permanent Marker", cursive;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 a {
@@ -220,6 +229,7 @@ div#search-results.row {
 /* MY ALBUMS */
 .my-albums-header {
   margin-left: 15px;
+  font-family: "Antonio", sans-serif;
 }
 
 #my-album-list.container {
@@ -228,6 +238,9 @@ div#search-results.row {
 
 #my-albums-card-title {
   padding-bottom: 15px;
+  /* font-family: "Permanent Marker", cursive; */
+  font-family: "Antonio", cursive;
+  text-align: center;
 }
 
 .my-albums-card {
@@ -252,6 +265,7 @@ a#album-detail {
   border: solid 1px black;
   font-size: 18px;
   box-shadow: 0 3px 10px rgb(0 0 0/0.2);
+  font-family: "Permanent Marker", cursive;
 }
 /* to prevent footer overlapping content */
 .my-albums-container {
@@ -295,7 +309,7 @@ a#album-detail {
   padding-right: 200px;
   display: flex;
   flex-direction: column;
-  height: 100%
+  height: 100%;
 }
 
 .comment-sub-btn {
@@ -394,6 +408,15 @@ a#album-detail {
 }
 
 /* FRIEND ALBUMS */
+.friend-album-page-header {
+  font-family: Antonio, sans-serif;
+  margin-left: 15px;
+}
+
+.friend-album-container {
+  margin-top: 25px;
+}
+
 a#friend-albums {
   text-decoration: none;
   align-items: center;
@@ -404,6 +427,31 @@ a#friend-albums {
   color: white;
   border: solid 1px black;
   font-size: 18px;
+}
+
+#friend-album-title {
+  font-family: "Antonio", cursive;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#friend-detail-btn {
+  text-decoration: none;
+  align-items: center;
+  text-align: center;
+  border-radius: 0.375rem;
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  font-size: 18px;
+  box-shadow: 0 3px 10px rgb(0 0 0/0.2);
+  font-family: "Permanent Marker", cursive;
+}
+
+#friend-card-body {
+  display: flex;
+  flex-direction: column;
 }
 
 /* FOOTER */

@@ -208,97 +208,108 @@ function FriendAlbumDetail() {
     //////////This will show the album detail//////////
   } else {
     myAlbumDetailHTML = (
-      <>
-        <Container className="d-flex">
-          <Card
-            style={{ width: "18rem" }}
-            key={albumDetails?.[0].album_detail?.api_id}
-          >
-            <Card.Img
-              variant="top"
-              src={albumDetails?.[0].album_detail?.cover_image}
-            />
-            <Card.Body>
-              <Card.Title>{albumDetails?.[0].album_detail?.title}</Card.Title>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  Genre: {albumDetails?.[0].album_detail?.genre}
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Year: {albumDetails?.[0].album_detail?.year}
-                </ListGroup.Item>
+      <div className="my-album-detail-page">
+        <div className="album-detail-main">
+          <Container className="album-detail-container d-flex">
+            <Card
+              style={{ width: "18rem" }}
+              key={albumDetails?.[0].album_detail?.api_id}
+            >
+              <Card.Img
+                variant="top"
+                src={albumDetails?.[0].album_detail?.cover_image}
+              />
+              <Card.Body>
+                <Card.Title>{albumDetails?.[0].album_detail?.title}</Card.Title>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    Genre: {albumDetails?.[0].album_detail?.genre}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Year: {albumDetails?.[0].album_detail?.year}
+                  </ListGroup.Item>
 
-                <ListGroup.Item>Tracklist</ListGroup.Item>
-                {albumDetails?.[0].album_detail?.tracks.map((track) => (
-                  <ListGroup.Item key={track}>{track}</ListGroup.Item>
-                ))}
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Container>
-        <Container>
-          <Card>
-            <Card.Title>User Personal Note:</Card.Title>
-            <Card.Body>{albumDetails?.[0].note}</Card.Body>
-          </Card>
-          {/* only show if user logged in is owner of note */}
-          {/* <Button type="button" onClick={() => setIsEditingNote(true)}>
+                  <ListGroup.Item>Tracklist</ListGroup.Item>
+                  {albumDetails?.[0].album_detail?.tracks.map((track) => (
+                    <ListGroup.Item key={track}>{track}</ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </Container>
+          <div className="user-note-image">
+            <Container className="personal-note">
+              <Card>
+                <Card.Title>Personal Note</Card.Title>
+                <Card.Body>{albumDetails?.[0].note}</Card.Body>
+              </Card>
+              {/* only show if user logged in is owner of note */}
+              {/* <Button type="button" onClick={() => setIsEditingNote(true)}>
             Edit Note
           </Button> */}
-        </Container>
+            </Container>
 
-        <Container>
-          {/* {albumDetails?.[0].user_image !== null ? ( */}
-          <>
-            {/* <Card.Title>User Image:</Card.Title> */}
-            <Card.Img
-              variant="left"
-              src={albumDetails?.[0].user_image}
-              //   alt="user submitted image"
-              style={{ width: "35%", display: "block" }}
-            />
-          </>
-          {/* ) : (
+            <Container className="user-image">
+              {/* {albumDetails?.[0].user_image !== null ? ( */}
+              <>
+                <Card.Title>Image Memory</Card.Title>
+                <Card.Img
+                  variant="left"
+                  src={albumDetails?.[0].user_image}
+                  //   alt="user submitted image"
+                  style={{ width: "40%", display: "block" }}
+                />
+              </>
+              {/* ) : (
             <div>
               <div>Add Image: </div>
               <input type="file"></input>
             </div>
           )} */}
-        </Container>
+            </Container>
 
-        <Container>
-          <Form onSubmit={addComment}>
-            <FloatingLabel controlId="floatingTextarea2" label="Add Comments">
-              <Form.Control
-                as="textarea"
-                placeholder="Comments"
-                style={{ height: "100px" }}
-                value={comment}
-                onChange={handleNewComment}
-              />
-            </FloatingLabel>
-            <Button type="submit" variant="primary">
-              Submit
-            </Button>
-          </Form>
-        </Container>
-      </>
+            <Container className="comment-container">
+              <Form onSubmit={addComment}>
+                <FloatingLabel
+                  controlId="floatingTextarea2"
+                  label="Add Comments"
+                >
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Comments"
+                    style={{ height: "100px" }}
+                    value={comment}
+                    onChange={handleNewComment}
+                  />
+                </FloatingLabel>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="comment-sub-btn"
+                >
+                  Submit
+                </Button>
+              </Form>
+            </Container>
+            <div className="friend-comment-container">
+              {albumDetails?.[0].comments?.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  comment={comment}
+                  deleteComment={deleteComment}
+                  handleSubmitComment={handleSubmitComment}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
   return (
     <>
       {/* <Link to={`/friend-albums/:friendId`}>Back to Friends Albums</Link> */}
       <div>{myAlbumDetailHTML}</div>
-      <div>
-        {albumDetails?.[0].comments?.map((comment) => (
-          <Comment
-            key={comment.id}
-            comment={comment}
-            deleteComment={deleteComment}
-            handleSubmitComment={handleSubmitComment}
-          />
-        ))}
-      </div>
     </>
   );
 }

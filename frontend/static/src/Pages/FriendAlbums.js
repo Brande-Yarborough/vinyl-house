@@ -34,9 +34,15 @@ function FriendAlbums() {
     <Col md={3} key={album.album_detail.api_id}>
       <Card style={{ width: "100%" }}>
         <Card.Img variant="top" src={album.album_detail.cover_image} />
-        <Card.Body>
-          <Card.Title>{album.album_detail.title}</Card.Title>
-          <Link to={`/friend-album-detail/${album.id}`} type="primary">
+        <Card.Body id="friend-card-body">
+          <Card.Title id="friend-album-title">
+            {album.album_detail.title}
+          </Card.Title>
+          <Link
+            id="friend-detail-btn"
+            to={`/friend-album-detail/${album.id}`}
+            type="primary"
+          >
             Album Detail
           </Link>
         </Card.Body>
@@ -47,8 +53,8 @@ function FriendAlbums() {
   return (
     <div>
       {" "}
-      <h1>{username}'s Albums</h1>
-      <Container>
+      <h1 className="friend-album-page-header">{username}'s Albums</h1>
+      <Container className="friend-album-container">
         <Row>{FriendAlbumListHTML}</Row>
       </Container>
     </div>
