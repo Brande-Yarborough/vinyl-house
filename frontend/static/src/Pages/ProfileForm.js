@@ -97,7 +97,7 @@ function ProfileForm() {
   };
 
   return (
-    <div id="background-image">
+    <div id="profile-background-image">
       <Container className="profile-container">
         <Form>
           <Form.Group className="mb-3" controlId="formBasicImage">

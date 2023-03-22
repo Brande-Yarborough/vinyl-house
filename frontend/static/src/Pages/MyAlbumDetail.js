@@ -218,8 +218,8 @@ function MyAlbumDetail() {
   } else {
     myAlbumDetailHTML = (
       <div className="my-album-detail-page">
-        <div className="album-detail-main">
-          <Container className="album-detail-container d-flex">
+        <div className="album-detail-main row">
+          <Container className="album-detail-container d-flex container col-12 col-md">
             <Card
               style={{ width: "25rem" }}
               key={albumDetails?.album_detail?.api_id}
@@ -246,7 +246,7 @@ function MyAlbumDetail() {
               </Card.Body>
             </Card>
           </Container>
-          <div className="user-note-image">
+          <div className="user-note-image col-12 col-md">
             <Container className="personal-note">
               <Card>
                 <Card.Title>Personal Note</Card.Title>

@@ -120,6 +120,14 @@ form#register {
 }
 
 /* PROFILE FORM */
+#profile-background-image {
+  background: url("../src/assets/turntable2.jpg") no-repeat;
+  padding-top: 75px;
+  /* height: 90vh; */
+  background-size: 100% 100%;
+  background-size: cover;
+  padding-bottom: 150px;
+}
 .profile-container {
   max-width: 500px;
   background-color: rgba(237, 216, 174, 0.9);
@@ -209,6 +217,7 @@ input#formBasicSearch.form-control {
 div#search-results.row {
   margin-left: 50px;
   margin-top: 65px;
+  padding-bottom: 150px;
 }
 
 .search-results-card {
@@ -371,7 +380,7 @@ a#album-detail {
 #friend-background-image {
   background: url("../src/assets/friendlist.jpg") no-repeat;
   padding-top: 10px;
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
   background-size: 100% 100%;
 }
