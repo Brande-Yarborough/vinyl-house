@@ -136,18 +136,18 @@ function FriendList() {
   return (
     <div id="friend-background-image">
       <Container id="friend-main-container">
-        <div className="row" id="friend-list-container">
-          <div className="friend-list-col col-12 col-md">
-            <h2 id="my-friends-header">My Friends</h2>
+        <div className="col" id="friend-list-container">
+          <h2 id="my-friends-header">My Friends</h2>
+          <div className="friend-list-row row-12 row-md my-friends">
             {myFriendListHTML}
           </div>
-          <div className="friend-list-col col-12 col-md">
-            <h2 id="vinyl-house-members">Vinyl House Members</h2>
-            {profileListHTML}
-          </div>
-          <div className="friend-list-col col-12 col-md">
-            <h2 id="friend-requests">Friend Requests</h2>
+          <h2 id="friend-requests">Friend Requests</h2>
+          <div className="friend-list-row row-12 row-md friend-request">
             <FriendRequests getMyProfile={getMyProfile} />
+          </div>
+            <h2 id="vinyl-house-members">Vinyl House Members</h2>
+          <div className="friend-list-row row-12 row-md house-members">
+            {profileListHTML}
           </div>
         </div>
       </Container>
