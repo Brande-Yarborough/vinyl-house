@@ -292,6 +292,10 @@ a#album-detail {
   font-family: "Permanent Marker", cursive;
 }
 
+a#album-detail:hover {
+  background-color: #3d382a;
+}
+
 #card-column {
   margin-bottom: 30px;
 }
@@ -545,6 +549,10 @@ a#friend-albums {
   font-family: "Permanent Marker", cursive;
 }
 
+a#friend-albums:hover {
+  background-color: #3d382a;
+}
+
 #friend-album-title {
   font-family: "Antonio", cursive;
   text-align: center;
@@ -585,6 +593,10 @@ button.btn.btn-primary {
   background-color: black;
   border-color: black;
   font-family: "Permanent Marker", cursive;
+}
+
+button.btn.btn-primary:hover {
+  background-color: #3d382a;
 }
 
 .form-control.input-preview:disabled {

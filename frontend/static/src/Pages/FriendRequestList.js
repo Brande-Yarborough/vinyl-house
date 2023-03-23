@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Button, Card, Image } from "react-bootstrap";
+import { Button, Card, Image } from "react-bootstrap";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
 

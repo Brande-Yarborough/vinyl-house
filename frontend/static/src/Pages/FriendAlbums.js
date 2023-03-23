@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { Card, Container, Button, Row, Col } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { Card, Container, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
 
 function FriendAlbums() {
   const [friendAlbums, setFriendAlbums] = useState(null);
-  const navigate = useNavigate();
   let { friendId } = useParams();
   //get username for friend albums header
   const [username, setUsername] = useState();
