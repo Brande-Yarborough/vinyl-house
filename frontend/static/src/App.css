@@ -216,6 +216,7 @@ form#search {
 
 #search-container {
   padding: 0;
+  margin-top: 10px;
 }
 
 input#formBasicSearch.form-control {
@@ -525,6 +526,10 @@ a#album-detail {
 
 .friend-album-container {
   margin-top: 25px;
+}
+
+#friend-album-main {
+  padding-bottom: 150px;
 }
 
 a#friend-albums {
