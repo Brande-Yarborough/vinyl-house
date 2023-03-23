@@ -209,107 +209,109 @@ function FriendAlbumDetail() {
     //////////This will show the album detail//////////
   } else {
     myAlbumDetailHTML = (
-      <div className="my-album-detail-page">
-        <div className="album-detail-main">
-          <Container className="album-detail-container d-flex">
-            <div className="card-image">
-              <Card.Img
-                variant="top"
-                src={albumDetails.album_detail?.cover_image}
-              />
-            </div>
-            <Card
-              style={{ width: "18rem" }}
-              key={albumDetails.album_detail?.api_id}
-              className="album-detail-card"
-            >
-              <Card.Body className="album-detail-card-body">
-                <div>
-                  <Card.Title>{albumDetails.album_detail?.title}</Card.Title>
-                  <div className="genre-year">
-                    <ListGroup.Item id="genre">
-                      Genre: {albumDetails.album_detail?.genre}
-                    </ListGroup.Item>
-                    <ListGroup.Item id="album-year">
-                      Year: {albumDetails.album_detail?.year}
-                    </ListGroup.Item>
+      <div id="friend-detail-background-image">
+        <div className="my-album-detail-page">
+          <div className="album-detail-main">
+            <Container className="album-detail-container d-flex">
+              <div className="card-image">
+                <Card.Img
+                  variant="top"
+                  src={albumDetails.album_detail?.cover_image}
+                />
+              </div>
+              <Card
+                style={{ width: "18rem" }}
+                key={albumDetails.album_detail?.api_id}
+                className="album-detail-card"
+              >
+                <Card.Body className="album-detail-card-body">
+                  <div>
+                    <Card.Title>{albumDetails.album_detail?.title}</Card.Title>
+                    <div className="genre-year">
+                      <ListGroup.Item id="genre">
+                        Genre: {albumDetails.album_detail?.genre}
+                      </ListGroup.Item>
+                      <ListGroup.Item id="album-year">
+                        Year: {albumDetails.album_detail?.year}
+                      </ListGroup.Item>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <ListGroup.Item id="tracklist">Tracklist :</ListGroup.Item>
-                  <ListGroup variant="flush">
-                    {albumDetails.album_detail?.tracks.map((track) => (
-                      <ListGroup.Item key={track}>{track}</ListGroup.Item>
-                    ))}
-                  </ListGroup>
-                </div>
-              </Card.Body>
-            </Card>
-          </Container>
-          <div className="user-note-image col-12 col-md">
-            <Container className="personal-note">
-              <Card.Title>Personal Note</Card.Title>
-              <Card>
-                <Card.Body>{albumDetails.note}</Card.Body>
+                  <div>
+                    <ListGroup.Item id="tracklist">Tracklist :</ListGroup.Item>
+                    <ListGroup variant="flush">
+                      {albumDetails.album_detail?.tracks.map((track) => (
+                        <ListGroup.Item key={track}>{track}</ListGroup.Item>
+                      ))}
+                    </ListGroup>
+                  </div>
+                </Card.Body>
               </Card>
-              {/* only show if user logged in is owner of note */}
-              {/* <Button type="button" onClick={() => setIsEditingNote(true)}>
+            </Container>
+            <div className="user-note-image col-12 col-md">
+              <Container className="personal-note">
+                <Card.Title>Personal Note</Card.Title>
+                <Card>
+                  <Card.Body>{albumDetails.note}</Card.Body>
+                </Card>
+                {/* only show if user logged in is owner of note */}
+                {/* <Button type="button" onClick={() => setIsEditingNote(true)}>
             Edit Note
           </Button> */}
-            </Container>
+              </Container>
 
-            <Container className="user-image">
-              {/* {albumDetails?.[0].user_image !== null ? ( */}
-              <>
-                <Card.Title>Image Memory</Card.Title>
-                <Card.Img
-                  variant="left"
-                  src={albumDetails.user_image}
-                  //   alt="user submitted image"
-                  style={{ width: "40%", display: "block" }}
-                />
-              </>
-              {/* ) : (
+              <Container className="user-image">
+                {/* {albumDetails?.[0].user_image !== null ? ( */}
+                <>
+                  <Card.Title>Image Memory</Card.Title>
+                  <Card.Img
+                    variant="left"
+                    src={albumDetails.user_image}
+                    //   alt="user submitted image"
+                    style={{ width: "40%", display: "block" }}
+                  />
+                </>
+                {/* ) : (
             <div>
               <div>Add Image: </div>
               <input type="file"></input>
             </div>
           )} */}
-            </Container>
+              </Container>
 
-            <Container className="comment-container">
-              <Card.Title>Add Comment</Card.Title>
-              <Form onSubmit={addComment}>
-                <FloatingLabel
-                  controlId="floatingTextarea2"
-                  label="Add Comments"
-                >
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Comments"
-                    style={{ height: "100px" }}
-                    value={comment}
-                    onChange={handleNewComment}
+              <Container className="comment-container">
+                <Card.Title>Add Comment</Card.Title>
+                <Form onSubmit={addComment}>
+                  <FloatingLabel
+                    controlId="floatingTextarea2"
+                    label="Add Comments"
+                  >
+                    <Form.Control
+                      as="textarea"
+                      placeholder="Comments"
+                      style={{ height: "100px" }}
+                      value={comment}
+                      onChange={handleNewComment}
+                    />
+                  </FloatingLabel>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    className="comment-sub-btn"
+                  >
+                    Submit
+                  </Button>
+                </Form>
+              </Container>
+              <div className="friend-comment-container">
+                {albumDetails.comments?.map((comment) => (
+                  <Comment
+                    key={comment.id}
+                    comment={comment}
+                    deleteComment={deleteComment}
+                    handleSubmitComment={handleSubmitComment}
                   />
-                </FloatingLabel>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  className="comment-sub-btn"
-                >
-                  Submit
-                </Button>
-              </Form>
-            </Container>
-            <div className="friend-comment-container">
-              {albumDetails.comments?.map((comment) => (
-                <Comment
-                  key={comment.id}
-                  comment={comment}
-                  deleteComment={deleteComment}
-                  handleSubmitComment={handleSubmitComment}
-                />
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

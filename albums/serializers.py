@@ -1,14 +1,21 @@
 from rest_framework import serializers
 from .models import AlbumDetail, Album, Comment
+from accounts.models import Profile
 
 
 class CommentSerializer(serializers.ModelSerializer):
     # Do I need author name here?
     author_name = serializers.ReadOnlyField(source='author.username')
     is_author = serializers.SerializerMethodField('get_author_status')
+    # user_profile = serializers.SerializerMethodField('get_profile')
+
+    # def get_profile(self, comment):
+    #     print(Profile.user)
+    #     return Profile.user == self.context.get('request').user
 
     # serializer method field is getting author status as boolean, to return and determine if author is equal to user
     # will use this to determine if edit and delete buttons will show up for specific author/user
+
     def get_author_status(self, comment):
         return comment.author == self.context.get('request').user
 

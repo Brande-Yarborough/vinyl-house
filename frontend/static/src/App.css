@@ -322,6 +322,10 @@ a#album-detail:hover {
   font-size: 18px;
 }
 
+.card-title.h5 {
+  font-size: 24px;
+}
+
 #tracklist {
   font-family: "Permanent Marker", cursive;
   font-size: 18px;
@@ -380,8 +384,8 @@ a#album-detail:hover {
 .friend-comment-container {
   display: flex;
   flex-wrap: wrap;
-  /* margin-right: 281px;
-  margin-left: 281px; */
+  margin-right: 281px;
+  margin-left: 281px;
   padding-top: 10px;
   padding-bottom: 50px;
   padding-left: 32px;
@@ -398,6 +402,7 @@ a#album-detail:hover {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
+  /* background-color: #f8f8f8; */
 }
 
 .comment-sub-btn {
@@ -405,7 +410,8 @@ a#album-detail:hover {
 }
 
 textarea {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  /* box-shadow: 0 3px 10px rgb(0 0 0/0.2); */
 }
 
 .friend-comment {
@@ -423,7 +429,7 @@ textarea {
 }
 
 .comment-btn-container {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
 }
 
@@ -604,6 +610,15 @@ a#friend-albums:hover {
   display: flex;
   flex-direction: column;
 }
+
+/* FRIEND ALBUM DETAIL */
+
+/* #friend-detail-background-image {
+  background: url("../src/assets/album-detail.jpg") no-repeat;
+  padding-top: 10px;
+  width: 100vw;
+  background-size: cover;
+} */
 
 /* FOOTER */
 footer {
