@@ -56,7 +56,14 @@ function FriendList() {
       style={{ width: "18rem" }}
     >
       <Card.Body>
-        <Card.Text>{friend.username}</Card.Text>
+        <div className="member-name-avatar">
+          <Card.Text>{friend.username}</Card.Text>
+          <Image
+            src={friend.profile_avatar}
+            className="rounded-circle member-photo"
+          />
+        </div>
+
         <div className="friend-list-buttons">
           <Link
             id="friend-albums"

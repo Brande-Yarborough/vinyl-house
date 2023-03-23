@@ -433,7 +433,7 @@ a#album-detail {
 }
 
 .friend-list-buttons {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
 }
@@ -541,7 +541,7 @@ a#friend-albums {
   background-color: black;
   color: white;
   border: solid 1px black;
-  font-size: 18px;
+  font-size: 1rem;
   font-family: "Permanent Marker", cursive;
 }
 

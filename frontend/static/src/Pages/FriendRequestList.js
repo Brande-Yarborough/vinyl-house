@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Button, Card } from "react-bootstrap";
+import { Container, Button, Card, Image } from "react-bootstrap";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
 
@@ -74,7 +74,13 @@ function FriendRequests(props) {
       key={request.id}
     >
       <Card.Body>
-        <Card.Text>{request.from_user}</Card.Text>
+        <div className="member-name-avatar">
+          <Card.Text>{request.from_user}</Card.Text>
+          <Image
+            src={request.from_user_image}
+            className="rounded-circle member-photo"
+          />
+        </div>
         <Button
           className="accept-friend-request-button"
           variant="primary"

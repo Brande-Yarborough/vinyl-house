@@ -43,7 +43,7 @@ function FriendAlbums() {
             to={`/friend-album-detail/${album.id}`}
             type="primary"
           >
-            Album Detail
+            View Album
           </Link>
         </Card.Body>
       </Card>
