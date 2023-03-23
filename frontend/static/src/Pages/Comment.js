@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Form, Button, Container, Card } from "react-bootstrap";
+import { Form, Button, Container, Card, Image } from "react-bootstrap";
 
 function Comment({ comment, ...props }) {
   const updatedAt = new Date(comment.updated_at);
@@ -21,6 +21,10 @@ function Comment({ comment, ...props }) {
             <Card.Subtitle className="mb-2 text-muted">
               {formattedDate}
             </Card.Subtitle>
+            <Image
+              src={comment.user_profile}
+              className="rounded-circle member-photo"
+            />
             <Form>
               <Form.Control
                 name="comment"

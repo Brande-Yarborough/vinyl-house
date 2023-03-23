@@ -8,6 +8,8 @@ class CommentSerializer(serializers.ModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.username')
     is_author = serializers.SerializerMethodField('get_author_status')
     # user_profile = serializers.SerializerMethodField('get_profile')
+    user_profile = serializers.ImageField(
+        source="author.profile.avatar", read_only=True)
 
     # def get_profile(self, comment):
     #     print(Profile.user)
