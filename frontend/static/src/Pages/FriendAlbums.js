@@ -32,7 +32,7 @@ function FriendAlbums() {
 
   const FriendAlbumListHTML = friendAlbums.map((album) => (
     <Col md={3} key={album.album_detail.api_id}>
-      <Card style={{ width: "100%" }}>
+      <Card className="h-100" style={{ width: "100%" }}>
         <Card.Img variant="top" src={album.album_detail.cover_image} />
         <Card.Body id="friend-card-body">
           <Card.Title id="friend-album-title">

@@ -319,6 +319,9 @@ function FriendAlbumDetail() {
   }
   return (
     <>
+      {/* <Link className="detail-back" to="/friend-albums/:friendId">
+        Back to Albums
+      </Link> */}
       {/* <Link to={`/friend-albums/:friendId`}>Back to Friends Albums</Link> */}
       <div>{myAlbumDetailHTML}</div>
     </>
