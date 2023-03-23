@@ -220,36 +220,44 @@ function MyAlbumDetail() {
       <div className="my-album-detail-page">
         <div className="album-detail-main row">
           <Container className="album-detail-container d-flex container col-12 col-md">
-            <Card
-              style={{ width: "25rem" }}
-              key={albumDetails?.album_detail?.api_id}
-            >
+            <div className="card-image">
               <Card.Img
                 variant="top"
                 src={albumDetails?.album_detail?.cover_image}
               />
-              <Card.Body>
-                <Card.Title>{albumDetails?.album_detail?.title}</Card.Title>
-                <ListGroup variant="flush">
-                  <ListGroup.Item>
-                    Genre: {albumDetails?.album_detail?.genre}
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    Year: {albumDetails?.album_detail?.year}
-                  </ListGroup.Item>
-
-                  <ListGroup.Item>Tracklist</ListGroup.Item>
-                  {albumDetails?.album_detail?.tracks.map((track) => (
-                    <ListGroup.Item key={track}>{track}</ListGroup.Item>
-                  ))}
-                </ListGroup>
+            </div>
+            <Card
+              style={{ width: "30rem" }}
+              key={albumDetails?.album_detail?.api_id}
+              className="album-detail-card"
+            >
+              <Card.Body className="album-detail-card-body">
+                <div>
+                  <Card.Title>{albumDetails?.album_detail?.title}</Card.Title>
+                  <div className="genre-year">
+                    <ListGroup.Item id="genre">
+                      Genre: {albumDetails?.album_detail?.genre}
+                    </ListGroup.Item>
+                    <ListGroup.Item id="album-year">
+                      Year: {albumDetails?.album_detail?.year}
+                    </ListGroup.Item>
+                  </div>
+                </div>
+                <div>
+                  <ListGroup.Item id="tracklist">Tracklist :</ListGroup.Item>
+                  <ListGroup variant="flush">
+                    {albumDetails?.album_detail?.tracks.map((track) => (
+                      <ListGroup.Item key={track}>{track}</ListGroup.Item>
+                    ))}
+                  </ListGroup>
+                </div>
               </Card.Body>
             </Card>
           </Container>
           <div className="user-note-image col-12 col-md">
             <Container className="personal-note">
+              <Card.Title>Personal Note</Card.Title>
               <Card>
-                <Card.Title>Personal Note</Card.Title>
                 <Card.Body>{albumDetails?.note}</Card.Body>
               </Card>
               {/* only show if user logged in is owner of note */}
@@ -275,6 +283,7 @@ function MyAlbumDetail() {
               {/* )} */}
             </Container>
             <Container className="comment-container">
+              <Card.Title>Add Comment</Card.Title>
               <Form onSubmit={addComment}>
                 <FloatingLabel
                   controlId="floatingTextarea2"

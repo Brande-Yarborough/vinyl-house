@@ -234,8 +234,9 @@ div#search-results.row {
   flex-direction: column;
 }
 
-.list-group {
+#list-group {
   padding-bottom: 10px;
+  border-color: white !important;
 }
 
 .loading-spinner {
@@ -305,13 +306,32 @@ a#album-detail {
   font-size: 18px;
 }
 
+#tracklist {
+  font-family: "Permanent Marker", cursive;
+  font-size: 18px;
+}
+
 .my-album-detail-page {
   padding-bottom: 150px;
 }
 
 .album-detail-main {
   display: flex;
+  flex-direction: column;
   padding-top: 50px;
+}
+
+.album-detail-card-body {
+  padding: 0;
+}
+
+.genre-year {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+#genre {
+  padding-right: 15px;
 }
 
 .album-detail-container {
@@ -319,23 +339,38 @@ a#album-detail {
   /* width: 40%; */
   /* height: 0%; */
   align-self: flex-start;
+  align-items: flex-start;
+}
+
+.album-detail-container .card-image {
+  width: 30rem;
+  margin-right: 50px;
+}
+
+.album-detail-card {
+  flex-direction: row;
+  border: none;
 }
 
 .friend-comment-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 281px;
+  margin-left: 281px;
   padding-top: 10px;
   padding-bottom: 50px;
 }
 
 .comment-container {
   padding-top: 50px;
+  padding-bottom: 25px;
 }
 
 .user-note-image {
-  /* width: 65%; */
   padding-right: 50px;
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
-  /* height: 100%; */
   align-self: flex-start;
 }
 
@@ -353,6 +388,13 @@ a#album-detail {
 
 .comment-btn-container .btn {
   margin-right: 10px;
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+.comment-btn-container {
+  display: flex;
+  justify-content: center;
 }
 
 .personal-note {
@@ -369,7 +411,7 @@ a#album-detail {
 
 .personal-note .card-title {
   padding-top: 5px;
-  padding-left: 10px;
+  padding-bottom: 5px;
 }
 
 .edit-note-container {
