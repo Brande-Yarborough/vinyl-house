@@ -243,6 +243,7 @@ div#search-results.row {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 30px;
 }
 
 /* MY ALBUMS */
