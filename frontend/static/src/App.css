@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap");
 
 .App {
   text-align: center;
@@ -63,6 +64,14 @@ a.active {
 }
 
 /* LOGIN FORM */
+.form-label {
+  font-family: "Open Sans", sans-serif;
+}
+
+input {
+  font-family: "Open Sans", sans-serif;
+}
+
 div#login-container.container {
   display: flex;
   flex-direction: column;
@@ -93,6 +102,7 @@ div#background-image {
 
 p#register-link {
   margin-top: 10px;
+  font-family: "Open Sans", sans-serif;
 }
 
 a#register-here {
@@ -108,7 +118,7 @@ div#register-container.container {
   align-items: center;
   background-color: rgba(237, 216, 174, 0.8);
   height: 70vh;
-  width: 550px;
+  width: 600px;
   min-height: 360px;
   max-height: 525px;
   border: 1px solid rgba(237, 216, 174, 0.066);
@@ -317,6 +327,14 @@ a#album-detail:hover {
   font-size: 18px;
 }
 
+.list-group-item {
+  font-family: "Open Sans", sans-serif;
+}
+
+.card-body {
+  font-family: "Open Sans", sans-serif;
+}
+
 .my-album-detail-page {
   padding-bottom: 150px;
 }
@@ -334,6 +352,7 @@ a#album-detail:hover {
 .genre-year {
   display: flex;
   padding-bottom: 10px;
+  font-family: "Open Sans", sans-serif;
 }
 
 #genre {
@@ -385,6 +404,10 @@ a#album-detail:hover {
   margin-top: 10px;
 }
 
+textarea {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .friend-comment {
   padding-bottom: 15px;
 }
@@ -434,6 +457,10 @@ a#album-detail:hover {
 /* to prevent overlap with footer */
 #friend-main-container {
   padding-bottom: 150px;
+}
+
+.card-text {
+  font-family: "Open Sans", sans-serif;
 }
 
 .friend-list-buttons {

@@ -45,11 +45,12 @@ function FriendAlbumDetail() {
   /////Add Comment/////
   const addComment = async (event) => {
     event.preventDefault();
+    console.log("Here i am!");
     const newComment = {
       text: comment,
-      album: albumDetails?.[0].id,
+      album: albumDetails.id,
     };
-    console.log(albumDetails?.[0].id);
+    console.log(albumDetails.id);
 
     const options = {
       method: "POST",
@@ -66,8 +67,8 @@ function FriendAlbumDetail() {
     }
 
     const data = await response.json();
-    const comments = [...albumDetails?.[0].comments, data];
-    setAlbumDetails([{ ...albumDetails?.[0], comments }]);
+    const comments = [...albumDetails.comments, data];
+    setAlbumDetails({ ...albumDetails, comments });
     //clears new comment form back out
     setComment("");
   };
@@ -91,14 +92,14 @@ function FriendAlbumDetail() {
     } else {
       console.log(response);
       //create shallow copy of comments
-      let comments = [...albumDetails?.[0].comments];
+      let comments = [...albumDetails.comments];
       //find index of comment we want to delete
       const index = comments.findIndex((x) => x.id == id);
       //removing comment from array
       comments.splice(index, 1);
       console.log(albumDetails);
       //reset state with comments
-      setAlbumDetails([{ ...albumDetails[0], comments }]);
+      setAlbumDetails({ ...albumDetails, comments });
       console.log(albumDetails);
     }
   };
@@ -214,32 +215,30 @@ function FriendAlbumDetail() {
             <div className="card-image">
               <Card.Img
                 variant="top"
-                src={albumDetails?.[0].album_detail?.cover_image}
+                src={albumDetails.album_detail?.cover_image}
               />
             </div>
             <Card
               style={{ width: "18rem" }}
-              key={albumDetails?.[0].album_detail?.api_id}
+              key={albumDetails.album_detail?.api_id}
               className="album-detail-card"
             >
               <Card.Body className="album-detail-card-body">
                 <div>
-                  <Card.Title>
-                    {albumDetails?.[0].album_detail?.title}
-                  </Card.Title>
+                  <Card.Title>{albumDetails.album_detail?.title}</Card.Title>
                   <div className="genre-year">
                     <ListGroup.Item id="genre">
-                      Genre: {albumDetails?.[0].album_detail?.genre}
+                      Genre: {albumDetails.album_detail?.genre}
                     </ListGroup.Item>
                     <ListGroup.Item id="album-year">
-                      Year: {albumDetails?.[0].album_detail?.year}
+                      Year: {albumDetails.album_detail?.year}
                     </ListGroup.Item>
                   </div>
                 </div>
                 <div>
                   <ListGroup.Item id="tracklist">Tracklist :</ListGroup.Item>
                   <ListGroup variant="flush">
-                    {albumDetails?.[0].album_detail?.tracks.map((track) => (
+                    {albumDetails.album_detail?.tracks.map((track) => (
                       <ListGroup.Item key={track}>{track}</ListGroup.Item>
                     ))}
                   </ListGroup>
@@ -251,7 +250,7 @@ function FriendAlbumDetail() {
             <Container className="personal-note">
               <Card.Title>Personal Note</Card.Title>
               <Card>
-                <Card.Body>{albumDetails?.[0].note}</Card.Body>
+                <Card.Body>{albumDetails.note}</Card.Body>
               </Card>
               {/* only show if user logged in is owner of note */}
               {/* <Button type="button" onClick={() => setIsEditingNote(true)}>
@@ -265,7 +264,7 @@ function FriendAlbumDetail() {
                 <Card.Title>Image Memory</Card.Title>
                 <Card.Img
                   variant="left"
-                  src={albumDetails?.[0].user_image}
+                  src={albumDetails.user_image}
                   //   alt="user submitted image"
                   style={{ width: "40%", display: "block" }}
                 />
@@ -303,7 +302,7 @@ function FriendAlbumDetail() {
               </Form>
             </Container>
             <div className="friend-comment-container">
-              {albumDetails?.[0].comments?.map((comment) => (
+              {albumDetails.comments?.map((comment) => (
                 <Comment
                   key={comment.id}
                   comment={comment}
@@ -319,10 +318,9 @@ function FriendAlbumDetail() {
   }
   return (
     <>
-      {/* <Link className="detail-back" to="/friend-albums/:friendId">
+      <Link className="detail-back" to={`/friend-albums/${albumDetails.user}`}>
         Back to Albums
-      </Link> */}
-      {/* <Link to={`/friend-albums/:friendId`}>Back to Friends Albums</Link> */}
+      </Link>
       <div>{myAlbumDetailHTML}</div>
     </>
   );

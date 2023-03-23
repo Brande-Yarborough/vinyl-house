@@ -154,9 +154,10 @@ class FriendAlbumListAPIView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 
-class FriendAlbumDetailListView(generics.ListAPIView):
+class FriendAlbumDetailListView(generics.RetrieveAPIView):
     serializer_class = UserAlbumSerializer
+    queryset = Album.objects.all()
 
-    def get_queryset(self):
-        pk = self.kwargs.get('pk')
-        return Album.objects.filter(id=pk)
+    # def get_queryset(self):
+    #     pk = self.kwargs.get('pk')
+    #     return Album.objects.filter(id=pk)
