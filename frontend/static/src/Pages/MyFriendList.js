@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Button, Card } from "react-bootstrap";
+import { Container, Button, Card, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { handleError } from "../utils/utilities";
@@ -121,7 +121,10 @@ function FriendList() {
       style={{ width: "18rem" }}
     >
       <Card.Body>
-        <Card.Text>{profile.display_name}</Card.Text>
+        <div className="member-name-avatar">
+          <Card.Text>{profile.display_name}</Card.Text>
+          <Image src={profile.avatar} className="rounded-circle member-photo" />
+        </div>
         <Button
           variant="primary"
           type="button"
@@ -145,7 +148,7 @@ function FriendList() {
           <div className="friend-list-row row-12 row-md friend-request">
             <FriendRequests getMyProfile={getMyProfile} />
           </div>
-            <h2 id="vinyl-house-members">Vinyl House Members</h2>
+          <h2 id="vinyl-house-members">Vinyl House Members</h2>
           <div className="friend-list-row row-12 row-md house-members">
             {profileListHTML}
           </div>

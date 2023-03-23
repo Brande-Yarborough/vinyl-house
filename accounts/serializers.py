@@ -8,7 +8,7 @@ class FriendSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'id', 'profile_id')
+        fields = ('username', 'id', 'profile_id',)
 
 
 class FriendRequestSerializer(serializers.ModelSerializer):

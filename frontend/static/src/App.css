@@ -467,6 +467,17 @@ a#album-detail {
   font-family: "Permanent Marker", cursive;
 }
 
+.member-photo {
+  object-fit: cover;
+  height: 60px;
+  width: 60px;
+}
+
+.member-name-avatar {
+  display: flex;
+  justify-content: space-between;
+}
+
 #friend-requests {
   color: white;
   font-family: "Permanent Marker", cursive;
