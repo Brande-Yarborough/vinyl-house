@@ -382,7 +382,7 @@ a#album-detail:hover {
 }
 
 .friend-comment-container {
-  display: flex;
+  /* display: flex; */
   /* margin-right: 281px;
   margin-left: 281px; */
   padding-top: 10px;
