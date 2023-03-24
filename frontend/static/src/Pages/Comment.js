@@ -14,7 +14,7 @@ function Comment({ comment, ...props }) {
 
   return (
     <div className="friend-comment">
-      <Container>
+      <Container style={{ margin: 0 }} className="friend-comment-containter">
         <Card key={comment.id} style={{ width: "50rem" }}>
           <Card.Body>
             <div className="comment-title-box">
@@ -44,7 +44,7 @@ function Comment({ comment, ...props }) {
         </Card>
       </Container>
 
-      <Container className="comment-btn-container">
+      <Container className="comment-btn-container" style={{ margin: 0 }}>
         {comment.is_author && !isEditing && (
           <Button type="button" onClick={() => setEditing(true)}>
             Edit Comment

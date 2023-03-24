@@ -439,6 +439,10 @@ textarea {
   padding-bottom: 15px;
 }
 
+.friend-comment-container.container {
+  margin: 0;
+}
+
 .friend-comment .container {
   padding-bottom: 5px;
 }
