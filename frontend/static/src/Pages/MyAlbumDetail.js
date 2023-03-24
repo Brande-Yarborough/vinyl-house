@@ -257,7 +257,7 @@ function MyAlbumDetail() {
           <div className="user-note-image col-12 col-md">
             <Container className="personal-note">
               <Card.Title>Personal Note</Card.Title>
-              <Card>
+              <Card className="personal-note-card">
                 <Card.Body>{albumDetails?.note}</Card.Body>
               </Card>
               {/* only show if user logged in is owner of note */}
@@ -272,7 +272,7 @@ function MyAlbumDetail() {
                 <Card.Img
                   variant="left"
                   src={image}
-                  alt="user submitted image"
+                  // alt="user submitted image"
                   style={{ width: "40%", display: "block" }}
                 />
               </>
