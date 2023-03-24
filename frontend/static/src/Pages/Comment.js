@@ -17,14 +17,18 @@ function Comment({ comment, ...props }) {
       <Container>
         <Card key={comment.id} style={{ width: "50rem" }}>
           <Card.Body>
-            <Card.Title>{comment.author_name}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              {formattedDate}
-            </Card.Subtitle>
-            <Image
-              src={comment.user_profile}
-              className="rounded-circle member-photo"
-            />
+            <div className="comment-title-box">
+              <Image
+                src={comment.user_profile}
+                className="rounded-circle member-photo"
+              />
+              <div className="comment-date-box">
+                <Card.Title>{comment.author_name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  {formattedDate}
+                </Card.Subtitle>
+              </div>
+            </div>
             <Form>
               <Form.Control
                 name="comment"

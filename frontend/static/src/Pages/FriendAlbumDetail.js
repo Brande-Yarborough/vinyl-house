@@ -250,7 +250,7 @@ function FriendAlbumDetail() {
             <div className="user-note-image col-12 col-md">
               <Container className="personal-note">
                 <Card.Title>Personal Note</Card.Title>
-                <Card>
+                <Card className="personal-note-form">
                   <Card.Body>{albumDetails.note}</Card.Body>
                 </Card>
                 {/* only show if user logged in is owner of note */}
@@ -262,9 +262,9 @@ function FriendAlbumDetail() {
               <Container className="user-image">
                 {/* {albumDetails?.[0].user_image !== null ? ( */}
                 <>
-                  <Card.Title>Image Memory</Card.Title>
+                  <Card.Title>Photo Memory</Card.Title>
                   <Card.Img
-                    variant="left"
+                    // variant="left"
                     src={albumDetails.user_image}
                     //   alt="user submitted image"
                     style={{ width: "40%", display: "block" }}
@@ -280,7 +280,7 @@ function FriendAlbumDetail() {
 
               <Container className="comment-container">
                 <Card.Title>Add Comment</Card.Title>
-                <Form onSubmit={addComment}>
+                <Form className="comment-form" onSubmit={addComment}>
                   <FloatingLabel
                     controlId="floatingTextarea2"
                     label="Add Comments"
@@ -288,7 +288,7 @@ function FriendAlbumDetail() {
                     <Form.Control
                       as="textarea"
                       placeholder="Comments"
-                      style={{ height: "100px" }}
+                      style={{ height: "100px", width: "50rem" }}
                       value={comment}
                       onChange={handleNewComment}
                     />

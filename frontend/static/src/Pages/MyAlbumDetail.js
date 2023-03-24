@@ -268,7 +268,7 @@ function MyAlbumDetail() {
             <Container className="user-image">
               {/* {albumDetails?.user_image !== null ? ( */}
               <>
-                <Card.Title>Image Memory</Card.Title>
+                <Card.Title>Photo Memory</Card.Title>
                 <Card.Img
                   variant="left"
                   src={image}
@@ -284,7 +284,7 @@ function MyAlbumDetail() {
             </Container>
             <Container className="comment-container">
               <Card.Title>Add Comment</Card.Title>
-              <Form onSubmit={addComment}>
+              <Form className="comment-form" onSubmit={addComment}>
                 <FloatingLabel
                   controlId="floatingTextarea2"
                   label="Add Comments"

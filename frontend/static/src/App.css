@@ -383,9 +383,8 @@ a#album-detail:hover {
 
 .friend-comment-container {
   display: flex;
-  flex-wrap: wrap;
-  margin-right: 281px;
-  margin-left: 281px;
+  /* margin-right: 281px;
+  margin-left: 281px; */
   padding-top: 10px;
   padding-bottom: 50px;
   padding-left: 32px;
@@ -394,6 +393,14 @@ a#album-detail:hover {
 .comment-container {
   padding-top: 50px;
   padding-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-left: 40px;
+}
+
+.comment-form {
+  width: 50rem;
 }
 
 .user-note-image {
@@ -405,6 +412,11 @@ a#album-detail:hover {
   /* background-color: #f8f8f8; */
 }
 
+.user-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .comment-sub-btn {
   margin-top: 10px;
 }
@@ -412,6 +424,15 @@ a#album-detail:hover {
 textarea {
   font-family: "Open Sans", sans-serif;
   /* box-shadow: 0 3px 10px rgb(0 0 0/0.2); */
+}
+
+.comment-title-box {
+  display: flex;
+  padding-bottom: 15px;
+}
+
+.comment-date-box {
+  padding-left: 25px;
 }
 
 .friend-comment {
@@ -422,9 +443,13 @@ textarea {
   padding-bottom: 5px;
 }
 
+.comment-container .card-title {
+  padding-bottom: 5px;
+}
+
 .comment-btn-container .btn {
   margin-right: 10px;
-  font-size: 12px;
+  font-size: 14px;
   padding: 4px 8px;
 }
 
@@ -435,6 +460,11 @@ textarea {
 
 .personal-note {
   padding-bottom: 50px;
+  width: 50rem;
+}
+
+.personal-note-form {
+  height: 100px;
 }
 
 .personal-note .card {
@@ -463,10 +493,17 @@ textarea {
 /* to prevent overlap with footer */
 #friend-main-container {
   padding-bottom: 150px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .card-text {
   font-family: "Open Sans", sans-serif;
+}
+
+.member-name-avatar .card-text {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .friend-list-buttons {
