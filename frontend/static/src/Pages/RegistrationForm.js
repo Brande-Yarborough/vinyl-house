@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Navigate, useNavigate } from "react-router-dom";
-import Container from "react-bootstrap/esm/Container";
+// import Container from "react-bootstrap/esm/Container";
 import { AuthContext } from "../context/AuthContext";
 
 const INITIAL_STATE = {
@@ -17,6 +17,7 @@ const Register = () => {
   const { isAuthenticated, register } = useContext(AuthContext);
   const [state, setState] = useState(INITIAL_STATE);
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const [success, setSuccess] = useState(false);
 
   const handleInput = (e) => {
     const { name, value } = e.target; //value of this inside event listener is event.target, value of this in fat arrow is LoginForm
@@ -39,6 +40,7 @@ const Register = () => {
     } else {
       setPasswordMatch(false);
     }
+    setSuccess(true);
   };
 
   if (isAuthenticated) {
@@ -106,6 +108,10 @@ const Register = () => {
             <Button className="register-button" variant="primary" type="submit">
               Register
             </Button>
+
+            {success && (
+              <div data-testid="success-message">Registration successful!</div>
+            )}
           </Form>
         </Container>
       </div>
