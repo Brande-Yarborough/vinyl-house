@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Navigate, useNavigate } from "react-router-dom";
-// import Container from "react-bootstrap/esm/Container";
+import Container from "react-bootstrap/Container";
 import { AuthContext } from "../context/AuthContext";
 
 const INITIAL_STATE = {
@@ -64,10 +64,12 @@ const Register = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword1">
+            <Form.Group className="mb-3" controlId="password1">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
+                // title="password"
+                role="textbox"
                 placeholder="Enter password"
                 name="password1"
                 value={state.password1}
@@ -80,6 +82,7 @@ const Register = () => {
               <Form.Label>Verify password</Form.Label>
               <Form.Control
                 type="password"
+                role="textbox"
                 placeholder="Verify password"
                 name="password2"
                 value={state.password2}
